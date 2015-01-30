@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.event;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -18,8 +18,8 @@ public class InfectionEvent {
 				Entity target = event.entity;
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
-					if ((attacked.getRNG().nextInt(100) + 1) <= 20) {
-						attacked.addChatMessage(new ChatComponentText("INFECTED!"));
+					if ((attacked.getRNG().nextInt(100) + 1) <= 10) {
+						attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
 						//TODO: INFECT
 					}
 				}

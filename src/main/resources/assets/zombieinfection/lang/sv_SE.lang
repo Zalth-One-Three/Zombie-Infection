@@ -1,0 +1,50 @@
+# Translation by iHeartZigg / 2015-05-08 #
+
+# Chat Messages #
+
+zombieinfection.chat.infected=Du har blivit infekterad, hitta botemedlet.
+zombieinfection.chat.playerinfected=Du har blivit infekterad av en annan spelare, hitta botemedlet.
+zombieinfection.chat.rotteninfection=Du har blivit infekterad av rutten mat.
+
+# Entities #
+
+entity.ZombieInfection.ZIZombieChicken.name=Zombie Höna
+entity.ZombieInfection.ZIZombieCow.name=Zombie Ko
+entity.ZombieInfection.ZIZombiePig.name=Zombie Gris
+entity.ZombieInfection.ZIZombieSheep.name=Zombie Får
+
+# Items #
+
+item.zombieinfection:cure.name=Infektion Botemedel
+item.zombieinfection:infectedEgg.name=Infekterat Ägg
+item.zombieinfection:infectedMilk.name=Infekterad Mjölk
+item.zombieinfection:knowledgeBook.name=Kunskapsbok
+
+# Item Groups #
+
+itemGroup.zombieInfection=Zombie Infektion
+
+# Tooltips #
+
+tooltip.cure=Botar Zombie Infektionen
+tooltip.infectedeyes=Infektionen har spridits till dina ögon.
+tooltip.knowledgeBook=En zombie överlevnadshandbok.
+
+# Potions #
+
+potion.zombieinfection.infection=Infektion
+potion.zombieinfection.cure=Infektions Botemedel
+
+# Easter Eggs #
+
+easteregg.stew=Nudelsoppa
+easteregg.description.stew=Erhm.. Är du säker på att detta är nudlar?
+
+easteregg.egg=Sköldpaddsägg
+easteregg.description.egg=Ser underlig ut.
+
+easteregg.sponge=Ost
+easteregg.description.sponge=Skapad av "Dizkonnekted"
+
+easteregg.cooked_porkchop=Bacon
+easteregg.description.cooked_porkchop=Ser smaskig ut...

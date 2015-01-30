@@ -1,0 +1,58 @@
+# Translated by Zalthrion #
+
+# Chat Messages #
+
+zombieinfection.chat.infected=Habeis sido infectado, encuentra la cura.
+zombieinfection.chat.playerinfected=Habeis sido infectado por otro jugador, encuentra la cura.
+zombieinfection.chat.rotteninfection=Habeis sido infectado por comida podrida.
+
+zombieinfection.death.needle=%s intento sacar demasiada sangre.
+
+# Entities #
+
+entity.ZombieInfection.ZIZombieChicken.name=Gallina Zombi
+entity.ZombieInfection.ZIZombieCow.name=Vaca Zombi
+entity.ZombieInfection.ZIZombiePig.name=Cerdo Zombi
+entity.ZombieInfection.ZIZombieSheep.name=Oveja Zombi
+
+# Items #
+
+item.zombieinfection:cure.name=Cura de la Infección
+item.zombieinfection:infectedEgg=Huevo Infectado
+item.zombieinfection:infectedMilk=Leche Infectada
+item.zombieinfection:knowledgeBook.name=Libro de Conocimiento
+
+item.zombieinfection:needle.name=Jeringa (Vacia)
+item.zombieinfection:needleNormal.name=Jeringa (Sangre Normal)
+item.zombieinfection:needleInfected.name=Jeringa (Sangre Infectada)
+item.zombieinfection:needleCured.name=Jeringa (Sangre Curada)
+item.zombieinfection:needleUnknown.name=Jeringa (Desconocido)
+
+# Item Groups #
+
+itemGroup.zombieInfection=Infección Zombi
+
+# Tooltips #
+
+tooltip.cure=Cura la Infección Zombi.
+tooltip.infectedeyes=La infección ha contaminado tus ojos
+tooltip.knowledgeBook=Una guía de supervivencia zombie
+
+# Potions #
+
+potion.zombieinfection.infection=Infección
+potion.zombieinfection.cure=Cura de la Infección
+
+# Easter Eggs #
+
+easteregg.stew=Sopa de fideos
+easteregg.description.stew=Erhm.. Estais seguro de que estos son fideos?
+
+easteregg.egg=Huevo de Tortuga
+easteregg.description.egg=Se ve bastante extraño
+
+easteregg.sponge=Queso
+easteregg.description.sponge=Hecho por Dizkonnekted
+
+easteregg.cooked_porkchop=Tocino
+easteregg.description.cooked_porkchop=Parece delicioso...

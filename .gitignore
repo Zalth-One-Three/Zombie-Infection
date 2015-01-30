@@ -1,0 +1,11 @@
+.gradle/
+.classpath
+.project
+.settings
+
+bin/
+build/
+eclipse/
+
+*.launch
+*.db

@@ -1,0 +1,48 @@
+# Translated by Naru Trey #
+
+# Chat Messages #
+
+zombieinfection.chat.infected=Тебя инфицировали, используй лекарство!
+zombieinfection.chat.playerinfected=Тебя инфицировал другой игрок, используй лекарство!
+zombieinfection.chat.rotteninfection=Ты съел заражённую пищу...
+
+# Entities #
+
+entity.ZombieInfection.ZIZombieChicken.name=Зомби-курица
+entity.ZombieInfection.ZIZombieCow.name=Зомби-корова
+entity.ZombieInfection.ZIZombiePig.name=Зомби-свинья
+entity.ZombieInfection.ZIZombieSheep.name=Зомби-овца
+
+# Items #
+
+item.zombieinfection:cure.name=Противоинфекционное лекарство
+item.zombieinfection:infectedEgg.name=Заражённое яйцо
+item.zombieinfection:infectedMilk.name=Заражённое молоко
+
+# Item Groups #
+
+itemGroup.zombieInfection=Зомби-инфекция
+
+# Tooltips #
+
+tooltip.cure=Нейтрализует Зомби-инфекцию
+tooltip.infectedeyes=Инфекция поразила твои глаза!
+
+# Potions #
+
+potion.zombieinfection.infection=Инфекция
+potion.zombieinfection.cure=Лечение
+
+# Easter Eggs #
+
+easteregg.stew=Суп с лапшой
+easteregg.description.stew=Хм... Ты уверен, что это лапша?
+
+easteregg.egg=Черепашье яйцо
+easteregg.description.egg=Выглядит весьма подозрительно
+
+easteregg.sponge=Сыр
+easteregg.description.sponge=Сделан Dizkonnekted
+
+easteregg.cooked_porkchop=Бекон
+easteregg.description.cooked_porkchop=Выглядит вкусно...

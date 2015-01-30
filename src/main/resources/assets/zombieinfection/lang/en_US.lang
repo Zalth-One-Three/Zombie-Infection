@@ -1,0 +1,56 @@
+# Chat Messages #
+
+zombieinfection.chat.infected=You have been infected, find the cure.
+zombieinfection.chat.playerinfected=You have been infected by another player, find the cure.
+zombieinfection.chat.rotteninfection=You have been infected by rotten food.
+
+zombieinfection.death.needle=%s tried to take too much blood.
+
+# Entities #
+
+entity.ZombieInfection.ZIZombieChicken.name=Zombie Chicken
+entity.ZombieInfection.ZIZombieCow.name=Zombie Cow
+entity.ZombieInfection.ZIZombiePig.name=Zombie Pig
+entity.ZombieInfection.ZIZombieSheep.name=Zombie Sheep
+
+# Items #
+
+item.zombieinfection:cure.name=Infection Cure
+item.zombieinfection:infectedEgg.name=Infected Egg
+item.zombieinfection:infectedMilk.name=Infected Milk
+item.zombieinfection:knowledgeBook.name=Knowledge Book
+
+item.zombieinfection:needle.name=Needle (Empty)
+item.zombieinfection:needleNormal.name=Needle (Normal Blood)
+item.zombieinfection:needleInfected.name=Needle (Infected Blood)
+item.zombieinfection:needleCured.name=Needle (Cured Blood)
+item.zombieinfection:needleUnknown.name=Needle (Unknown)
+
+# Item Groups #
+
+itemGroup.zombieInfection=Zombie Infection
+
+# Tooltips #
+
+tooltip.cure=Cures the Zombie Infection.
+tooltip.infectedeyes=The infection has spread to your eyes.
+tooltip.knowledgeBook=A zombie survival guide
+
+# Potions #
+
+potion.zombieinfection.infection=Infection
+potion.zombieinfection.cure=Infection Cure
+
+# Easter Eggs #
+
+easteregg.stew=Noodle Soup
+easteregg.description.stew=Erhm.. Are you sure these are noodles?
+
+easteregg.egg=Turtle Egg
+easteregg.description.egg=Looks quite odd
+
+easteregg.sponge=Cheese
+easteregg.description.sponge=Made by Dizkonnekted
+
+easteregg.cooked_porkchop=Bacon
+easteregg.description.cooked_porkchop=Looks tasty...

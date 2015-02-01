@@ -3,7 +3,6 @@ package com.zalthonethree.zombieinfection.item;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.client.CreativeTab;
@@ -34,9 +33,5 @@ public class ItemBase extends Item/*, EntityDragon*/ {
 	
 	protected String getUnwrappedUnlocalizedName(String unlocalizedName) {
 		return unlocalizedName.substring(unlocalizedName.indexOf(".") + 1);
-	}
-	
-	public IIcon[] getIcons() {
-		return new IIcon[] {};
 	}
 }

@@ -27,7 +27,6 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			}
 			FoodTracking.put(player);
 			
-			
 			if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled()) { //TODO: && configOption
 				Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 				

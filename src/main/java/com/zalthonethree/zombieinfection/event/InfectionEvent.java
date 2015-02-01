@@ -27,10 +27,13 @@ public class InfectionEvent /*extends EntityDragon*/ {
 					}
 				}
 			} else if (attacker instanceof EntityPlayer) {
-				EntityPlayer target = (EntityPlayer) event.entity;
-				EntityPlayer possiblespreader = (EntityPlayer) attacker;
-				if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
-					target.addPotionEffect(PotionHelper.createInfection());
+				Entity target = event.entity;
+				if (target instanceof EntityPlayer) {
+					EntityPlayer attacked = (EntityPlayer) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						attacked.addPotionEffect(PotionHelper.createInfection());
+					}
 				}
 			}
 		}

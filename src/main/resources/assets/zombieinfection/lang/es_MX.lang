@@ -1,0 +1,4 @@
+zombieinfection.chat.infected=Has sido infectado, encuentra la cura.
+tooltip.cure=Cura la Infección Zombi.
+item.zombieinfection:cure.name=Cura de la Infección
+itemGroup.zombieInfection=Infección Zombi

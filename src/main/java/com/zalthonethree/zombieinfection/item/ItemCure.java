@@ -8,13 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemCure extends ItemBase {
+public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	public ItemCure() {
 		super();
 		setUnlocalizedName("cure");
@@ -28,7 +28,7 @@ public class ItemCure extends ItemBase {
 	}
 	
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
-		player.addPotionEffect(ZombieInfection.cureEffect);
+		player.addPotionEffect(PotionHelper.createCure());
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
 		return stack;
 	}

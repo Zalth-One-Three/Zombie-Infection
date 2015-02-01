@@ -2,7 +2,7 @@ package com.zalthonethree.zombieinfection.potion;
 
 import net.minecraft.potion.Potion;
 
-public class PotionInfection extends Potion {
+public class PotionInfection extends Potion/*, EntityDragon*/ {
 	public PotionInfection(int id, boolean bad, int color) {
 		super(id, bad, color);
 	}

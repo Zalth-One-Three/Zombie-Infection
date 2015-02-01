@@ -11,7 +11,7 @@ import com.zalthonethree.zombieinfection.client.CreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBase extends Item {
+public class ItemBase extends Item/*, EntityDragon*/ {
 	public ItemBase() {
 		super();
 		setMaxStackSize(64);

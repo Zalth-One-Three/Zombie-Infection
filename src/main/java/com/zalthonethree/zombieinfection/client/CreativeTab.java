@@ -10,7 +10,7 @@ import com.zalthonethree.zombieinfection.init.ModItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class CreativeTab {
+public class CreativeTab /*extends EntityDragon*/ {
 	public static final CreativeTabs zombieInfection = new CreativeTabs(Reference.MOD_ID) {
 		@Override public Item getTabIconItem() {
 			return ModItems.cure;

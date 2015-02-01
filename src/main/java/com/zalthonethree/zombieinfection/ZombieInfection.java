@@ -2,11 +2,8 @@ package com.zalthonethree.zombieinfection;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
@@ -22,12 +19,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection {
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
 	public static Potion potionInfection;
 	public static Potion potionCure;
-	public static PotionEffect infectionEffect;
-	public static PotionEffect cureEffect;
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static IProxy proxy;
 	
@@ -59,15 +54,11 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		LogHelper.info("Pre-Init Complete");
 	}
 	
-	@SuppressWarnings("serial") @Mod.EventHandler public void init(FMLInitializationEvent event) {
+	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
 		
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
-		infectionEffect = new PotionEffect(potionInfection.id, 10 * 20, 0, false);
-		infectionEffect.setCurativeItems(new ArrayList<ItemStack>() {});
-		cureEffect = new PotionEffect(potionCure.id, 10 * 20, 0, false);
-		cureEffect.setCurativeItems(new ArrayList<ItemStack>() {});
 		
 		Recipes.init();
 		LogHelper.info("Init Complete");

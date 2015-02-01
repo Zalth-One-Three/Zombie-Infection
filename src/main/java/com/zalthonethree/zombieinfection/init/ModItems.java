@@ -5,7 +5,7 @@ import com.zalthonethree.zombieinfection.item.ItemCure;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ModItems {
+public class ModItems /*extends EntityDragon*/ {
 	public static final ItemBase cure = new ItemCure();
 	
 	public static void init() {

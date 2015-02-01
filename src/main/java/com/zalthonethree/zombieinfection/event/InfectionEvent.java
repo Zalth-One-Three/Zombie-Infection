@@ -8,11 +8,12 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.potion.PotionHelper;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class InfectionEvent {
-	@SubscribeEvent public void onZombieAttack(LivingHurtEvent event) {
+public class InfectionEvent /*extends EntityDragon*/ {
+	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			Entity attacker = source.getEntity();
@@ -22,9 +23,14 @@ public class InfectionEvent {
 					EntityPlayer attacked = (EntityPlayer) target;
 					if ((attacked.getRNG().nextInt(100) + 1) <= 10) {
 						attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
-						attacked.addPotionEffect(ZombieInfection.infectionEffect);
+						attacked.addPotionEffect(PotionHelper.createInfection());
 					}
-					attacked.setHealth(20F); // TODO: Remove
+				}
+			} else if (attacker instanceof EntityPlayer) {
+				EntityPlayer target = (EntityPlayer) event.entity;
+				EntityPlayer possiblespreader = (EntityPlayer) attacker;
+				if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+					target.addPotionEffect(PotionHelper.createInfection());
 				}
 			}
 		}

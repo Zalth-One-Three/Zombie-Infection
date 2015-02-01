@@ -5,7 +5,7 @@ import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent
 import net.minecraftforge.common.MinecraftForge;
 
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends CommonProxy/*, EntityDragon*/ {
 	private boolean encrytionRegistered = false;
 	
 	@Override public void init() {

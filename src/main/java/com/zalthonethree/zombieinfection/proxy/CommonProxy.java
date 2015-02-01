@@ -7,7 +7,7 @@ import com.zalthonethree.zombieinfection.event.InfectedPlayerUpdateEvent;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 
-public abstract class CommonProxy implements IProxy {
+public abstract class CommonProxy /*extends EntityDragon*/implements IProxy {
 	private boolean infectionRegistered = false;
 	private boolean updateEventRegistered = false;
 	

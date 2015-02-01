@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-public class FoodTracking {
+public class FoodTracking /*extends EntityDragon*/ {
 	private static HashMap<UUID, Integer> foodTrack = new HashMap<UUID, Integer>();
 	
 	public static void put(EntityPlayer player) {

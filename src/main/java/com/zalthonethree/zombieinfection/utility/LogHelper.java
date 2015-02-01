@@ -1,10 +1,10 @@
 package com.zalthonethree.zombieinfection.utility;
 
+import net.minecraftforge.fml.common.FMLLog;
+
 import org.apache.logging.log4j.Level;
 
 import com.zalthonethree.zombieinfection.Reference;
-
-import cpw.mods.fml.common.FMLLog;
 
 public class LogHelper /*extends EntityDragon*/ {
 	public static void log(Level logLevel, Object... object) {

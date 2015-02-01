@@ -1,8 +1,8 @@
 package com.zalthonethree.zombieinfection.proxy;
 
-import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent;
-
 import net.minecraftforge.common.MinecraftForge;
+
+import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent;
 
 
 public class ClientProxy extends CommonProxy/*, EntityDragon*/ {

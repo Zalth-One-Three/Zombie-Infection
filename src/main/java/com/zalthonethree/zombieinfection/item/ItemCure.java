@@ -7,12 +7,11 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	public ItemCure() {
@@ -43,6 +42,6 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	}
 	
 	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.eat;
+		return EnumAction.EAT;
 	}
 }

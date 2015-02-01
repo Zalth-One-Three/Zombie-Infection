@@ -6,11 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class InfectionEvent /*extends EntityDragon*/ {
 	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
@@ -27,10 +26,13 @@ public class InfectionEvent /*extends EntityDragon*/ {
 					}
 				}
 			} else if (attacker instanceof EntityPlayer) {
-				EntityPlayer target = (EntityPlayer) event.entity;
-				EntityPlayer possiblespreader = (EntityPlayer) attacker;
-				if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
-					target.addPotionEffect(PotionHelper.createInfection());
+				Entity target = event.entity;
+				if (target instanceof EntityPlayer) {
+					EntityPlayer attacked = (EntityPlayer) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						attacked.addPotionEffect(PotionHelper.createInfection());
+					}
 				}
 			}
 		}

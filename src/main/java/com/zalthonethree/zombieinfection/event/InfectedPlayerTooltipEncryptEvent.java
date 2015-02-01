@@ -3,11 +3,11 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
-
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import com.zalthonethree.zombieinfection.ZombieInfection;
 
 public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {

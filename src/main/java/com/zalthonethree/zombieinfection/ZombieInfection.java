@@ -4,6 +4,13 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
@@ -11,13 +18,6 @@ import com.zalthonethree.zombieinfection.potion.PotionCure;
 import com.zalthonethree.zombieinfection.potion.PotionInfection;
 import com.zalthonethree.zombieinfection.proxy.IProxy;
 import com.zalthonethree.zombieinfection.utility.LogHelper;
-
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
@@ -57,8 +57,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
 		
-		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
-		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
+		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("Infection");
+		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
 		
 		Recipes.init();
 		LogHelper.info("Init Complete");

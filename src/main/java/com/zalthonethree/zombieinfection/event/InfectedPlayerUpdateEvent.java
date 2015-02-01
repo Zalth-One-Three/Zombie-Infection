@@ -3,14 +3,13 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 	

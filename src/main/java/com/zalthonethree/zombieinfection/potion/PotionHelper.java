@@ -2,15 +2,15 @@ package com.zalthonethree.zombieinfection.potion;
 
 import java.util.ArrayList;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
+import com.zalthonethree.zombieinfection.ZombieInfection;
+
 public class PotionHelper {
 	private static PotionEffect createNewPotionEffect(int id) {
-		PotionEffect effect = new PotionEffect(id, 10 * 20, 0, true);
+		PotionEffect effect = new PotionEffect(id, 10 * 20, 0, true, true);
 		effect.setCurativeItems(new ArrayList<ItemStack>());
 		return effect;
 	}

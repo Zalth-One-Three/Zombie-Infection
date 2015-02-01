@@ -22,7 +22,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			player.addPotionEffect(PotionHelper.createMiningFatigue());
 			player.addPotionEffect(PotionHelper.createWeakness());
 			if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
-				player.getFoodStats().setFoodLevel(FoodTracking.get(player));
+				player.getFoodStats().addStats(player.getFoodStats().getFoodLevel() - FoodTracking.get(player), 0);
 			}
 			FoodTracking.put(player);
 			

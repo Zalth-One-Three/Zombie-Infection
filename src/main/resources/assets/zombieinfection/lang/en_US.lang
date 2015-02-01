@@ -1,1 +1,4 @@
 zombieinfection.chat.infected=You have been infected, find the cure.
+tooltip.cure=Cures the Zombie Infection.
+item.zombieinfection:cure.name=Infection Cure
+itemGroup.zombieInfection=Zombie Infection

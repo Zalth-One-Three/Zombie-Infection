@@ -64,9 +64,9 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
-		infectionEffect = new PotionEffect(potionInfection.id, 10 * 20, 0, true);
+		infectionEffect = new PotionEffect(potionInfection.id, 10 * 20, 0, false);
 		infectionEffect.setCurativeItems(new ArrayList<ItemStack>() {});
-		cureEffect = new PotionEffect(potionCure.id, 20 * 20, 0, true);
+		cureEffect = new PotionEffect(potionCure.id, 10 * 20, 0, false);
 		cureEffect.setCurativeItems(new ArrayList<ItemStack>() {});
 		
 		Recipes.init();

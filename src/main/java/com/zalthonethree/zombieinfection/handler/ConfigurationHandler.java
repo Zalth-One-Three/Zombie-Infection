@@ -12,7 +12,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class ConfigurationHandler {
 	public static Configuration configuration;
 	private static int spreadDistance = 0;
-	private static boolean morphingEnabled;
+	private static boolean morphingEnabled = true;
 	
 	public static void init(File configFile) {
 		if (configuration == null) {

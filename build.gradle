@@ -17,20 +17,17 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-1.0.0"
+version = "1.8-2.0.0"
 group= "com.zalthonethree.zombieinfection"
 archivesBaseName = "ZombieInfection"
 
 minecraft {
-    version = "1.7.10-10.13.2.1291"
-    mappings = "stable_12"
+    version = "1.8-11.14.0.1295-1.8"
+    runDir = "eclipse"
+    mappings = "snapshot_20150130"
 }
 
 repositories {
-    maven {
-        name 'CB Maven FS'
-        url "http://chickenbones.net/maven/"
-    }
     maven {
         name 'ForgeFS'
         url 'http://files.minecraftforge.net/maven'
@@ -38,9 +35,6 @@ repositories {
 }
 
 dependencies {
-	compile "codechicken:CodeChickenLib:1.7.10-1.1.3.127:dev"
-	compile "codechicken:CodeChickenCore:1.7.10-1.0.4.35:dev"
-    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.83:dev"
 }
 
 processResources

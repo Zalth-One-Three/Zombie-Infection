@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
 
@@ -28,14 +29,14 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			FoodTracking.put(player);
 			
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled()) { //TODO: && configOption
+				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
 					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					
 					while (players.hasNext()) {
 						Object thing = players.next();
 						if (thing instanceof EntityPlayer) {
 							EntityPlayer anotherPlayer = (EntityPlayer) thing;
-							if (anotherPlayer.getDistanceToEntity(player) < 3) {
+							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
 									anotherPlayer.addPotionEffect(PotionHelper.createInfection());
 								}

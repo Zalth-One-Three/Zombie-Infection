@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
+import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
@@ -27,8 +29,8 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static IProxy proxy;
 	
 	@Mod.EventHandler public void preInit(FMLPreInitializationEvent event) {
-		// ConfigurationHandler.init(event.getSuggestedConfigurationFile());
-		// FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
 		Potion[] potionTypes = null;
 		
 		for (Field f : Potion.class.getDeclaredFields()) {

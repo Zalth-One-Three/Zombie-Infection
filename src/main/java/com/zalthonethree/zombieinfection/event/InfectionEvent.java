@@ -22,7 +22,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 					EntityPlayer attacked = (EntityPlayer) target;
 					if ((attacked.getRNG().nextInt(100) + 1) <= 10) {
 						attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
-						attacked.addPotionEffect(PotionHelper.createInfection());
+						attacked.addPotionEffect(PotionHelper.createInfection(0));
 					}
 				}
 			} else if (attacker instanceof EntityPlayer) {
@@ -31,7 +31,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 					EntityPlayer attacked = (EntityPlayer) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
 					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
-						attacked.addPotionEffect(PotionHelper.createInfection());
+						attacked.addPotionEffect(PotionHelper.createInfection(0));
 					}
 				}
 			}

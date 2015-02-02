@@ -27,7 +27,7 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	}
 	
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
-		player.addPotionEffect(PotionHelper.createCure());
+		player.addPotionEffect(PotionHelper.createCure(0));
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
 		return stack;
 	}

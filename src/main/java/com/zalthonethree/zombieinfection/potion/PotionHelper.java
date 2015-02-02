@@ -15,18 +15,14 @@ public class PotionHelper {
 		return effect;
 	}
 	
-	private static PotionEffect createNewPotionEffect(int id) {
-		return createNewPotionEffect(id, 0);
+	private static PotionEffect createNewPotionEffect(Potion potion, int level) {
+		return createNewPotionEffect(potion.id, level);
 	}
 	
-	private static PotionEffect createNewPotionEffect(Potion potion) {
-		return createNewPotionEffect(potion.id);
-	}
-	
-	public static PotionEffect createInfection() { return createNewPotionEffect(ZombieInfection.potionInfection); }
-	public static PotionEffect createCure() { return createNewPotionEffect(ZombieInfection.potionCure); }
-	public static PotionEffect createHunger() { return createNewPotionEffect(Potion.hunger.id); }
-	public static PotionEffect createWeakness() { return createNewPotionEffect(Potion.weakness.id); }
+	public static PotionEffect createInfection(int level) { return createNewPotionEffect(ZombieInfection.potionInfection, level); }
+	public static PotionEffect createCure(int level) { return createNewPotionEffect(ZombieInfection.potionCure, level); }
+	public static PotionEffect createHunger(int level) { return createNewPotionEffect(Potion.hunger.id, level); }
+	public static PotionEffect createWeakness(int level) { return createNewPotionEffect(Potion.weakness.id, level); }
 	public static PotionEffect createSlowness(int level) { return createNewPotionEffect(Potion.moveSlowdown.id, level); }
 	public static PotionEffect createMiningFatigue(int level) { return createNewPotionEffect(Potion.digSlowdown.id, level); }
 }

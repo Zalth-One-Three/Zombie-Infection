@@ -1,31 +1,26 @@
 package com.zalthonethree.zombieinfection.utility;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public class TimeInfectedTracking /*extends EntityDragon*/ {
-	private static HashMap<UUID, Integer> timeTrack = new HashMap<UUID, Integer>();
-	
 	public static void update(EntityPlayer player) {
-		if (!timeTrack.containsKey(player.getUniqueID())) {
-			timeTrack.put(player.getUniqueID(), player.getFoodStats().getFoodLevel());
+		if (!player.getEntityData().hasKey("TimeInfectedTracking")) {
+			player.getEntityData().setInteger("TimeInfectedTracking", 0);
 		} else {
-			timeTrack.put(player.getUniqueID(), timeTrack.get(player.getUniqueID()) + 1);
+			player.getEntityData().setInteger("TimeInfectedTracking", player.getEntityData().getInteger("TimeInfectedTracking") + 1);
 		}
 	}
 	
-	public static int getTicksInfected(EntityPlayer player) {
-		if (timeTrack.containsKey(player.getUniqueID())) {
-			return timeTrack.get(player.getUniqueID());
+	public static int getSecondsInfected(EntityPlayer player) {
+		if (player.getEntityData().hasKey("TimeInfectedTracking")) {
+			return player.getEntityData().getInteger("TimeInfectedTracking");
 		}
 		return 0;
 	}
 	
 	public static void remove(EntityPlayer player) {
-		if (timeTrack.containsKey(player.getUniqueID())) {
-			timeTrack.remove(player.getUniqueID());
+		if (!player.getEntityData().hasKey("TimeInfectedTracking")) {
+			player.getEntityData().removeTag("TimeInfectedTracking");
 		}
 	}
 }

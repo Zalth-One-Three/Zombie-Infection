@@ -20,17 +20,19 @@ public class InfectionEvent /*extends EntityDragon*/ {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			Entity attacker = source.getEntity();
 			boolean infectiousMob = false;
+			int infectionChance = 10;
 			if (attacker instanceof EntityZombie) infectiousMob = true;
 			for (int entityId : ZombieInfectionAPI.getCustionInfectiousMobs()) {
 				if (EntityList.getEntityID(attacker) == entityId) {
 					infectiousMob = true;
+					infectionChance = ZombieInfectionAPI.getCustomInfectionChances().get(entityId);
 				}
 			}
 			if (infectiousMob) {
 				Entity target = event.entity;
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
-					if ((attacked.getRNG().nextInt(100) + 1) <= 10) {
+					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
 						attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
 						attacked.addPotionEffect(PotionHelper.createInfection(0));
 					}

@@ -9,7 +9,7 @@ import com.zalthonethree.zombieinfection.Reference;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ConfigurationHandler {
+public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static Configuration configuration;
 	private static int spreadDistance = 0;
 	

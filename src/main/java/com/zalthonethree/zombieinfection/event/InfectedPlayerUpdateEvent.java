@@ -26,14 +26,16 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 				customEffect.run(player, timeInfected);
 			}
-			player.addPotionEffect(PotionHelper.createInfection(timeInfected < (20 * 60 * 2) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createHunger(timeInfected < (20 * 60 * 2) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (20 * 60 * 2) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < (20 * 60 * 2) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createWeakness(timeInfected < (20 * 60 * 2) ? 0 : 1));
+			
+			player.addPotionEffect(PotionHelper.createInfection(timeInfected < (9600) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createHunger(timeInfected < (9600) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (9600) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < (9600) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createWeakness(timeInfected < (9600) ? 0 : 1));
 			if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 				player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
 			}
+			
 			TimeInfectedTracking.update(player);
 			FoodTracking.put(player);
 			
@@ -55,8 +57,8 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				}
 			}
 		} else {
-			FoodTracking.remove(player);
 			TimeInfectedTracking.remove(player);
+			FoodTracking.remove(player);
 		}
 	}
 }

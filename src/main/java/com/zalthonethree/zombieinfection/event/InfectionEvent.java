@@ -1,6 +1,7 @@
 package com.zalthonethree.zombieinfection.event;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
@@ -8,6 +9,7 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -17,7 +19,14 @@ public class InfectionEvent /*extends EntityDragon*/ {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			Entity attacker = source.getEntity();
-			if (attacker instanceof EntityZombie) {
+			boolean infectiousMob = false;
+			if (attacker instanceof EntityZombie) infectiousMob = true;
+			for (int entityId : ZombieInfectionAPI.getCustionInfectiousMobs()) {
+				if (EntityList.getEntityID(attacker) == entityId) {
+					infectiousMob = true;
+				}
+			}
+			if (infectiousMob) {
 				Entity target = event.entity;
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;

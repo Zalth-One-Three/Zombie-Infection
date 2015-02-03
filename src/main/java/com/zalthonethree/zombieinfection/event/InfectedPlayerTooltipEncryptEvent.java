@@ -3,6 +3,7 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,7 +28,7 @@ public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
 					}
 					event.toolTip.set(i, ns);
 				}
-				event.toolTip.add("Your eyes are infected.");
+				event.toolTip.add(StatCollector.translateToLocal("tooltip.infectedeyes"));
 			}
 		}
 	}

@@ -22,10 +22,11 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	 */
 	public static void registerCustomCureEffect(CustomCureEffect customCureEffect) { customCureEffects.add(customCureEffect); }
 	public static ArrayList<Integer> getCustionInfectiousMobs() { return customInfectiousMobs; }
+	public static HashMap<Integer, Integer> getCustomInfectionChances() { return customInfectionChances; }
 	/**
 	 * Register a custom infectious mob.
 	 * @param entityId - Internal ID, Refer to minecraft wiki for vanilla mobs
-	 * @param infectionChance - If (RNG.nextInt() < infectionChance) then infect
+	 * @param infectionChance - If (RNG.nextInt(100) + 1 < infectionChance) then infect
 	 */
 	public static void registerCustomInfectiousMob(int entityId, int infectionChance) {
 		customInfectiousMobs.add(entityId);

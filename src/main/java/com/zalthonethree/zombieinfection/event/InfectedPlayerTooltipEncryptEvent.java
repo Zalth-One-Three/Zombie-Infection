@@ -14,7 +14,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
 		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection) && !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)) {
-			if (TimeInfectedTracking.getTicksInfected(event.entityPlayer) > 4800) {
+			if (TimeInfectedTracking.getSecondsInfected(event.entityPlayer) > 60) {
 				for (int i = 0; i < event.toolTip.size(); i ++) {
 					String s = event.toolTip.get(i);
 					ArrayList<String> chars = new ArrayList<String>();

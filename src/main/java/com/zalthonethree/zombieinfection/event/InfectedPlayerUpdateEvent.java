@@ -1,5 +1,6 @@
 package com.zalthonethree.zombieinfection.event;
 
+import java.util.Calendar;
 import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,28 +19,33 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 
 public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
+	private static int lastSecond = 0;
 	
 	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
 		if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
-			int timeInfected = TimeInfectedTracking.getTicksInfected(player);
+			int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
 			for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 				customEffect.run(player, timeInfected);
 			}
 			
-			player.addPotionEffect(PotionHelper.createInfection(timeInfected < (9600) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createHunger(timeInfected < (9600) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (9600) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < (9600) ? 0 : 1));
-			player.addPotionEffect(PotionHelper.createWeakness(timeInfected < (9600) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createInfection(timeInfected < (120) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createHunger(timeInfected < (120) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (120) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < (120) ? 0 : 1));
+			player.addPotionEffect(PotionHelper.createWeakness(timeInfected < (120) ? 0 : 1));
 			if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 				player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
 			}
 			
-			TimeInfectedTracking.update(player);
 			FoodTracking.put(player);
 			
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
+				if (curSecond != lastSecond) {
+					lastSecond = curSecond;
+					TimeInfectedTracking.update(player);
+				}
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
 					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					

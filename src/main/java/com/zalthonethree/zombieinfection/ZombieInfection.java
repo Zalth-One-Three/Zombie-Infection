@@ -52,12 +52,12 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 			}
 		}
 		
-		ModItems.init();
 		LogHelper.info("Pre-Init Complete");
 	}
 	
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
+		ModItems.init();
 		
 		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");

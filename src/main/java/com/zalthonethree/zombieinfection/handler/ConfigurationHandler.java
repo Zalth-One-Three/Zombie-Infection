@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.zalthonethree.zombieinfection.Reference;
 
-public class ConfigurationHandler {
+public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static Configuration configuration;
 	private static int spreadDistance = 0;
 	

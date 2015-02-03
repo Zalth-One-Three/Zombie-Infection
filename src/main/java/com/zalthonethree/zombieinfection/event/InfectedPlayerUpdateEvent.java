@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
@@ -20,6 +22,9 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 		EntityPlayer player = event.player;
 		if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
 			int timeInfected = TimeInfectedTracking.getTicksInfected(player);
+			for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
+				customEffect.run(player, timeInfected);
+			}
 			player.addPotionEffect(PotionHelper.createInfection(timeInfected < (20 * 60 * 2) ? 0 : 1));
 			player.addPotionEffect(PotionHelper.createHunger(timeInfected < (20 * 60 * 2) ? 0 : 1));
 			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (20 * 60 * 2) ? 0 : 1));

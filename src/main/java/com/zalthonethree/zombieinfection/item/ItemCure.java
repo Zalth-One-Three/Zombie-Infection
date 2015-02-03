@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.zalthonethree.zombieinfection.api.CustomCureEffect;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
@@ -28,6 +30,9 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		player.addPotionEffect(PotionHelper.createCure(0));
+		for (CustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
+			customEffect.run(player, stack);
+		}
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
 		return stack;
 	}

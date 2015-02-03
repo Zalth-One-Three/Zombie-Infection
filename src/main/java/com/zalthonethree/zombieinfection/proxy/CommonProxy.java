@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import com.zalthonethree.zombieinfection.event.InfectedPlayerUpdateEvent;
 import com.zalthonethree.zombieinfection.event.InfectionEvent;
 
-public abstract class CommonProxy /*extends EntityDragon*/implements IProxy {
+public abstract class CommonProxy /*extends EntityDragon*/ implements IProxy {
 	private boolean infectionRegistered = false;
 	private boolean updateEventRegistered = false;
 	

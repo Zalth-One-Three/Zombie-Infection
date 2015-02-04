@@ -7,6 +7,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	private static ArrayList<CustomInfectionEffect> customInfectionEffects = new ArrayList<CustomInfectionEffect>();
 	private static ArrayList<CustomCureEffect> customCureEffects = new ArrayList<CustomCureEffect>();
 	private static ArrayList<Integer> customInfectiousMobs = new ArrayList<Integer>();
+	private static ArrayList<String> encryptionExclusions = new ArrayList<String>();
 	private static HashMap<Integer, Integer> customInfectionChances = new HashMap<Integer, Integer>();
 	
 	public static ArrayList<CustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
@@ -31,5 +32,13 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	public static void registerCustomInfectiousMob(int entityId, int infectionChance) {
 		customInfectiousMobs.add(entityId);
 		customInfectionChances.put(entityId, infectionChance);
+	}
+	public static ArrayList<String> getEncryptionExclusions() { return encryptionExclusions; }
+	/**
+	 * Prevents an item's tooltip from being scrambled when infected.
+	 * @param unlocalizedName - Unlocalized name of the item to prevent being scrambled.
+	 */
+	public static void registerEncryptionExclusion(String unlocalizedName) {
+		encryptionExclusions.add(unlocalizedName);
 	}
 }

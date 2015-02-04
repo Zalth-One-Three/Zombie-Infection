@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -46,6 +47,15 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 					lastSecond = curSecond;
 					TimeInfectedTracking.update(player);
 				}
+				
+				if (player.worldObj.canBlockSeeSky(new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ))
+				&& player.worldObj.isDaytime()
+				&& !player.worldObj.isRaining()
+				&& !player.worldObj.isThundering()
+				&& player.inventory.armorInventory[3] == null) {
+					player.setFire(1);
+				}
+				
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
 					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					

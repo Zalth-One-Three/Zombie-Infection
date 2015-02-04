@@ -11,6 +11,7 @@ import com.zalthonethree.zombieinfection.Reference;
 public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static Configuration configuration;
 	private static int spreadDistance = 0;
+	private static int villagerInfectionChance = 25;
 	
 	public static void init(File configFile) {
 		if (configuration == null) {
@@ -27,16 +28,13 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	
 	private static void loadConfiguration() {
 		spreadDistance = configuration.getInt("Spread Distance", Configuration.CATEGORY_GENERAL, 3, 0, 5, "Distance to be from someone to spread the infection when PVP is off. 0 = Disabled");
+		villagerInfectionChance = configuration.getInt("Villager Infection Chance", Configuration.CATEGORY_GENERAL, 25, 0, 100, "Chance for infection to spread to villager upon attack.");
 		if (configuration.hasChanged()) {
 			configuration.save();
 		}
 	}
 	
-	public static int getSpreadDistance() {
-		return spreadDistance;
-	}
-	
-	public static boolean getSpreadEnabled() {
-		return spreadDistance == 0;
-	}
+	public static int getSpreadDistance() { return spreadDistance; }
+	public static int getVillagerInfectionChance() { return villagerInfectionChance; }
+	public static boolean getSpreadEnabled() { return spreadDistance == 0; }
 }

@@ -9,11 +9,14 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
 
 public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
-		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection) && !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)) {
+		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection)
+		&& !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)
+		&& !ZombieInfectionAPI.getEncryptionExclusions().contains(event.itemStack.getUnlocalizedName())) {
 			if (TimeInfectedTracking.getSecondsInfected(event.entityPlayer) > 60) {
 				for (int i = 0; i < event.toolTip.size(); i ++) {
 					String s = event.toolTip.get(i);

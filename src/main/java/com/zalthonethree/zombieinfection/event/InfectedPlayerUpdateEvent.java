@@ -46,6 +46,15 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 					lastSecond = curSecond;
 					TimeInfectedTracking.update(player);
 				}
+				
+				if (player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ)
+				&& player.worldObj.isDaytime()
+				&& !player.worldObj.isRaining()
+				&& !player.worldObj.isThundering()
+				&& player.inventory.armorInventory[3] == null) {
+					player.setFire(1);
+				}
+				
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
 					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					

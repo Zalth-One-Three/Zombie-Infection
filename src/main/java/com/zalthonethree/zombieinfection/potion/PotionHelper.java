@@ -25,4 +25,5 @@ public class PotionHelper /*extends EntityDragon*/ {
 	public static PotionEffect createWeakness(int level) { return createNewPotionEffect(Potion.weakness.id, level); }
 	public static PotionEffect createSlowness(int level) { return createNewPotionEffect(Potion.moveSlowdown.id, level); }
 	public static PotionEffect createMiningFatigue(int level) { return createNewPotionEffect(Potion.digSlowdown.id, level); }
+	public static PotionEffect createWither(int level) { return createNewPotionEffect(Potion.wither.id, level); }
 }

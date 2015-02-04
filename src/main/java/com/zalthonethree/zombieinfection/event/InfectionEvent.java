@@ -10,6 +10,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -60,21 +61,38 @@ public class InfectionEvent /*extends EntityDragon*/ {
 						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
 							if (!attacked.isPotionActive(Potion.wither)) {
 								attacked.addPotionEffect(PotionHelper.createWither(0));
-							} else {
-								if (attacked.getHealth() <= 0) {
-									EntityZombie entityzombie = new EntityZombie(attacked.worldObj);
-									entityzombie.copyLocationAndAnglesFrom(attacked);
-									attacked.worldObj.removeEntity(attacked);
-									entityzombie.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData) null);
-									entityzombie.setVillager(true);
-									
-									if (attacked.isChild()) {
-										entityzombie.setChild(true);
-									}
-									
-									attacked.worldObj.spawnEntityInWorld(entityzombie);
-									attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent public void onDeath(LivingDeathEvent event) {
+		if (event.source instanceof EntityDamageSource) {
+			EntityDamageSource source = (EntityDamageSource) event.source;
+			Entity attacker = source.getEntity();
+			if (attacker instanceof EntityPlayer) {
+				Entity target = event.entity;
+				if (target instanceof EntityVillager) {
+					EntityVillager attacked = (EntityVillager) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.isPotionActive(Potion.wither)) {
+							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
+								EntityZombie entityzombie = new EntityZombie(attacked.worldObj);
+								entityzombie.copyLocationAndAnglesFrom(attacked);
+								attacked.worldObj.removeEntity(attacked);
+								entityzombie.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData) null);
+								entityzombie.setVillager(true);
+								
+								if (attacked.isChild()) {
+									entityzombie.setChild(true);
 								}
+								
+								attacked.worldObj.spawnEntityInWorld(entityzombie);
+								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
 							}
 						}
 					}

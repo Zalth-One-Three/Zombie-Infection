@@ -3,4 +3,4 @@ zombieinfection.chat.playerinfected=You have been infected by another player, fi
 tooltip.cure=Cures the Zombie Infection.
 item.zombieinfection:cure.name=Infection Cure
 itemGroup.zombieInfection=Zombie Infection
-tooltip.infectedeyes=Your eyes are infected.
+tooltip.infectedeyes=The infection has spread to your eyes.

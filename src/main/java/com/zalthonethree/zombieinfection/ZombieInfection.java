@@ -5,6 +5,7 @@ import java.lang.reflect.Modifier;
 
 import net.minecraft.potion.Potion;
 
+import com.zalthonethree.zombieinfection.entity.MedicVillagerTradeHandler;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
@@ -20,6 +21,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
@@ -61,6 +63,10 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
+		
+		VillagerRegistry.instance().registerVillagerId(ConfigurationHandler.getVillagerID());
+		proxy.registerVillagerSkin(ConfigurationHandler.getVillagerID(), "textures/entity/medic.png");
+		VillagerRegistry.instance().registerVillageTradeHandler(ConfigurationHandler.getVillagerID(), new MedicVillagerTradeHandler());
 		
 		Recipes.init();
 		LogHelper.info("Init Complete");

@@ -1,6 +1,8 @@
+# Translated by Zalthrion #
+
 zombieinfection.chat.infected=Has sido infectado, encuentra la cura.
 zombieinfection.chat.playerinfected=Has sido infectado por otro jugador, encuentra la cura.
 tooltip.cure=Cura la Infección Zombi.
 item.zombieinfection:cure.name=Cura de la Infección
 itemGroup.zombieInfection=Infección Zombi
-tooltip.infectedeyes=Tus ojos estan infectados.
+tooltip.infectedeyes=La infección ha contaminado tus ojos

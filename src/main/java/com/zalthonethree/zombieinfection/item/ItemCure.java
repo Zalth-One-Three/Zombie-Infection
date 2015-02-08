@@ -48,6 +48,6 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	}
 	
 	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.eat;
+		return EnumAction.drink;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentTranslation;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
@@ -34,6 +35,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			player.addPotionEffect(PotionHelper.createSlowness(timeInfected < (120) ? 0 : 1));
 			player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < (120) ? 0 : 1));
 			player.addPotionEffect(PotionHelper.createWeakness(timeInfected < (120) ? 0 : 1));
+			if (timeInfected > (480)) player.addPotionEffect(PotionHelper.createWither(0));
 			if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 				player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
 			}
@@ -64,7 +66,10 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 							EntityPlayer anotherPlayer = (EntityPlayer) thing;
 							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
-									anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
+									if (!anotherPlayer.isPotionActive(ZombieInfection.potionInfection)) {
+										anotherPlayer.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.playerinfected"));
+										anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
+									}
 								}
 							}
 						}

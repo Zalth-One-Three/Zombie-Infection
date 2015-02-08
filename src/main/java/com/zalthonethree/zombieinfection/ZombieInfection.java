@@ -62,11 +62,6 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
 		
-/*		VillagerRegistry.instance().registerVillagerId(ConfigurationHandler.getVillagerID());
-		proxy.registerVillagerSkin(ConfigurationHandler.getVillagerID(), "textures/entity/medic.png");
-		VillagerProfession prof = new VillagerProfession("zombieinfection:medic", "zombieinfection:textures/entity/medic.png");
-		VillagerRegistry.instance().register(prof);*/
-		
 		Recipes.init();
 		LogHelper.info("Init Complete");
 	}

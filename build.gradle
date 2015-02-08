@@ -17,14 +17,14 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.8-2.1.0"
+version = "1.8-2.1.1"
 group= "com.zalthonethree.zombieinfection"
 archivesBaseName = "ZombieInfection"
 
 minecraft {
-    version = "1.8-11.14.0.1295-1.8"
+    version = "1.8-11.14.1.1306"
     runDir = "eclipse"
-    mappings = "snapshot_20150130"
+    mappings = "snapshot_20150201"
 }
 
 repositories {

@@ -6,12 +6,13 @@ import java.util.EnumMap;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.FMLEmbeddedChannel;
 import net.minecraftforge.fml.common.network.FMLOutboundHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.zalthonethree.zombieinfection.utility.Utilities;
 
 public enum PacketHandler /*extends EntityDragon*/ {
 	INSTANCE;
@@ -20,8 +21,8 @@ public enum PacketHandler /*extends EntityDragon*/ {
 	
 	private PacketHandler() {
 		this.channels = NetworkRegistry.INSTANCE.newChannel("ZombieInfection", new ZombieInfectionCodec());
-		if (FMLCommonHandler.instance().getSide() == Side.CLIENT) addClientHandler();
-		if (FMLCommonHandler.instance().getSide() == Side.SERVER) addServerHandler();
+		if (Utilities.isClientSide()) addClientHandler();
+		if (Utilities.isServerSide()) addServerHandler();
 	}
 	
 	@SideOnly(Side.CLIENT) private void addClientHandler() {

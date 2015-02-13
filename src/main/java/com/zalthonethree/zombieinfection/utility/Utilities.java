@@ -14,5 +14,5 @@ public class Utilities /*extends EntityDragon*/ {
 	}
 	
 	public static boolean isServerSide() { return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER; }
-	public static boolean isClientSide() { return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER; }
+	public static boolean isClientSide() { return FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT; }
 }

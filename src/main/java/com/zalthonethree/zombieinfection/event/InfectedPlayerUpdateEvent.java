@@ -9,7 +9,6 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
@@ -18,6 +17,7 @@ import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
+import com.zalthonethree.zombieinfection.utility.Utilities;
 
 public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 	private static int lastSecond = 0;
@@ -43,7 +43,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			
 			FoodTracking.put(player);
 			
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			if (Utilities.isServerSide()) {
 				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
 				if (curSecond != lastSecond) {
 					lastSecond = curSecond;
@@ -79,7 +79,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				}
 			}
 		} else {
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) TimeInfectedTracking.remove(player);
+			if (Utilities.isServerSide()) TimeInfectedTracking.remove(player);
 			FoodTracking.remove(player);
 		}
 	}

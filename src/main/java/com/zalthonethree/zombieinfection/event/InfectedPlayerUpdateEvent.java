@@ -13,11 +13,11 @@ import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
+import com.zalthonethree.zombieinfection.utility.Utilities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
 
 public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 	private static int lastSecond = 0;
@@ -43,7 +43,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 			
 			FoodTracking.put(player);
 			
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			if (Utilities.isServerSide()) {
 				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
 				if (curSecond != lastSecond) {
 					lastSecond = curSecond;
@@ -79,7 +79,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				}
 			}
 		} else {
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) TimeInfectedTracking.remove(player);
+			if (Utilities.isServerSide()) TimeInfectedTracking.remove(player);
 			FoodTracking.remove(player);
 		}
 	}

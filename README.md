@@ -5,7 +5,7 @@
 |:--------:|:--------:|:--------:|:-----:|:------:|
 ![wheat][wheat]|![wheat][wheat]|![wheat][wheat]|![air][air]|![air][air]
 ![sugar][sugar]|![water_bottle][water_bottle]|![sugar][sugar]|![arrow][arrow]|![cure][cure] * 3
-![water_bottle][water_bottle]|![gold_ingot][gold_ingot]|![water_bottle][water]|![water_bottle][air]
+![water_bottle][water_bottle]|![gold_ingot][gold_ingot]|![water_bottle][water_bottle]|![water_bottle][air]
 
 [wheat]: http://hydra-media.cursecdn.com/minecraft.gamepedia.com/c/c4/Grid_Wheat.png?version=318058a16723194d8bb32132eb27fcc4
 [sugar]: http://hydra-media.cursecdn.com/minecraft.gamepedia.com/9/96/Grid_Sugar.png?version=53ec155e406e7d96b2ea4e39f321584d

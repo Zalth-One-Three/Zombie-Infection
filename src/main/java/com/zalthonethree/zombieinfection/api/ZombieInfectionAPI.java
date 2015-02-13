@@ -11,6 +11,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	private static HashMap<Integer, Integer> customInfectionChances = new HashMap<Integer, Integer>();
 	private static HashMap<String, String> encryptionSwitches = new HashMap<String, String>();
 	private static HashMap<String, String[]> encryptionSwitchesTooltips = new HashMap<String, String[]>();
+	private static HashMap<String, Integer> customFoodInfections = new HashMap<String, Integer>();
 	
 	public static ArrayList<CustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
 	public static ArrayList<CustomCureEffect> getCustomCureEffects() { return customCureEffects; }
@@ -19,6 +20,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	public static ArrayList<String> getEncryptionExclusions() { return encryptionExclusions; }
 	public static HashMap<String, String> getEncryptionSwitches() { return encryptionSwitches; }
 	public static HashMap<String, String[]> getEncryptionSwitchesTooltips() { return encryptionSwitchesTooltips; }
+	public static HashMap<String, Integer> getCustomFoodInfections() { return customFoodInfections; }
 	
 	
 	/**
@@ -53,7 +55,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	
 	/**
 	 * Turns one item name into a new item name.
-	 * @param unlocaizedName - Old unlocalized name. E.G item.apple
+	 * @param unlocalizedName - Old unlocalized name. E.G item.apple
 	 * @param newUnlocalizedName - New unlocalized name. E.G easteregg.cow
 	 */
 	public static void registerEncryptionSwitch(String unlocalizedName, String newUnlocalizedName) {
@@ -69,5 +71,14 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	public static void registerEncryptionSwitch(String unlocalizedName, String newUnlocalizedName, String... toolTips) {
 		encryptionSwitches.put(unlocalizedName, newUnlocalizedName);
 		encryptionSwitchesTooltips.put(unlocalizedName, toolTips);
+	}
+	
+	/**
+	 * Registers items that when finished using have a chance of infecting the player.
+	 * @param unlocalizedName - Unlocalized name of item to infect the player.
+	 * @param infectionChance - Chance of the item infecting the player.
+	 */
+	public static void registerFoodInfection(String unlocalizedName, int infectionChance) {
+		customFoodInfections.put(unlocalizedName, infectionChance);
 	}
 }

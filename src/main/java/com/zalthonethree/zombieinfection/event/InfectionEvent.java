@@ -1,21 +1,25 @@
 package com.zalthonethree.zombieinfection.event;
 
+import morph.api.Api;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
+import com.zalthonethree.zombieinfection.utility.Utilities;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -25,8 +29,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			Entity attacker = source.getEntity();
 			boolean infectiousMob = false;
-			int infectionChance = 10;
-			if (attacker instanceof EntityZombie) infectiousMob = true;
+			int infectionChance = 0;
 			for (int entityId : ZombieInfectionAPI.getCustionInfectiousMobs()) {
 				if (EntityList.getEntityID(attacker) == entityId) {
 					infectiousMob = true;
@@ -37,6 +40,9 @@ public class InfectionEvent /*extends EntityDragon*/ {
 				Entity target = event.entity;
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
+					if (Api.getMorphEntity(attacked.getCommandSenderName(), false) != null) {
+						if (Api.getMorphEntity(attacked.getCommandSenderName(), false) instanceof EntityZombie) infectionChance = (int) infectionChance / 2;
+					}
 					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
 						if (!attacked.isPotionActive(ZombieInfection.potionInfection)) {
 							attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
@@ -96,6 +102,26 @@ public class InfectionEvent /*extends EntityDragon*/ {
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent public void onEaten(PlayerUseItemEvent.Finish event) {
+		if (Utilities.isServerSide()) {
+			EntityPlayer player = event.entityPlayer;
+			ItemStack stack = event.item;
+			int infectionChance = 0;
+			for (String itemName : ZombieInfectionAPI.getCustomFoodInfections().keySet()) {
+				if (stack.getUnlocalizedName().equalsIgnoreCase(itemName)) {
+					infectionChance = ZombieInfectionAPI.getCustomFoodInfections().get(itemName);
+					if (player.getRNG().nextInt(100) + 1 <= infectionChance) {
+						if (!player.isPotionActive(ZombieInfection.potionInfection)) {
+							player.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.rotteninfection"));
+							player.addPotionEffect(PotionHelper.createInfection(0));
+						}
+					}
+					break;
 				}
 			}
 		}

@@ -3,6 +3,7 @@ package com.zalthonethree.zombieinfection.item;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -35,6 +36,30 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 			customEffect.run(player, stack);
 		}
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
+		if (stack.stackSize == 0) {
+			stack = new ItemStack(Items.glass_bottle);
+		} else {
+			boolean increased = false;
+			for (int i = 0; i < player.inventory.getSizeInventory(); i ++) {
+				if (player.inventory.getStackInSlot(i) != null) {
+					if (player.inventory.getStackInSlot(i).getUnlocalizedName().equalsIgnoreCase("item.glassBottle")) {
+						if (player.inventory.getStackInSlot(i).stackSize < 64) {
+							player.inventory.getStackInSlot(i).stackSize ++;
+							increased = true;
+							break;
+						}
+					}
+				}
+			}
+			if (!increased) {
+			int emptySlotPos = player.inventory.getFirstEmptyStack();
+				if (emptySlotPos > -1) {
+					player.inventory.setInventorySlotContents(emptySlotPos, new ItemStack(Items.glass_bottle));
+				} else {
+					player.dropPlayerItemWithRandomChoice(new ItemStack(Items.glass_bottle), false);
+				}
+			}
+		}
 		return stack;
 	}
 	

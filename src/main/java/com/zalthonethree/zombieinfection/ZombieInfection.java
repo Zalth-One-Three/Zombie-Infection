@@ -6,6 +6,8 @@ import java.lang.reflect.Modifier;
 import net.minecraft.potion.Potion;
 
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.init.BuiltInAPI;
+import com.zalthonethree.zombieinfection.init.EasterEggs;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
@@ -62,6 +64,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
 		
+		EasterEggs.init();
+		BuiltInAPI.init();
 		Recipes.init();
 		LogHelper.info("Init Complete");
 	}

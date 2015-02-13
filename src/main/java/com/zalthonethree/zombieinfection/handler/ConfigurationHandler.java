@@ -13,13 +13,18 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static Configuration configuration;
 	private static int spreadDistance = 3;
 	private static int villagerInfectionChance = 25;
+	private static int playerInfectionChance = 10;
 	
-	private static boolean enableSlowness;
-	private static boolean enableHunger;
-	private static boolean enableMiningFatigue;
-	private static boolean enableWeakness;
-	private static boolean enableWither;
-	private static boolean enableBurning;
+	private static boolean enableSlowness = true;
+	private static boolean enableHunger = true;
+	private static boolean enableMiningFatigue = true;
+	private static boolean enableWeakness = true;
+	private static boolean enableWither = true;
+	private static boolean enableBurning = true;
+	
+	private static int spiderEyeInfectionChance = 20;
+	private static int poisonFoodInfectionChance = 10;
+	private static int rawFoodInfectionChance = 5;
 	
 	public static void init(File configFile) {
 		if (configuration == null) {
@@ -37,13 +42,18 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	private static void loadConfiguration() {
 		spreadDistance = configuration.getInt("Spread Distance", Configuration.CATEGORY_GENERAL, 3, 0, 5, "Distance to be from someone to spread the infection when PVP is off. 0 = Disabled");
 		villagerInfectionChance = configuration.getInt("Villager Infection Chance", Configuration.CATEGORY_GENERAL, 25, 0, 100, "Chance for infection to spread to villager upon attack.");
+		playerInfectionChance = configuration.getInt("Player Infection Chance", Configuration.CATEGORY_GENERAL, 10, 0, 100, "Chance a zombie will infect a player.");
 		
-		enableSlowness = configuration.getBoolean("Enable Slowness", Configuration.CATEGORY_GENERAL, true, "Infected players get Slowness");
-		enableHunger = configuration.getBoolean("Enable Hunger", Configuration.CATEGORY_GENERAL, true, "Infected players get Hunger after 20 seconds");
-		enableMiningFatigue = configuration.getBoolean("Enable Mining Fatigue", Configuration.CATEGORY_GENERAL, true, "Infected players get Mining Fatigue after 40 seconds");
-		enableWeakness = configuration.getBoolean("Enable Weakness", Configuration.CATEGORY_GENERAL, true, "Infected players get Weakness after 60 seconds");
-		enableWither = configuration.getBoolean("Enable Wither", Configuration.CATEGORY_GENERAL, true, "Infected players get Wither after 480 seconds");
-		enableBurning = configuration.getBoolean("Enable Burning", Configuration.CATEGORY_GENERAL, true, "Infected players catch fire in sunlight after 80 seconds");
+		enableSlowness = configuration.getBoolean("Enable Slowness", "Effects", true, "Infected players get Slowness");
+		enableHunger = configuration.getBoolean("Enable Hunger", "Effects", true, "Infected players get Hunger after 20 seconds");
+		enableMiningFatigue = configuration.getBoolean("Enable Mining Fatigue", "Effects", true, "Infected players get Mining Fatigue after 40 seconds");
+		enableWeakness = configuration.getBoolean("Enable Weakness", "Effects", true, "Infected players get Weakness after 60 seconds");
+		enableWither = configuration.getBoolean("Enable Wither", "Effects", true, "Infected players get Wither after 480 seconds");
+		enableBurning = configuration.getBoolean("Enable Burning", "Effects", true, "Infected players catch fire in sunlight after 80 seconds");
+		
+		spiderEyeInfectionChance = configuration.getInt("Spider Eye Infection Chance", "Food", 20, 0, 100, "Chance spider eyes will give infection");
+		poisonFoodInfectionChance = configuration.getInt("Poison Food Infection Chance", "Food", 10, 0, 100, "Chance poison foods will give infection (E.G Poison Potato, Rotten Flesh)");
+		rawFoodInfectionChance = configuration.getInt("Raw Food Infection Chance", "Food", 20, 0, 100, "Chance raw foods will give infection");
 		
 		if (configuration.hasChanged()) {
 			configuration.save();
@@ -52,6 +62,7 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	
 	public static int getSpreadDistance() { return spreadDistance; }
 	public static int getVillagerInfectionChance() { return villagerInfectionChance; }
+	public static int getPlayerInfectionChance() { return playerInfectionChance; }
 	public static boolean getSpreadEnabled() { return spreadDistance != 0; }
 	
 	public static boolean enableSlowness() { return enableSlowness; }
@@ -60,4 +71,8 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static boolean enableWeakness() { return enableWeakness; }
 	public static boolean enableWither() { return enableWither; }
 	public static boolean enableBurning() { return enableBurning; }
+	
+	public static int getSpiderEyeInfectionChance() { return spiderEyeInfectionChance; }
+	public static int getPoisonFoodInfectionChance() { return poisonFoodInfectionChance; }
+	public static int getRawFoodInfectionChance() { return rawFoodInfectionChance; }
 }

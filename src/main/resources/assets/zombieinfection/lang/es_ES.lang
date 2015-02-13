@@ -1,8 +1,27 @@
 # Translated by Zalthrion #
 
-zombieinfection.chat.infected=Has sido infectado, encuentra la cura.
-zombieinfection.chat.playerinfected=Has sido infectado por otro jugador, encuentra la cura.
-tooltip.cure=Cura la Infecci贸n Zombi.
-item.zombieinfection:cure.name=Cura de la Infecci贸n
-itemGroup.zombieInfection=Infecci贸n Zombi
-tooltip.infectedeyes=La infecci贸n ha contaminado tus ojos
+# Chat Messages #
+
+zombieinfection.chat.infected=Habeis sido infectado, encuentra la cura.
+zombieinfection.chat.playerinfected=Habeis sido infectado por otro jugador, encuentra la cura.
+zombieinfection.chat.rotteninfection=Habeis sido infectado por comida podrida.
+
+# Items #
+
+item.zombieinfection:cure.name=Cura de la Infecci髇
+
+# Item Groups #
+
+itemGroup.zombieInfection=Infecci髇 Zombi
+
+# Tooltips #
+
+tooltip.cure=Cura la Infecci髇 Zombi.
+tooltip.infectedeyes=La infecci髇 ha contaminado tus ojos
+
+# Easter Eggs #
+
+easteregg.stew=Sopa de fideos
+easteregg.description.stew=Erhm.. Estais seguro de que estos son fideos?
+easteregg.egg=Huevo de Tortuga
+easteregg.description.egg=Se ve bastante derpy

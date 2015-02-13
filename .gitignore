@@ -18,3 +18,4 @@ mods/
 usercache.json
 build/
 usernamecache.json
+*.db

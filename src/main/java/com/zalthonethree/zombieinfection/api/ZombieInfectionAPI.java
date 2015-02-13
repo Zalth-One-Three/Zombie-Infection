@@ -10,6 +10,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	private static ArrayList<String> encryptionExclusions = new ArrayList<String>();
 	private static HashMap<Integer, Integer> customInfectionChances = new HashMap<Integer, Integer>();
 	private static HashMap<String, String> encryptionSwitches = new HashMap<String, String>();
+	private static HashMap<String, String[]> encryptionSwitchesTooltips = new HashMap<String, String[]>();
 	
 	public static ArrayList<CustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
 	public static ArrayList<CustomCureEffect> getCustomCureEffects() { return customCureEffects; }
@@ -17,6 +18,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	public static HashMap<Integer, Integer> getCustomInfectionChances() { return customInfectionChances; }
 	public static ArrayList<String> getEncryptionExclusions() { return encryptionExclusions; }
 	public static HashMap<String, String> getEncryptionSwitches() { return encryptionSwitches; }
+	public static HashMap<String, String[]> getEncryptionSwitchesTooltips() { return encryptionSwitchesTooltips; }
 	
 	
 	/**
@@ -49,7 +51,23 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 		encryptionExclusions.add(unlocalizedName);
 	}
 	
+	/**
+	 * Turns one item name into a new item name.
+	 * @param unlocaizedName - Old unlocalized name. E.G item.apple
+	 * @param newUnlocalizedName - New unlocalized name. E.G easteregg.cow
+	 */
 	public static void registerEncryptionSwitch(String unlocalizedName, String newUnlocalizedName) {
 		encryptionSwitches.put(unlocalizedName, newUnlocalizedName);
+	}
+	
+	/**
+	 * Turns one item name into a new item name. Tooltips are added in an unlocalized form.
+	 * @param unlocalizedName - Old unlocalized name. E.G item.apple
+	 * @param newUnlocalizedName - New unlocalized name. E.G easteregg.cow
+	 * @param toolTips - Infinite amount of strings to add to the tooltip.
+	 */
+	public static void registerEncryptionSwitch(String unlocalizedName, String newUnlocalizedName, String... toolTips) {
+		encryptionSwitches.put(unlocalizedName, newUnlocalizedName);
+		encryptionSwitchesTooltips.put(unlocalizedName, toolTips);
 	}
 }

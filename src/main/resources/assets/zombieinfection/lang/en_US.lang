@@ -1,3 +1,5 @@
+# Translated by Openreach #
+
 # Chat Messages #
 
 zombieinfection.chat.infected=You have been infected, find the cure.
@@ -17,7 +19,12 @@ itemGroup.zombieInfection=Zombie Infection
 tooltip.cure=Cures the Zombie Infection.
 tooltip.infectedeyes=The infection has spread to your eyes.
 
-#Easter Eggs #
+# Potions #
+
+potion.zombieinfection.infection=Infection
+potion.zombieinfection.cure=Infection Cure
+
+# Easter Eggs #
 
 easteregg.stew=Noodle Soup
 easteregg.description.stew=Erhm.. Are you sure these are noodles?

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.init.BuiltInAPI;
 import com.zalthonethree.zombieinfection.init.EasterEggs;
 import com.zalthonethree.zombieinfection.init.ModItems;
@@ -54,6 +55,7 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 			}
 		}
 		
+		PacketHandler.INSTANCE.ordinal();
 		LogHelper.info("Pre-Init Complete");
 	}
 	
@@ -61,8 +63,8 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 		proxy.init();
 		ModItems.init();
 		
-		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("Infection");
-		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
+		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
+		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
 		EasterEggs.init();
 		BuiltInAPI.init();

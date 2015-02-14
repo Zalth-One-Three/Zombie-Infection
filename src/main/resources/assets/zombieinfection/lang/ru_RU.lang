@@ -1,0 +1,30 @@
+# Chat Messages #
+
+zombieinfection.chat.infected=Тебя инфицировали, используй лекарство!
+zombieinfection.chat.playerinfected=Тебя инфицировал другой игрок, используй лекарство!
+zombieinfection.chat.rotteninfection=Ты съел плоть инфицированного зомби...
+
+# Items #
+
+item.zombieinfection:cure.name=Противоинфекционное лекарство
+
+# Item Groups #
+
+itemGroup.zombieInfection=Зомби-инфекция
+
+# Tooltips #
+
+tooltip.cure=Нейтрализует Зомби-инфекцию
+tooltip.infectedeyes=Инфекция поразила твои глаза!
+
+# Potions #
+
+potion.zombieinfection.infection=Инфекция
+potion.zombieinfection.cure=Лечение
+
+# Easter Eggs #
+
+easteregg.stew=Суп с лапшой
+easteregg.description.stew=Хм... Ты уверен, что это лапша?
+easteregg.egg=Черепашье яйцо
+easteregg.description.egg=Looks quite derpy

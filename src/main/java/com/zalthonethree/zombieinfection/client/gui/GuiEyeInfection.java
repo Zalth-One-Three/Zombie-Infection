@@ -15,7 +15,7 @@ import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class GuiEyeInfection extends Gui {
+public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 	private Minecraft minecraftInstance;
 	
 	public GuiEyeInfection(Minecraft MC) {

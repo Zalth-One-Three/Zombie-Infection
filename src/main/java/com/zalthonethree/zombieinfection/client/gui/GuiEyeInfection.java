@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
-public class GuiEyeInfection extends Gui {
+public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 	private Minecraft minecraftInstance;
 	
 	public GuiEyeInfection(Minecraft MC) {

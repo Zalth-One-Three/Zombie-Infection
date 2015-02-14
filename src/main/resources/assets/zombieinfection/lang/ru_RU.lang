@@ -17,7 +17,12 @@ itemGroup.zombieInfection=Зомби-инфекция
 tooltip.cure=Нейтрализует Зомби-инфекцию
 tooltip.infectedeyes=Инфекция поразила твои глаза!
 
-#Easter Eggs #
+# Potions #
+
+potion.zombieinfection=Инфекция
+potion.zombieinfection.cure=Лечение
+
+# Easter Eggs #
 
 easteregg.stew=Суп с лапшой
 easteregg.description.stew=Хм... Ты уверен, что это лапша?

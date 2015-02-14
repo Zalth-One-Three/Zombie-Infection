@@ -17,6 +17,11 @@ itemGroup.zombieInfection=Zombie Infection
 tooltip.cure=Cures the Zombie Infection.
 tooltip.infectedeyes=The infection has spread to your eyes.
 
+# Potions #
+
+potion.zombieinfection.infection=Infection
+potion.zombieinfection.cure=Infection Cure
+
 # Easter Eggs #
 
 easteregg.stew=Noodle Soup

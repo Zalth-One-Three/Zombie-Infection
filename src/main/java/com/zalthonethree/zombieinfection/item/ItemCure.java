@@ -21,7 +21,6 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 	public ItemCure() {
 		super();
 		setUnlocalizedName("cure");
-		setFull3D();
 	}
 	
 	@Override public boolean hasEffect(ItemStack stack) { return true; }

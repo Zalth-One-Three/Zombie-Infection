@@ -63,8 +63,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
 		
-		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("Infection");
-		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("Infection Cure");
+		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
+		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
 		EasterEggs.init();
 		BuiltInAPI.init();

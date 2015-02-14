@@ -38,7 +38,7 @@ public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
 					event.toolTip.add(StatCollector.translateToLocal("tooltip.infectedeyes"));
 				}
 				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.itemStack.getUnlocalizedName())) {
-					event.toolTip.set(0, ZombieInfectionAPI.getEncryptionSwitches().get(event.itemStack.getUnlocalizedName()));
+					event.toolTip.set(0, StatCollector.translateToLocal(ZombieInfectionAPI.getEncryptionSwitches().get(event.itemStack.getUnlocalizedName())));
 					if (ZombieInfectionAPI.getEncryptionSwitchesTooltips().containsKey(event.itemStack.getUnlocalizedName())) {
 						for (String tT : ZombieInfectionAPI.getEncryptionSwitchesTooltips().get(event.itemStack.getUnlocalizedName())) {
 							event.toolTip.add(StatCollector.translateToLocal(tT));

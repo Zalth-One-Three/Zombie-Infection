@@ -6,6 +6,7 @@ import java.lang.reflect.Modifier;
 import net.minecraft.potion.Potion;
 
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.init.BuiltInAPI;
 import com.zalthonethree.zombieinfection.init.EasterEggs;
 import com.zalthonethree.zombieinfection.init.ModItems;
@@ -55,6 +56,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		}
 		
 		ModItems.init();
+		PacketHandler.INSTANCE.ordinal();
 		LogHelper.info("Pre-Init Complete");
 	}
 	

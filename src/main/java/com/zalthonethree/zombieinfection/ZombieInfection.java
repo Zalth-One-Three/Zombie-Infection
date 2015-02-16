@@ -22,6 +22,7 @@ import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
 import com.zalthonethree.zombieinfection.potion.PotionInfection;
 import com.zalthonethree.zombieinfection.proxy.IProxy;
+import com.zalthonethree.zombieinfection.updatechecker.UpdateChecker;
 import com.zalthonethree.zombieinfection.utility.LogHelper;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
@@ -34,6 +35,9 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 	@Mod.EventHandler public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+		
+		UpdateChecker.CheckForUpdates();
+		
 		Potion[] potionTypes = null;
 		
 		for (Field f : Potion.class.getDeclaredFields()) {

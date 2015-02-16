@@ -24,26 +24,26 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 	
 	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
-		if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
-			int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
-			for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
-				customEffect.run(player, timeInfected);
-			}
-			
-			player.addPotionEffect(PotionHelper.createInfection(timeInfected < 60 ? 0 : 1));
-			if (ConfigurationHandler.enableSlowness()) player.addPotionEffect(PotionHelper.createSlowness(timeInfected < 60 ? 0 : 1));
-			if (ConfigurationHandler.enableHunger() && timeInfected >= 20) player.addPotionEffect(PotionHelper.createHunger(timeInfected < 80 ? 0 : 1));
-			if (ConfigurationHandler.enableMiningFatigue() && timeInfected >= 40) player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < 100 ? 0 : 1));
-			if (ConfigurationHandler.enableWeakness() && timeInfected >= 60) player.addPotionEffect(PotionHelper.createWeakness(timeInfected < 120 ? 0 : 1));
-			if (ConfigurationHandler.enableWither() && timeInfected >= 480) player.addPotionEffect(PotionHelper.createWither(0));
-			
-			if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
-				player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
-			}
-			
-			FoodTracking.put(player);
-			
-			if (Utilities.isServerSide()) {
+		if (Utilities.isServerSide()) {
+			if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
+				int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
+				for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
+					customEffect.run(player, timeInfected);
+				}
+				
+				player.addPotionEffect(PotionHelper.createInfection(timeInfected < 60 ? 0 : 1));
+				if (ConfigurationHandler.enableSlowness()) player.addPotionEffect(PotionHelper.createSlowness(timeInfected < 60 ? 0 : 1));
+				if (ConfigurationHandler.enableHunger() && timeInfected >= 20) player.addPotionEffect(PotionHelper.createHunger(timeInfected < 80 ? 0 : 1));
+				if (ConfigurationHandler.enableMiningFatigue() && timeInfected >= 40) player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < 100 ? 0 : 1));
+				if (ConfigurationHandler.enableWeakness() && timeInfected >= 60) player.addPotionEffect(PotionHelper.createWeakness(timeInfected < 120 ? 0 : 1));
+				if (ConfigurationHandler.enableWither() && timeInfected >= 480) player.addPotionEffect(PotionHelper.createWither(0));
+				
+				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
+					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
+				}
+				
+				FoodTracking.put(player);
+				
 				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
 				if (curSecond != lastSecond) {
 					lastSecond = curSecond;
@@ -51,14 +51,14 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				}
 				
 				if (player.worldObj.canBlockSeeTheSky((int) player.posX, (int) player.posY, (int) player.posZ)
-				&& player.worldObj.isDaytime()
-				&& !player.worldObj.isRaining()
-				&& !player.worldObj.isThundering()
-				&& timeInfected >= 80
-				&& player.inventory.armorInventory[3] == null) {
+						&& player.worldObj.isDaytime()
+						&& !player.worldObj.isRaining()
+						&& !player.worldObj.isThundering()
+						&& timeInfected >= 80
+						&& player.inventory.armorInventory[3] == null) {
 					player.setFire(1);
 				}
-				
+					
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
 					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					
@@ -77,10 +77,10 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 						}
 					}
 				}
+			} else {
+				TimeInfectedTracking.remove(player);
+				FoodTracking.remove(player);
 			}
-		} else {
-			if (Utilities.isServerSide()) TimeInfectedTracking.remove(player);
-			FoodTracking.remove(player);
 		}
 	}
 }

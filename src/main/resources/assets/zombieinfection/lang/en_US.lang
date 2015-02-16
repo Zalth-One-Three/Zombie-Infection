@@ -1,10 +1,12 @@
-# Translated by Openreach #
-
 # Chat Messages #
 
 zombieinfection.chat.infected=You have been infected, find the cure.
 zombieinfection.chat.playerinfected=You have been infected by another player, find the cure.
 zombieinfection.chat.rotteninfection=You have been infected by rotten food.
+
+zombieinfection.update.major=A new major update for Zombie Infection is available.
+zombieinfection.update.minor=A new minor update for Zombie Infection is available.
+zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Download page","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
 
 # Items #
 

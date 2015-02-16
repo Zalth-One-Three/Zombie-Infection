@@ -22,7 +22,7 @@ group= "com.zalthonethree.zombieinfection"
 archivesBaseName = "ZombieInfection"
 
 minecraft {
-    version = "1.8-11.14.1.1313"
+    version = "1.8-11.14.1.1316"
     runDir = "eclipse"
     mappings = "snapshot_20150201"
 }

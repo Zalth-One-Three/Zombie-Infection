@@ -17,6 +17,7 @@ import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.init.BuiltInAPI;
 import com.zalthonethree.zombieinfection.init.EasterEggs;
+import com.zalthonethree.zombieinfection.init.EntityInit;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
@@ -65,12 +66,14 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 	
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
+		proxy.registerRenderers();
 		ModItems.init();
 		
 		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
 		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
 		EasterEggs.init();
+		EntityInit.init();
 		BuiltInAPI.init();
 		Recipes.init();
 		LogHelper.info("Init Complete");

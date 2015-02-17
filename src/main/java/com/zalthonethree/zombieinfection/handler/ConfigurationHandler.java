@@ -12,6 +12,7 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static Configuration configuration;
 	private static int spreadDistance = 0;
 	private static int villagerInfectionChance = 25;
+	private static int animalInfectionChance = 25;
 	private static int playerInfectionChance = 10;
 	
 	private static boolean enableSlowness = true;
@@ -41,6 +42,7 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	private static void loadConfiguration() {
 		spreadDistance = configuration.getInt("Spread Distance", Configuration.CATEGORY_GENERAL, 3, 0, 5, "Distance to be from someone to spread the infection when PVP is off. 0 = Disabled");
 		villagerInfectionChance = configuration.getInt("Villager Infection Chance", Configuration.CATEGORY_GENERAL, 25, 0, 100, "Chance for infection to spread to villager upon attack.");
+		animalInfectionChance = configuration.getInt("Animal Infection Chance", Configuration.CATEGORY_GENERAL, 25, 0, 100, "Chance animals will get infected.");
 		playerInfectionChance = configuration.getInt("Player Infection Chance", Configuration.CATEGORY_GENERAL, 10, 0, 100, "Chance a zombie will infect a player.");
 		
 		enableSlowness = configuration.getBoolean("Enable Slowness", "Effects", true, "Infected players get Slowness");
@@ -61,6 +63,7 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	
 	public static int getSpreadDistance() { return spreadDistance; }
 	public static int getVillagerInfectionChance() { return villagerInfectionChance; }
+	public static int getAnimalInfectionChance() { return animalInfectionChance; }
 	public static int getPlayerInfectionChance() { return playerInfectionChance; }
 	public static boolean getSpreadEnabled() { return spreadDistance != 0; }
 	

@@ -4,6 +4,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,7 +21,12 @@ import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
+import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
+import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
+import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
@@ -33,6 +42,14 @@ public class InfectionEvent /*extends EntityDragon*/ {
 				if (EntityList.getEntityID(attacker) == entityId) {
 					infectiousMob = true;
 					infectionChance = ZombieInfectionAPI.getCustomInfectionChances().get(entityId);
+				}
+			}
+			for (Class<?> clazz : attacker.getClass().getInterfaces()) {
+				if (clazz.isInterface()) {
+					if (clazz.equals(IZombieInfectionMob.class)) {
+						infectiousMob = true;
+						infectionChance = ConfigurationHandler.getPlayerInfectionChance();
+					}
 				}
 			}
 			if (infectiousMob) {
@@ -66,6 +83,46 @@ public class InfectionEvent /*extends EntityDragon*/ {
 							}
 						}
 					}
+				} else if (target instanceof EntityCow) {
+					EntityCow attacked = (EntityCow) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+							if (!attacked.isPotionActive(Potion.wither)) {
+								attacked.addPotionEffect(PotionHelper.createWither(0));
+							}
+						}
+					}
+				} else if (target instanceof EntityChicken) {
+					EntityChicken attacked = (EntityChicken) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+							if (!attacked.isPotionActive(Potion.wither)) {
+								attacked.addPotionEffect(PotionHelper.createWither(0));
+							}
+						}
+					}
+				} else if (target instanceof EntityPig) {
+					EntityPig attacked = (EntityPig) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+							if (!attacked.isPotionActive(Potion.wither)) {
+								attacked.addPotionEffect(PotionHelper.createWither(0));
+							}
+						}
+					}
+				} else if (target instanceof EntitySheep) {
+					EntitySheep attacked = (EntitySheep) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+							if (!attacked.isPotionActive(Potion.wither)) {
+								attacked.addPotionEffect(PotionHelper.createWither(0));
+							}
+						}
+					}
 				}
 			}
 		}
@@ -94,6 +151,70 @@ public class InfectionEvent /*extends EntityDragon*/ {
 								}
 								
 								attacked.worldObj.spawnEntityInWorld(entityzombie);
+								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
+							}
+						}
+					}
+				} else if (target instanceof EntityCow) {
+					EntityCow attacked = (EntityCow) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.isPotionActive(Potion.wither) && !attacked.isChild()) {
+							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+								EntityZombieCow entityzombiecow = new EntityZombieCow(attacked.worldObj);
+								entityzombiecow.copyLocationAndAnglesFrom(attacked);
+								attacked.worldObj.removeEntity(attacked);
+								entityzombiecow.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
+								
+								attacked.worldObj.spawnEntityInWorld(entityzombiecow);
+								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
+							}
+						}
+					}
+				} else if (target instanceof EntityChicken) {
+					EntityChicken attacked = (EntityChicken) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.isPotionActive(Potion.wither) && !attacked.isChild()) {
+							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+								EntityZombieChicken entityzombiechicken = new EntityZombieChicken(attacked.worldObj);
+								entityzombiechicken.copyLocationAndAnglesFrom(attacked);
+								attacked.worldObj.removeEntity(attacked);
+								entityzombiechicken.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
+								
+								attacked.worldObj.spawnEntityInWorld(entityzombiechicken);
+								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
+							}
+						}
+					}
+				} else if (target instanceof EntityPig) {
+					EntityPig attacked = (EntityPig) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.isPotionActive(Potion.wither) && !attacked.isChild()) {
+							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+								EntityZombiePig entityzombiepig = new EntityZombiePig(attacked.worldObj);
+								entityzombiepig.copyLocationAndAnglesFrom(attacked);
+								attacked.worldObj.removeEntity(attacked);
+								entityzombiepig.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
+								
+								attacked.worldObj.spawnEntityInWorld(entityzombiepig);
+								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
+							}
+						}
+					}
+				} else if (target instanceof EntitySheep) {
+					EntitySheep attacked = (EntitySheep) target;
+					EntityPlayer possiblespreader = (EntityPlayer) attacker;
+					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+						if (attacked.isPotionActive(Potion.wither) && !attacked.isChild()) {
+							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
+								EntityZombieSheep entityzombiesheep = new EntityZombieSheep(attacked.worldObj);
+								entityzombiesheep.copyLocationAndAnglesFrom(attacked);
+								attacked.worldObj.removeEntity(attacked);
+								entityzombiesheep.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
+								
+								attacked.worldObj.spawnEntityInWorld(entityzombiesheep);
 								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);
 							}
 						}

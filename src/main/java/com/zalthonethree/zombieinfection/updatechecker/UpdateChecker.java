@@ -17,7 +17,7 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
-public class UpdateChecker {
+public class UpdateChecker /*extends EntityDragon*/ {
 	private static final String UPDATE_LOC = "https://raw.githubusercontent.com/Zalth-One-Three/Zombie-Infection/Versions/Versions.txt";
 	private static boolean MAJOR_UPDATE = false;
 	private static boolean MINOR_UPDATE = false;

@@ -9,6 +9,7 @@ import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.init.BuiltInAPI;
 import com.zalthonethree.zombieinfection.init.EasterEggs;
+import com.zalthonethree.zombieinfection.init.EntityInit;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
@@ -66,12 +67,14 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 	
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
 		proxy.init();
+		proxy.registerRenderers();
 		
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
-		EasterEggs.init();
 		BuiltInAPI.init();
+		EasterEggs.init();
+		EntityInit.init();
 		Recipes.init();
 		LogHelper.info("Init Complete");
 	}

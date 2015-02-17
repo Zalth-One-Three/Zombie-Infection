@@ -6,6 +6,14 @@ zombieinfection.chat.infected=Habeis sido infectado, encuentra la cura.
 zombieinfection.chat.playerinfected=Habeis sido infectado por otro jugador, encuentra la cura.
 zombieinfection.chat.rotteninfection=Habeis sido infectado por comida podrida.
 
+
+# Entities #
+
+entity.com.zalthonethree.zombieinfection.entity.entityzombiechicken.name=Gallina Zombi
+entity.com.zalthonethree.zombieinfection.entity.entityzombiecow.name=Vaca Zombi
+entity.com.zalthonethree.zombieinfection.entity.entityzombiepig.name=Cerdo Zombi
+entity.com.zalthonethree.zombieinfection.entity.entityzombiesheep.name=Oveja Zombi
+
 # Items #
 
 item.zombieinfection:cure.name=Cura de la Infección
@@ -28,5 +36,12 @@ potion.zombieinfection.cure=Cura de la Infección
 
 easteregg.stew=Sopa de fideos
 easteregg.description.stew=Erhm.. Estais seguro de que estos son fideos?
+
 easteregg.egg=Huevo de Tortuga
-easteregg.description.egg=Se ve bastante derpy
+easteregg.description.egg=Se ve bastante extraño
+
+easteregg.sponge=Queso
+easteregg.description.sponge=Hecho por Dizkonnekted
+
+easteregg.cooked_porkchop=Tocino
+easteregg.description.cooked_porkchop=Parece delicioso...

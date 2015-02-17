@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 public class EntityZombiePig extends EntityMob/*, EntityDragon*/ implements IZombieInfectionMob{
 	public EntityZombiePig(World world) {
 		super(world);
-		this.setSize(0.9F, 1.3F);
+		this.setSize(0.9F, 0.9F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));

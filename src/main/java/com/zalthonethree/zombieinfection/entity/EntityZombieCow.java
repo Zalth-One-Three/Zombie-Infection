@@ -18,6 +18,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -99,6 +100,22 @@ public class EntityZombieCow extends EntityMob/*, EntityDragon*/ implements IZom
 			
 			this.worldObj.spawnEntityInWorld(entityzombiecow);
 			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+		}
+	}
+	
+	@Override public boolean interact(EntityPlayer player) {
+		ItemStack itemstack = player.inventory.getCurrentItem();
+		
+		if (itemstack != null && itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode) {
+			if (itemstack.stackSize-- == 1) {
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.milk_bucket));
+			} else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket))) {
+				player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
+			}
+			
+			return true;
+		} else {
+			return super.interact(player);
 		}
 	}
 	

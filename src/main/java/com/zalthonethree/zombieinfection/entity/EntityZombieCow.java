@@ -1,6 +1,7 @@
 package com.zalthonethree.zombieinfection.entity;
 
 import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
+import com.zalthonethree.zombieinfection.init.ModItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -108,7 +109,7 @@ public class EntityZombieCow extends EntityMob/*, EntityDragon*/ implements IZom
 		
 		if (itemstack != null && itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode) {
 			if (itemstack.stackSize-- == 1) {
-				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.milk_bucket));
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ModItems.infectedMilk));
 			} else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket))) {
 				player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
 			}

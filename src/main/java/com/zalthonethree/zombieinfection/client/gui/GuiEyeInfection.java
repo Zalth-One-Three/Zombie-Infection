@@ -23,13 +23,14 @@ public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 	}
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL) public void onRender(RenderGameOverlayEvent.Pre event) {
-		if (event.isCanceled() || event.type != ElementType.HOTBAR || TimeInfectedTrackingClient.getSecondsInfected() < 60) return;
+		int timeInfected = TimeInfectedTrackingClient.getSecondsInfected();
+		if (event.isCanceled() || event.type != ElementType.HOTBAR || timeInfected < 60) return;
 		ScaledResolution sr = new ScaledResolution(minecraftInstance, minecraftInstance.displayWidth, minecraftInstance.displayHeight);
 		
 		GL11.glPushAttrib( GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_ENABLE_BIT);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDepthMask(false);
-		minecraftInstance.renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/gui/eyeinfection.png"));
+		minecraftInstance.renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), timeInfected >= 60 && timeInfected < 120 ? "textures/gui/eyeinfection.png" : "textures/gui/eyeinfectioncracked.png"));
 		drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
 		GL11.glPopAttrib();
 	}

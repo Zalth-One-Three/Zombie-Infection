@@ -1,0 +1,50 @@
+# Translation by iHeartZigg #
+
+# Chat Messages #
+
+zombieinfection.chat.infected=Du har blivit infekterad, hitta botemedlet.
+zombieinfection.chat.playerinfected=Du har blivit infekterad av en annan spelare, hitta botemedlet.
+zombieinfection.chat.rotteninfection=Du har blivit infekterad av rutten mat.
+
+zombieinfection.update.major=En stor uppdatering är tillgänglig.
+zombieinfection.update.minor=En liten uppdatering är tillgänglig.
+zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Download page","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
+
+# Entities #
+
+entity.com.zalthonethree.zombieinfection.entity.entityzombiechicken.name=Zombie Höna
+entity.com.zalthonethree.zombieinfection.entity.entityzombiecow.name=Zombie Ko
+entity.com.zalthonethree.zombieinfection.entity.entityzombiepig.name=Zombie Gris
+entity.com.zalthonethree.zombieinfection.entity.entityzombiesheep.name=Zombie Får
+
+# Items #
+
+item.zombieinfection:cure.name=Infektion Botemedel
+
+# Item Groups #
+
+itemGroup.zombieInfection=Zombie Infektion
+
+# Tooltips #
+
+tooltip.cure=Botar Zombie Infektionen
+tooltip.infectedeyes=Infektionen har spridits till dina ögon.
+
+# Potions #
+
+potion.zombieinfection.infection=Infektion
+potion.zombieinfection.cure=Infektion Botemedel
+
+# Easter Eggs #
+
+easteregg.stew=Nudelsoppa
+easteregg.description.stew=Erhm.. Är du säker på att detta är nudlar?
+
+easteregg.egg=Sköldpaddsägg
+easteregg.description.egg=Ser underlig ut.
+
+easteregg.sponge=Ost
+easteregg.description.sponge=Skapad av "Dizkonnekted"
+
+easteregg.cooked_porkchop=Bacon
+easteregg.description.cooked_porkchop=Ser smaskig ut.

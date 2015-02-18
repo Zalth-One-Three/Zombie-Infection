@@ -1,5 +1,7 @@
 package com.zalthonethree.zombieinfection.entity;
 
+import com.zalthonethree.zombieinfection.init.ModItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -119,7 +121,7 @@ public class EntityZombieChicken extends EntityMob/*, EntityDragon*/ implements 
 		
 		if (!this.worldObj.isRemote && !this.isChild() && this.timeUntilNextEgg-- <= 0) {
 			this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-			this.dropItem(Items.egg, 1);
+			this.dropItem(ModItems.infectedEgg, 1);
 			this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 		}
 	}

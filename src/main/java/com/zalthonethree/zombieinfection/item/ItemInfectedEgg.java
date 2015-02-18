@@ -4,5 +4,6 @@ public class ItemInfectedEgg extends ItemBase/*, EntityDragon*/ {
 	public ItemInfectedEgg() {
 		super();
 		setUnlocalizedName("infectedEgg");
+		setMaxStackSize(16);
 	}
 }

@@ -104,13 +104,13 @@ public class UpdateChecker /*extends EntityDragon*/ {
 	}
 	
 	@SubscribeEvent public void onJoin(PlayerLoggedInEvent event) {
+		CheckForUpdates();
 		EntityPlayer player = event.player;
 		if (MAJOR_UPDATE) {
 			player.addChatComponentMessage(new ChatComponentTranslation("zombieinfection.update.major"));
 			IChatComponent component = IChatComponent.Serializer.jsonToComponent(StatCollector.translateToLocal("zombieinfection.update.download"));
 			player.addChatMessage(component);
-		}
-		if (!MAJOR_UPDATE && MINOR_UPDATE) {
+		} else if (MINOR_UPDATE) {
 			player.addChatComponentMessage(new ChatComponentTranslation("zombieinfection.update.minor"));
 			IChatComponent component = IChatComponent.Serializer.jsonToComponent(StatCollector.translateToLocal("zombieinfection.update.download"));
 			player.addChatMessage(component);

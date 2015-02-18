@@ -18,6 +18,8 @@ entity.com.zalthonethree.zombieinfection.entity.entityzombiesheep.name=Zombie Sh
 # Items #
 
 item.zombieinfection:cure.name=Infection Cure
+item.zombieinfection:infectedEgg.name=Infected Egg
+item.zombieinfection:infectedMilk.name=Infected Milk
 
 # Item Groups #
 
@@ -44,5 +46,5 @@ easteregg.description.egg=Looks quite odd
 easteregg.sponge=Cheese
 easteregg.description.sponge=Made by Dizkonnekted
 
-easteregg.cooked_prokchop=Bacon
+easteregg.cooked_porkchop=Bacon
 easteregg.description.cooked_porkchop=Looks tasty...

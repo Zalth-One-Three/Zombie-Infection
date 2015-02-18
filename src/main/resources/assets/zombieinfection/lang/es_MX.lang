@@ -16,6 +16,8 @@ entity.com.zalthonethree.zombieinfection.entity.entityzombiesheep.name=Oveja Zom
 # Items #
 
 item.zombieinfection:cure.name=Cura de la Infección
+item.zombieinfection:infectedEgg=Huevo Infectado
+item.zombieinfection:infectedMilk=Leche Infectada
 
 # Item Groups #
 

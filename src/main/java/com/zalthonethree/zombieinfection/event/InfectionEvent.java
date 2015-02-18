@@ -58,9 +58,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 				Entity target = event.entity;
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
-					if (Api.getMorphEntity(attacked.getCommandSenderName(), false) != null) {
-						if (Api.getMorphEntity(attacked.getCommandSenderName(), false) instanceof EntityZombie) infectionChance = (int) infectionChance / 2;
-					}
+					if (Api.getMorphEntity(attacked.getCommandSenderName(), false) instanceof EntityZombie) infectionChance = (int) infectionChance / 2;
 					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
 						if (!attacked.isPotionActive(ZombieInfection.potionInfection)) {
 							attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));

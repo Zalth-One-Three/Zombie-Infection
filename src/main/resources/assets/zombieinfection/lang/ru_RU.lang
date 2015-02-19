@@ -4,7 +4,7 @@
 
 zombieinfection.chat.infected=Тебя инфицировали, используй лекарство!
 zombieinfection.chat.playerinfected=Тебя инфицировал другой игрок, используй лекарство!
-zombieinfection.chat.rotteninfection=Ты съел плоть инфицированного зомби...
+zombieinfection.chat.rotteninfection=Ты съел зараженную пищу...
 
 # Items #
 

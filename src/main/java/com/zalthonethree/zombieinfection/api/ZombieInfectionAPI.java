@@ -15,7 +15,7 @@ public class ZombieInfectionAPI /*extends EntityDragon*/ {
 	
 	public static ArrayList<CustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
 	public static ArrayList<CustomCureEffect> getCustomCureEffects() { return customCureEffects; }
-	public static ArrayList<Integer> getCustionInfectiousMobs() { return customInfectiousMobs; }
+	public static ArrayList<Integer> getCustomInfectiousMobs() { return customInfectiousMobs; }
 	public static HashMap<Integer, Integer> getCustomInfectionChances() { return customInfectionChances; }
 	public static ArrayList<String> getEncryptionExclusions() { return encryptionExclusions; }
 	public static HashMap<String, String> getEncryptionSwitches() { return encryptionSwitches; }

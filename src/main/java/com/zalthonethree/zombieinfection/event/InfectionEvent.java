@@ -37,9 +37,10 @@ public class InfectionEvent /*extends EntityDragon*/ {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;
 			Entity attacker = source.getEntity();
+			if (attacker == null) return;
 			boolean infectiousMob = false;
 			int infectionChance = 0;
-			for (int entityId : ZombieInfectionAPI.getCustionInfectiousMobs()) {
+			for (int entityId : ZombieInfectionAPI.getCustomInfectiousMobs()) {
 				if (EntityList.getEntityID(attacker) == entityId) {
 					infectiousMob = true;
 					infectionChance = ZombieInfectionAPI.getCustomInfectionChances().get(entityId);

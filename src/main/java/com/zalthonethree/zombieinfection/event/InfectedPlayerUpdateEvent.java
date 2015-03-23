@@ -40,6 +40,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				
 				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
+					//TODO Packet the food change
 				}
 				
 				FoodTracking.put(player);

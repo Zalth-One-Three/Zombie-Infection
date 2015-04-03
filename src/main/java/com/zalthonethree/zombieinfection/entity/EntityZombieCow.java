@@ -97,7 +97,7 @@ public class EntityZombieCow extends EntityMob/*, EntityDragon*/ implements IZom
 			EntityZombieCow entityzombiecow = new EntityZombieCow(this.worldObj);
 			entityzombiecow.copyLocationAndAnglesFrom(entityLivingIn);
 			this.worldObj.removeEntity(entityLivingIn);
-			entityzombiecow.onSpawnFirstTime(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
+			entityzombiecow.onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
 			
 			this.worldObj.spawnEntityInWorld(entityzombiecow);
 			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);

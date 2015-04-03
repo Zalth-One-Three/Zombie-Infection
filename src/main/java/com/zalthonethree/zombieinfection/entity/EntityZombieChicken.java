@@ -134,7 +134,7 @@ public class EntityZombieChicken extends EntityMob/*, EntityDragon*/ implements 
 			EntityZombieChicken entityzombiechicken = new EntityZombieChicken(this.worldObj);
 			entityzombiechicken.copyLocationAndAnglesFrom(entityLivingIn);
 			this.worldObj.removeEntity(entityLivingIn);
-			entityzombiechicken.onSpawnFirstTime(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
+			entityzombiechicken.onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
 			
 			this.worldObj.spawnEntityInWorld(entityzombiechicken);
 			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);

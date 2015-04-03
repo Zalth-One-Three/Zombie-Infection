@@ -93,7 +93,7 @@ public class EntityZombiePig extends EntityMob/*, EntityDragon*/ implements IZom
 			EntityZombiePig entityzombiepig = new EntityZombiePig(this.worldObj);
 			entityzombiepig.copyLocationAndAnglesFrom(entityLivingIn);
 			this.worldObj.removeEntity(entityLivingIn);
-			entityzombiepig.onSpawnFirstTime(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
+			entityzombiepig.onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
 			
 			this.worldObj.spawnEntityInWorld(entityzombiepig);
 			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);

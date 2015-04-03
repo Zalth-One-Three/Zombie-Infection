@@ -118,7 +118,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 								EntityZombie entityzombie = new EntityZombie(attacked.worldObj);
 								entityzombie.copyLocationAndAnglesFrom(attacked);
 								attacked.worldObj.removeEntity(attacked);
-								entityzombie.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData) null);
+								entityzombie.onInitialSpawn(attacked.worldObj.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData) null);
 								entityzombie.setVillager(true);
 								
 								if (attacked.isChild()) {
@@ -142,7 +142,7 @@ public class InfectionEvent /*extends EntityDragon*/ {
 								EntityCreature entityzombified = zombifyEntity(target);// new EntityZombieSheep(attacked.worldObj);
 								entityzombified.copyLocationAndAnglesFrom(attacked);
 								attacked.worldObj.removeEntity(attacked);
-								entityzombified.onSpawnFirstTime(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
+								entityzombified.onInitialSpawn(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
 								
 								attacked.worldObj.spawnEntityInWorld(entityzombified);
 								attacked.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) attacked.posX, (int) attacked.posY, (int) attacked.posZ), 0);

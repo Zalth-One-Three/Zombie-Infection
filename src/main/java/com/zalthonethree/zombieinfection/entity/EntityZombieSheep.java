@@ -93,7 +93,7 @@ public class EntityZombieSheep extends EntityMob/*, EntityDragon*/ implements IZ
 			EntityZombieSheep entityzombiesheep = new EntityZombieSheep(this.worldObj);
 			entityzombiesheep.copyLocationAndAnglesFrom(entityLivingIn);
 			this.worldObj.removeEntity(entityLivingIn);
-			entityzombiesheep.onSpawnFirstTime(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
+			entityzombiesheep.onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
 			
 			this.worldObj.spawnEntityInWorld(entityzombiesheep);
 			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);

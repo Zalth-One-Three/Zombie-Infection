@@ -21,8 +21,8 @@ public class ModItems /*extends EntityDragon*/ {
 		GameRegistry.registerItem(infectedMilk, "infectedMilk");
 		if (Utilities.isClientSide()) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cure, 0, new ModelResourceLocation("zombieinfection:Cure", "inventory"));
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cure, 0, new ModelResourceLocation("zombieinfection:infectedEgg", "inventory"));
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cure, 0, new ModelResourceLocation("zombieinfection:infectedMilk", "inventory"));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(infectedEgg, 0, new ModelResourceLocation("zombieinfection:infectedEgg", "inventory"));
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(infectedMilk, 0, new ModelResourceLocation("zombieinfection:infectedMilk", "inventory"));
 		}
 	}
 }

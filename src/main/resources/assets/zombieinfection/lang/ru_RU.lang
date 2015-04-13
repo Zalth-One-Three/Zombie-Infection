@@ -6,9 +6,22 @@ zombieinfection.chat.infected=Тебя инфицировали, использ�
 zombieinfection.chat.playerinfected=Тебя инфицировал другой игрок, используй лекарство!
 zombieinfection.chat.rotteninfection=Ты съел заражённую пищу...
 
+zombieinfection.update.major=Вышло крупное обновление для мода Zombie Infection
+zombieinfection.update.minor=Вышло маленькое обновление для мода Zombie Infection
+zombieinfection.update.download=["Нажмите, чтобы... [",{"text":"загрузить с CurseForge","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Страница загрузки","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
+
+# Entities #
+
+entity.ZIZombieChicken.name=Зомби-курица
+entity.ZIZombieCow.name=Зомби-корова
+entity.ZIZombiePig.name=Зомби-свинья
+entity.ZIZombieSheep.name=Зомби-овца
+
 # Items #
 
 item.zombieinfection:cure.name=Противоинфекционное лекарство
+item.zombieinfection:infectedEgg.name=Заражённое яйцо
+item.zombieinfection:infectedMilk.name=Заражённое молоко
 
 # Item Groups #
 
@@ -28,5 +41,12 @@ potion.zombieinfection.cure=Лечение
 
 easteregg.stew=Суп с лапшой
 easteregg.description.stew=Хм... Ты уверен, что это лапша?
+
 easteregg.egg=Черепашье яйцо
-easteregg.description.egg=Looks quite odd
+easteregg.description.egg=Выглядит весьма подозрительно
+
+easteregg.sponge=Сыр
+easteregg.description.sponge=Сделан Dizkonnekted
+
+easteregg.cooked_porkchop=Бекон
+easteregg.description.cooked_porkchop=Выглядит вкусно...

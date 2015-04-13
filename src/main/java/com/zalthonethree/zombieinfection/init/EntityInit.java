@@ -32,9 +32,9 @@ public class EntityInit /*extends EntityDragon*/ {
 	}
 	
 	private static void registerEntities() {
-		registerEntity(EntityZombieChicken.class, 0xa3a3a3, 0x566c58);
-		registerEntity(EntityZombieCow.class, 0x3e2e09, 0x566c58);
-		registerEntity(EntityZombiePig.class, 0xc87e7e, 0x566c58);
-		registerEntity(EntityZombieSheep.class, 0xe8e8e8, 0x566c58);
+		registerEntity(EntityZombieChicken.class, "ZIZombieChicken", 0xa3a3a3, 0x566c58);
+		registerEntity(EntityZombieCow.class, "ZIZombieCow", 0x3e2e09, 0x566c58);
+		registerEntity(EntityZombiePig.class, "ZIZombiePig", 0xc87e7e, 0x566c58);
+		registerEntity(EntityZombieSheep.class, "ZIZombieSheep", 0xe8e8e8, 0x566c58);
 	}
 }

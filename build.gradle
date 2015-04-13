@@ -17,22 +17,25 @@ buildscript {
 
 apply plugin: 'forge'
 
+ext.configFile = file('build.properties')
+
+ext.config = parseConfig(configFile)
+
 project.ext.set("buildnum", "local")
-version = "1.7.10-1.3"
-def ENV = System.getenv()
-if (ENV.DRONE_BUILD_NUMBER) {
-    project.buildnum = ENV.DRONE_BUILD_NUMBER
-}
+version = "${config.mc_version}-${config.mod_version_major}.${config.mod_version_minor}"
+project.buildnum = "${config.mod_version_build}"
 version += "." + project.buildnum
 
-group= "com.zalthonethree.zombieinfection"
-archivesBaseName = "ZombieInfection"
+group= "${config.group}"
+archivesBaseName = "${config.archive_base}"
 
 minecraft {
     version = "1.7.10-10.13.2.1291"
-    mappings = "stable_12"
-    replaceIn "Reference.java"
-    replace "@VERSION@", project.buildnum
+    if (config.mappings == "today") {
+	    mappings = "snapshot_" + getDate()
+	} else {
+		mappings = "${config.mappings}"
+	}
 }
 
 repositories {
@@ -42,8 +45,7 @@ repositories {
      }
 }
 
-dependencies {
-}
+dependencies {}
 
 processResources
 {
@@ -59,4 +61,18 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+def getDate() {
+	def date = new Date()
+	def formattedDate = date.format('yyyyMMdd')
+	return formattedDate
 }

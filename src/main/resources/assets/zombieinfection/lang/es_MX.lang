@@ -8,10 +8,10 @@ zombieinfection.chat.rotteninfection=Has sido infectado por comida podrida.
 
 # Entities #
 
-entity.com.zalthonethree.zombieinfection.entity.entityzombiechicken.name=Gallina Zombi
-entity.com.zalthonethree.zombieinfection.entity.entityzombiecow.name=Vaca Zombi
-entity.com.zalthonethree.zombieinfection.entity.entityzombiepig.name=Cerdo Zombi
-entity.com.zalthonethree.zombieinfection.entity.entityzombiesheep.name=Oveja Zombi
+entity.ZIZombieChicken.name=Gallina Zombi
+entity.ZIZombieCow.name=Vaca Zombi
+entity.ZIZombiePig.name=Cerdo Zombi
+entity.ZIZombieSheep.name=Oveja Zombi
 
 # Items #
 

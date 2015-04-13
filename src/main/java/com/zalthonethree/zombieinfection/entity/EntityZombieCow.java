@@ -86,7 +86,7 @@ public class EntityZombieCow extends EntityMob/*, EntityDragon*/ implements IZom
 			}
 		}
 		
-		// super.onLivingUpdate();
+		super.onLivingUpdate();
 	}
 	
 	@Override public void onKillEntity(EntityLivingBase entityLivingIn) {

@@ -17,6 +17,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 	private Minecraft minecraftInstance;
+	private ResourceLocation uncracked = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/gui/eyeinfection.png");
+	private ResourceLocation cracked = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/gui/eyeinfectioncracked.png");
 	
 	public GuiEyeInfection(Minecraft MC) {
 		super();
@@ -31,7 +33,7 @@ public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 		GL11.glPushAttrib( GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_ENABLE_BIT);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDepthMask(false);
-		minecraftInstance.renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), timeInfected >= 60 && timeInfected < 120 ? "textures/gui/eyeinfection.png" : "textures/gui/eyeinfectioncracked.png"));
+		minecraftInstance.renderEngine.bindTexture(timeInfected >= 60 && timeInfected < 120 ? uncracked : cracked);
 		drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
 		GL11.glPopAttrib();
 	}

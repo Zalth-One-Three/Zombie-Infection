@@ -4,12 +4,14 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
@@ -40,6 +42,8 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				
 				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
+					EntityPlayerMP playerMP = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerByUsername(player.getCommandSenderName());
+					PacketHandler.INSTANCE.sendTo(PacketHandler.getFoodChangePacket(player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()), playerMP);
 				}
 				
 				FoodTracking.put(player);

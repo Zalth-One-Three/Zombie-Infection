@@ -1,4 +1,4 @@
-package com.zalthonethree.zombieinfection.handler;
+package com.zalthonethree.zombieinfection.handler.timeinfected;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

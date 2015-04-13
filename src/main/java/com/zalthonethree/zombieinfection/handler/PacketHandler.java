@@ -12,6 +12,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.zalthonethree.zombieinfection.handler.foodchange.ZIFoodChangeMessage;
+import com.zalthonethree.zombieinfection.handler.timeinfected.ZITimeInfectedMessage;
+import com.zalthonethree.zombieinfection.handler.timeinfected.ZITimeInfectedMessageHandler;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
 public enum PacketHandler /*extends EntityDragon*/ {
@@ -43,6 +46,15 @@ public enum PacketHandler /*extends EntityDragon*/ {
 		ZITimeInfectedMessage msg = new ZITimeInfectedMessage();
 		msg.index = 0;
 		msg.secondsInfected = Seconds;
+		
+		return INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
+	}
+	
+	public static Packet getFoodChangePacket(int food, float saturation) {
+		ZIFoodChangeMessage msg = new ZIFoodChangeMessage();
+		msg.index = 1;
+		msg.foodLevelChange = food;
+		msg.saturationChange = saturation;
 		
 		return INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
 	}

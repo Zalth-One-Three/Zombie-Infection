@@ -4,7 +4,7 @@
   "name": "Zombie Infection",
   "description": "The infection has started",
   "mcversion": "1.8",
-  "version": "${version}",
+  "version": "2.3.0",
   "url": "https://github.com/Zalth-One-Three/Zombie-Infection",
   "updateUrl": "",
   "authorList": [

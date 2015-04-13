@@ -1,4 +1,4 @@
-package com.zalthonethree.zombieinfection.handler;
+package com.zalthonethree.zombieinfection.handler.timeinfected;
 
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 

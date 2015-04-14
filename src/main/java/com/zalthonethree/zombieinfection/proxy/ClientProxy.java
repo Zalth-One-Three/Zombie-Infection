@@ -18,6 +18,7 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
+import com.zalthonethree.zombieinfection.event.InfectedPlayerRenderEvent;
 import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent;
 import com.zalthonethree.zombieinfection.updatechecker.UpdateChecker;
 
@@ -29,7 +30,7 @@ public class ClientProxy extends CommonProxy/*, EntityDragon*/ {
 		super.init();
 		MinecraftForge.EVENT_BUS.register(new GuiEyeInfection(Minecraft.getMinecraft()));
 		if (!updateEventRegistered) {
-			MinecraftForge.EVENT_BUS.register(new UpdateChecker());
+			MinecraftForge.EVENT_BUS.register(new InfectedPlayerRenderEvent());
 			FMLCommonHandler.instance().bus().register(new UpdateChecker());
 			updateEventRegistered = true;
 		}

@@ -33,8 +33,12 @@ public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 		GL11.glPushAttrib( GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_ENABLE_BIT);
 		GlStateManager.enableBlend();
 		GlStateManager.depthMask(false);
-		minecraftInstance.renderEngine.bindTexture(timeInfected >= 60 && timeInfected < 120 ? uncracked : cracked);
+		minecraftInstance.renderEngine.bindTexture(uncracked);
 		drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
+		if (timeInfected >= 120) {
+			minecraftInstance.renderEngine.bindTexture(cracked);
+			drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
+		}
 		GlStateManager.popAttrib();
 	}
 }

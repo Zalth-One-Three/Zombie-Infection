@@ -19,6 +19,8 @@ entity.ZIZombieSheep.name=Oveja Zombi
 item.zombieinfection:cure.name=Cura de la Infección
 item.zombieinfection:infectedEgg=Huevo Infectado
 item.zombieinfection:infectedMilk=Leche Infectada
+item.zombieinfection:knowledgeBook.name=Libro de Conocimiento
+tooltip.knowledgeBook=Una guía de supervivencia zombie
 
 # Item Groups #
 

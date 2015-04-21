@@ -24,6 +24,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
@@ -69,6 +70,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 		potionInfection = (new PotionInfection(63, true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
 		potionCure = (new PotionCure(64, true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		BuiltInAPI.init();
 		EasterEggs.init();
 		EntityInit.init();

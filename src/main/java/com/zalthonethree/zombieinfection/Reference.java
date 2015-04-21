@@ -8,4 +8,8 @@ public class Reference /*extends EntityDragon*/ {
 	public static final String CLIENT_PROXY = "com.zalthonethree.zombieinfection.proxy.ClientProxy";
 	public static final String SERVER_PROXY = "com.zalthonethree.zombieinfection.proxy.ServerProxy";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ":";
+	
+	public class IdTracking {
+		public static final int BOOK = 1;
+	}
 }

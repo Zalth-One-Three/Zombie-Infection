@@ -1,6 +1,8 @@
 package com.zalthonethree.zombieinfection.proxy;
 
-public interface IProxy /*extends EntityDragon*/ {
+import cpw.mods.fml.common.network.IGuiHandler;
+
+public interface IProxy extends IGuiHandler/*, EntityDragon*/ {
 	public abstract void init();
 	public abstract void registerRenderers();
 }

@@ -4,11 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelPig;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import com.zalthonethree.zombieinfection.Reference.IdTracking;
 import com.zalthonethree.zombieinfection.client.gui.GuiEyeInfection;
+import com.zalthonethree.zombieinfection.client.gui.KnowledgeBook;
 import com.zalthonethree.zombieinfection.client.model.ModelZombieSheep;
 import com.zalthonethree.zombieinfection.client.render.RenderZombieChicken;
 import com.zalthonethree.zombieinfection.client.render.RenderZombieCow;
@@ -44,5 +48,14 @@ public class ClientProxy extends CommonProxy/*, EntityDragon*/ {
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieChicken.class, new RenderZombieChicken(Minecraft.getMinecraft().getRenderManager(), new ModelChicken(), shadowSize));
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombiePig.class, new RenderZombiePig(Minecraft.getMinecraft().getRenderManager(), new ModelPig(), shadowSize));
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieSheep.class, new RenderZombieSheep(Minecraft.getMinecraft().getRenderManager(), new ModelZombieSheep(), shadowSize));
+	}
+
+	@Override public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		return null;
+	}
+
+	@Override public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		if (ID == IdTracking.BOOK) return KnowledgeBook.instance;
+		return null;
 	}
 }

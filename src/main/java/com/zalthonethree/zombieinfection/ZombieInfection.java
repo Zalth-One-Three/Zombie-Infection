@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
@@ -69,6 +70,7 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
 		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		EasterEggs.init();
 		EntityInit.init();
 		BuiltInAPI.init();

@@ -20,6 +20,7 @@ entity.ZIZombieSheep.name=Zombie Sheep
 item.zombieinfection:cure.name=Infection Cure
 item.zombieinfection:infectedEgg.name=Infected Egg
 item.zombieinfection:infectedMilk.name=Infected Milk
+item.zombieinfection:knowledgeBook.name=Knowledge Book
 
 # Item Groups #
 
@@ -29,6 +30,7 @@ itemGroup.zombieInfection=Zombie Infection
 
 tooltip.cure=Cures the Zombie Infection.
 tooltip.infectedeyes=The infection has spread to your eyes.
+tooltip.knowledgeBook=A zombie survival guide
 
 # Potions #
 

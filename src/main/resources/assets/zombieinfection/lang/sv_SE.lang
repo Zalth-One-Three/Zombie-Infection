@@ -1,4 +1,4 @@
-# Translation by iHeartZigg #
+# Translation by iHeartZigg / 2015-05-08 #
 
 # Chat Messages #
 
@@ -20,6 +20,9 @@ entity.ZIZombieSheep.name=Zombie Får
 # Items #
 
 item.zombieinfection:cure.name=Infektion Botemedel
+item.zombieinfection:infectedEgg.name=Infekterat Ägg
+item.zombieinfection:infectedMilk.name=Infekterad Mjölk
+item.zombieinfection:knowledgeBook.name=Kunskapsbok
 
 # Item Groups #
 
@@ -29,11 +32,12 @@ itemGroup.zombieInfection=Zombie Infektion
 
 tooltip.cure=Botar Zombie Infektionen
 tooltip.infectedeyes=Infektionen har spridits till dina ögon.
+tooltip.knowledgeBook=En zombie överlevnadshandbok.
 
 # Potions #
 
 potion.zombieinfection.infection=Infektion
-potion.zombieinfection.cure=Infektion Botemedel
+potion.zombieinfection.cure=Infektions Botemedel
 
 # Easter Eggs #
 
@@ -47,4 +51,4 @@ easteregg.sponge=Ost
 easteregg.description.sponge=Skapad av "Dizkonnekted"
 
 easteregg.cooked_porkchop=Bacon
-easteregg.description.cooked_porkchop=Ser smaskig ut.
+easteregg.description.cooked_porkchop=Ser smaskig ut...

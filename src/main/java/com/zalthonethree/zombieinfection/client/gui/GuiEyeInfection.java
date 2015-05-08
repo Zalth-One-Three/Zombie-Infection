@@ -10,8 +10,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import org.lwjgl.opengl.GL11;
-
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
@@ -30,7 +28,7 @@ public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 		if (event.isCanceled() || event.type != ElementType.HOTBAR || timeInfected < 60) return;
 		ScaledResolution sr = new ScaledResolution(minecraftInstance, minecraftInstance.displayWidth, minecraftInstance.displayHeight);
 		
-		GL11.glPushAttrib( GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_ENABLE_BIT);
+		GlStateManager.pushAttrib();
 		GlStateManager.enableBlend();
 		GlStateManager.depthMask(false);
 		minecraftInstance.renderEngine.bindTexture(uncracked);

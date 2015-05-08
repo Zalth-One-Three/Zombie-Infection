@@ -10,7 +10,7 @@ import com.zalthonethree.zombieinfection.ZombieInfection;
 
 public class PotionHelper /*extends EnityDragon*/ {
 	private static PotionEffect createNewPotionEffect(int id, int level) {
-		PotionEffect effect = new PotionEffect(id, 10 * 20, level, true, true);
+		PotionEffect effect = new PotionEffect(id, (10 * 20) + 10, level, true, true);
 		effect.setCurativeItems(new ArrayList<ItemStack>());
 		return effect;
 	}

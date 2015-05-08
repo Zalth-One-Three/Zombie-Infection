@@ -67,8 +67,8 @@ import com.zalthonethree.zombieinfection.utility.LogHelper;
 		proxy.registerRenderers();
 		ModItems.init();
 		
-		potionInfection = (new PotionInfection(63, new ResourceLocation("hunger"), true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
-		potionCure = (new PotionCure(64, new ResourceLocation("absorption"), true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
+		potionInfection = (new PotionInfection(63, new ResourceLocation(Reference.MOD_ID.toLowerCase(), "infection"), true, 0)).setIconIndex(3, 1).setPotionName("potion.zombieinfection.infection");
+		potionCure = (new PotionCure(64, new ResourceLocation(Reference.MOD_ID.toLowerCase(), "cure"), true, 0)).setIconIndex(2, 2).setPotionName("potion.zombieinfection.cure");
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		EasterEggs.init();

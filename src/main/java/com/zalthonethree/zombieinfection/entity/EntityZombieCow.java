@@ -108,7 +108,7 @@ public class EntityZombieCow extends EntityMob/*, EntityDragon*/ implements IZom
 	@Override public boolean interact(EntityPlayer player) {
 		ItemStack itemstack = player.inventory.getCurrentItem();
 		
-		if (itemstack != null && itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode) {
+		if (itemstack != null && itemstack.getItem() == Items.bucket) {
 			if (itemstack.stackSize-- == 1) {
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ModItems.infectedMilk));
 			} else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket))) {

@@ -10,7 +10,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class PotionHelper /*extends EntityDragon*/ {
 	private static PotionEffect createNewPotionEffect(int id, int level) {
-		PotionEffect effect = new PotionEffect(id, 10 * 20, level, true);
+		PotionEffect effect = new PotionEffect(id, (10 * 20) + 10, level, true);
 		effect.setCurativeItems(new ArrayList<ItemStack>());
 		return effect;
 	}

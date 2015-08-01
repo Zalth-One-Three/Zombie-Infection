@@ -12,10 +12,10 @@ zombieinfection.update.download=["Нажмите, чтобы... [",{"text":"за
 
 # Entities #
 
-entity.ZIZombieChicken.name=Зомби-курица
-entity.ZIZombieCow.name=Зомби-корова
-entity.ZIZombiePig.name=Зомби-свинья
-entity.ZIZombieSheep.name=Зомби-овца
+entity.ZombieInfection.ZIZombieChicken.name=Зомби-курица
+entity.ZombieInfection.ZIZombieCow.name=Зомби-корова
+entity.ZombieInfection.ZIZombiePig.name=Зомби-свинья
+entity.ZombieInfection.ZIZombieSheep.name=Зомби-овца
 
 # Items #
 

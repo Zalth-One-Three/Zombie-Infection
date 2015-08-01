@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
@@ -14,24 +15,39 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityInit /*extends EntityDragon*/ {
+	
+	private static int nextEntityID = 1;
+	private static int eggID = 400;
+	
+	private static int getNextEntityID() {
+		nextEntityID ++;
+		return nextEntityID - 1;
+	}
+	
 	@SuppressWarnings("unused") private static void registerEntity(Class<? extends Entity> clazz) { registerEntity(clazz, 0, 0); }
 	private static void registerEntity(Class<? extends Entity> clazz, int bkEggColor, int fgEggColor) { registerEntity(clazz, clazz.getName().toLowerCase(), bkEggColor, fgEggColor); }
-	@SuppressWarnings("unchecked") private static void registerEntity(Class<? extends Entity> clazz, String name, int bkEggColor, int fgEggColor) {
-		int id = EntityRegistry.findGlobalUniqueEntityId();
+	private static void registerEntity(Class<? extends Entity> clazz, String name, int bkEggColor, int fgEggColor) {
+		EntityRegistry.registerModEntity(clazz, name, getNextEntityID(), ZombieInfection.instance, 80, 4, true);
+		registerEgg(clazz, bkEggColor, fgEggColor);
+	}
+	
+	@SuppressWarnings("unchecked") private static void registerEgg(Class<? extends Entity> clazz, int bkEggColor, int fgEggColor) {
+		int uniqueID = getUniqueEggId();
 		
-		EntityRegistry.registerGlobalEntityID(clazz, name, id);
-		EntityList.entityEggs.put(id, new EntityList.EntityEggInfo(id, bkEggColor, fgEggColor));
+		EntityList.idToClassMap.put(uniqueID, clazz);
+		EntityList.entityEggs.put(uniqueID, new EntityList.EntityEggInfo(uniqueID, bkEggColor, fgEggColor));
+	}
+	
+	private static int getUniqueEggId() {
+		do {
+			eggID ++;
+		} while (EntityList.getStringFromID(eggID) != null);
+		
+		return eggID;
 	}
 	
 	@SuppressWarnings("unused") private static void addSpawn(Class<? extends EntityLiving> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {
 		EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
-	}
-	
-	public void registerEntity() {
-		EntityRegistry.registerModEntity(EntityZombieChicken.class, "Zombie Chicken", 1, this, 80, 4, true);
-		EntityRegistry.registerModEntity(EntityZombieCow.class, "Zombie Cow", 2, this, 80, 4, true);
-		EntityRegistry.registerModEntity(EntityZombiePig.class, "Zombie Pig", 3, this, 80, 4, true);
-		EntityRegistry.registerModEntity(EntityZombieSheep.class, "Zombie Sheep", 4, this, 80, 4, true);
 	}
 	
 	

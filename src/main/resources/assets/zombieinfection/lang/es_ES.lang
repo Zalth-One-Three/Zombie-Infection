@@ -9,10 +9,10 @@ zombieinfection.chat.rotteninfection=Habeis sido infectado por comida podrida.
 
 # Entities #
 
-entity.ZIZombieChicken.name=Gallina Zombi
-entity.ZIZombieCow.name=Vaca Zombi
-entity.ZIZombiePig.name=Cerdo Zombi
-entity.ZIZombieSheep.name=Oveja Zombi
+entity.ZombieInfection.ZIZombieChicken.name=Gallina Zombi
+entity.ZombieInfection.ZIZombieCow.name=Vaca Zombi
+entity.ZombieInfection.ZIZombiePig.name=Cerdo Zombi
+entity.ZombieInfection.ZIZombieSheep.name=Oveja Zombi
 
 # Items #
 

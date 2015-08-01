@@ -10,10 +10,10 @@ zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download",
 
 # Entities #
 
-entity.ZIZombieChicken.name=Zombie Chicken
-entity.ZIZombieCow.name=Zombie Cow
-entity.ZIZombiePig.name=Zombie Pig
-entity.ZIZombieSheep.name=Zombie Sheep
+entity.ZombieInfection.ZIZombieChicken.name=Zombie Chicken
+entity.ZombieInfection.ZIZombieCow.name=Zombie Cow
+entity.ZombieInfection.ZIZombiePig.name=Zombie Pig
+entity.ZombieInfection.ZIZombieSheep.name=Zombie Sheep
 
 # Items #
 

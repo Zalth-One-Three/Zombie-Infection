@@ -1,5 +1,6 @@
 package com.zalthonethree.zombieinfection.init;
 
+import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
@@ -13,13 +14,35 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit /*extends EntityDragon*/ {
+	
+	private static int nextEntityID = 1;
+	private static int eggID = 400;
+	
+	private static int getNextEntityID() {
+		nextEntityID ++;
+		return nextEntityID - 1;
+	}
+	
 	@SuppressWarnings("unused") private static void registerEntity(Class<? extends Entity> clazz) { registerEntity(clazz, 0, 0); }
 	private static void registerEntity(Class<? extends Entity> clazz, int bkEggColor, int fgEggColor) { registerEntity(clazz, clazz.getName().toLowerCase(), bkEggColor, fgEggColor); }
-	@SuppressWarnings("unchecked") private static void registerEntity(Class<? extends Entity> clazz, String name, int bkEggColor, int fgEggColor) {
-		int id = EntityRegistry.findGlobalUniqueEntityId();
+	private static void registerEntity(Class<? extends Entity> clazz, String name, int bkEggColor, int fgEggColor) {
+		EntityRegistry.registerModEntity(clazz, name, getNextEntityID(), ZombieInfection.instance, 80, 4, true);
+		registerEgg(clazz, bkEggColor, fgEggColor);
+	}
+	
+	@SuppressWarnings("unchecked") private static void registerEgg(Class<? extends Entity> clazz, int bkEggColor, int fgEggColor) {
+		int uniqueID = getUniqueEggId();
 		
-		EntityRegistry.registerGlobalEntityID(clazz, name, id);
-		EntityList.entityEggs.put(id, new EntityList.EntityEggInfo(id, bkEggColor, fgEggColor));
+		EntityList.idToClassMapping.put(uniqueID, clazz);
+		EntityList.entityEggs.put(uniqueID, new EntityList.EntityEggInfo(uniqueID, bkEggColor, fgEggColor));
+	}
+	
+	private static int getUniqueEggId() {
+		do {
+			eggID ++;
+		} while (EntityList.getStringFromID(eggID) != null);
+		
+		return eggID;
 	}
 	
 	@SuppressWarnings("unused") private static void addSpawn(Class<? extends EntityLiving> entityClass, int spawnProb, int min, int max, BiomeGenBase[] biomes) {

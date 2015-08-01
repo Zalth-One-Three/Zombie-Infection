@@ -27,6 +27,13 @@ public class EntityInit /*extends EntityDragon*/ {
 		EntityRegistry.addSpawn(entityClass, spawnProb, min, max, EnumCreatureType.creature, biomes);
 	}
 	
+	public void registerEntity() {
+		EntityRegistry.registerModEntity(EntityZombieChicken.class, "Zombie Chicken", 1, this, 80, 4, true);
+		EntityRegistry.registerModEntity(EntityZombieCow.class, "Zombie Cow", 2, this, 80, 4, true);
+		EntityRegistry.registerModEntity(EntityZombiePig.class, "Zombie Pig", 3, this, 80, 4, true);
+		EntityRegistry.registerModEntity(EntityZombieSheep.class, "Zombie Sheep", 4, this, 80, 4, true);
+	}
+	
 	
 	public static void init() {
 		registerEntities();

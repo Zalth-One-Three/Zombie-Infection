@@ -8,6 +8,11 @@ zombieinfection.update.major=A new major update for Zombie Infection is availabl
 zombieinfection.update.minor=A new minor update for Zombie Infection is available.
 zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Download page","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
 
+# Other Messages #
+
+zombieinfection.welcomemessage.zend=Remembering the Dead...
+zombieinfection.departmessage.zend=Being Resuscitated
+
 # Entities #
 
 entity.ZombieInfection.ZIZombieChicken.name=Zombie Chicken

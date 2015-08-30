@@ -1,0 +1,7 @@
+# blockstates/zendStone.json
+ 
+{
+    "variants": {
+        "normal": { "model": "zombieinfection:zendStone" }
+    }
+}

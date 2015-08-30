@@ -13,6 +13,8 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	
 	private static final String CATEGORY_CHANCES = "Chances";
 	private static final String CATEGORY_EFFECTS = "Effects";
+	private static final String CATEGORY_BIOME_IDS = "Biome IDs";
+	private static final String CATEGORY_DIMENSION_IDS = "Dimension IDs";
 	
 	private static boolean enableEasterEggs = true;
 	private static int spreadDistance = 3;
@@ -32,6 +34,8 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	private static boolean enableWeakness = true;
 	private static boolean enableWither = true;
 	
+	private static int zendBiomeId = 253;
+	private static int zendDimensionId = 613;
 	
 	public static void init(File configFile) {
 		if (configuration == null) {
@@ -65,6 +69,10 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 		enableWeakness = configuration.getBoolean("Enable Weakness", CATEGORY_EFFECTS, true, "Infected players get Weakness after 60 seconds.");
 		enableWither = configuration.getBoolean("Enable Wither", CATEGORY_EFFECTS, true, "Infected players get Wither after 480 seconds.");
 		
+		zendBiomeId = configuration.getInt("Zend", CATEGORY_BIOME_IDS, 253, 0, 256, "Biome ID for Zend");
+		
+		zendDimensionId = configuration.getInt("Zend", CATEGORY_DIMENSION_IDS, 613, Integer.MIN_VALUE, Integer.MAX_VALUE, "Dimension ID for Zend");
+		
 		if (configuration.hasChanged()) {
 			configuration.save();
 		}
@@ -88,4 +96,8 @@ public class ConfigurationHandler /*extends EntityDragon*/ {
 	public static boolean enableSlowness() { return enableSlowness; }
 	public static boolean enableWeakness() { return enableWeakness; }
 	public static boolean enableWither() { return enableWither; }
+
+	public static int getZendBiomeId() { return zendBiomeId; }
+
+	public static int getZendDimensionId() { return zendDimensionId; }
 }

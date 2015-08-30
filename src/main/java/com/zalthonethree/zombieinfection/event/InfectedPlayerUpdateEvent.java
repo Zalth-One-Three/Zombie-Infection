@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.entity.zend.EntityZombieDragon;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
@@ -50,6 +51,11 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				
 				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
 				if (curSecond != lastSecond) {
+					if (player.isInWater()) {
+						EntityZombieDragon zombieDragon = new EntityZombieDragon(player.worldObj);
+						zombieDragon.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);
+						player.worldObj.spawnEntityInWorld(zombieDragon);
+					}
 					lastSecond = curSecond;
 					TimeInfectedTracking.update(player);
 				}

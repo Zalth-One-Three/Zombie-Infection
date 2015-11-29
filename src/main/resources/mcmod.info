@@ -3,8 +3,8 @@
   "modid": "ZombieInfection",
   "name": "Zombie Infection",
   "description": "The infection has started",
-  "mcversion": "1.8",
-  "version": "2.4.0",
+  "mcversion": "1.8.8",
+  "version": "3.0.0",
   "url": "https://github.com/Zalth-One-Three/Zombie-Infection",
   "updateUrl": "",
   "authorList": [

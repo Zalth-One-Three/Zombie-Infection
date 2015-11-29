@@ -17,7 +17,7 @@ import com.zalthonethree.zombieinfection.handler.timeinfected.ZITimeInfectedMess
 import com.zalthonethree.zombieinfection.handler.timeinfected.ZITimeInfectedMessageHandler;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
-public enum PacketHandler /*extends EntityDragon*/ {
+public enum PacketHandler {
 	INSTANCE;
 	
 	private EnumMap<Side, FMLEmbeddedChannel> channels;

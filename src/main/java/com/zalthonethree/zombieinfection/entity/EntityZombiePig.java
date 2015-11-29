@@ -25,7 +25,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityZombiePig extends EntityMob/*, EntityDragon*/ implements IZombieInfectionMob{
+public class EntityZombiePig extends EntityMob implements IZombieInfectionMob{
 	public EntityZombiePig(World world) {
 		super(world);
 		this.setSize(0.9F, 0.9F);
@@ -36,8 +36,8 @@ public class EntityZombiePig extends EntityMob/*, EntityDragon*/ implements IZom
 		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPig.class, false));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPig>(this, EntityPig.class, false));
 	}
 	
 	@Override protected void applyEntityAttributes() {

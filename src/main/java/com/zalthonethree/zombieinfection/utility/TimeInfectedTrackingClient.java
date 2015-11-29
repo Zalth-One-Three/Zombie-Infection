@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TimeInfectedTrackingClient /*extends EntityDragon*/ {
+public class TimeInfectedTrackingClient {
 	@SideOnly(Side.CLIENT) public static void setSecondsInfected(int Seconds) {
 		EntityPlayer player = (EntityPlayer) Minecraft.getMinecraft().thePlayer;
 		player.getEntityData().setInteger("TimeInfectedTracking", Seconds);

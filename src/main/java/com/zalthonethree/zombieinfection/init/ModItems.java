@@ -12,7 +12,7 @@ import com.zalthonethree.zombieinfection.item.ItemInfectedMilk;
 import com.zalthonethree.zombieinfection.item.ItemKnowledgeBook;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
-public class ModItems /*extends EntityDragon*/ {
+public class ModItems {
 	public static final ItemBase cure = new ItemCure();
 	public static final ItemBase infectedEgg = new ItemInfectedEgg();
 	public static final ItemBase infectedMilk = new ItemInfectedMilk();

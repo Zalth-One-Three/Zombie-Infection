@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.api;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ZombieInfectionAPI /*extends EntityDragon*/ {
+public class ZombieInfectionAPI {
 	private static ArrayList<CustomInfectionEffect> customInfectionEffects = new ArrayList<CustomInfectionEffect>();
 	private static ArrayList<CustomCureEffect> customCureEffects = new ArrayList<CustomCureEffect>();
 	private static ArrayList<Integer> customInfectiousMobs = new ArrayList<Integer>();

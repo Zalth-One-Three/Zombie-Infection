@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.zalthonethree.zombieinfection.Reference;
 
-public class ConfigurationHandler /*extends EntityDragon*/ {
+public class ConfigurationHandler {
 	public static Configuration configuration;
 	
 	private static final String CATEGORY_CHANCES = "Chances";

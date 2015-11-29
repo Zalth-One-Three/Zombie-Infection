@@ -12,7 +12,7 @@ import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
-public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
+public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
 		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection)
 		&& !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)) {

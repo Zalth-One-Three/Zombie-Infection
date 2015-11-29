@@ -11,7 +11,7 @@ import com.zalthonethree.zombieinfection.entity.zend.EntityEnderZombie;
 import com.zalthonethree.zombieinfection.init.ModBlocks;
 
 public class BiomeGenZend extends BiomeGenBase {
-	@SuppressWarnings("unchecked") public BiomeGenZend(int id) {
+	public BiomeGenZend(int id) {
 		super(id);
 		
 		this.enableRain = false;

@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
-import com.zalthonethree.zombieinfection.entity.zend.EntityZombieDragon;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
@@ -22,7 +21,7 @@ import com.zalthonethree.zombieinfection.utility.FoodTracking;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
-public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
+public class InfectedPlayerUpdateEvent {
 	private static int lastSecond = 0;
 	
 	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
@@ -43,7 +42,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				
 				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
-					EntityPlayerMP playerMP = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerByUsername(player.getCommandSenderName());
+					EntityPlayerMP playerMP = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerByUsername(player.getName());
 					PacketHandler.INSTANCE.sendTo(PacketHandler.getFoodChangePacket(player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()), playerMP);
 				}
 				
@@ -51,11 +50,6 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 				
 				int curSecond = Calendar.getInstance().get(Calendar.SECOND);
 				if (curSecond != lastSecond) {
-					if (player.isInWater()) {
-						EntityZombieDragon zombieDragon = new EntityZombieDragon(player.worldObj);
-						zombieDragon.setLocationAndAngles(player.posX, player.posY + 10, player.posZ, 0, 0);
-						player.worldObj.spawnEntityInWorld(zombieDragon);
-					}
 					lastSecond = curSecond;
 					TimeInfectedTracking.update(player);
 				}

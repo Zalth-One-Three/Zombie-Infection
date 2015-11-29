@@ -7,7 +7,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraftforge.fml.common.network.FMLIndexedMessageToMessageCodec;
 
-public class ZombieInfectionCodec extends FMLIndexedMessageToMessageCodec<ZIMessage>/*, EntityDragon*/ {
+public class ZombieInfectionCodec extends FMLIndexedMessageToMessageCodec<ZIMessage> {
 	
 	public ZombieInfectionCodec() {
 		addDiscriminator(0, ZITimeInfectedMessage.class);

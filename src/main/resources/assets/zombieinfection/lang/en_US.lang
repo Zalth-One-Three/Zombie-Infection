@@ -19,6 +19,8 @@ entity.ZombieInfection.ZIZombieChicken.name=Zombie Chicken
 entity.ZombieInfection.ZIZombieCow.name=Zombie Cow
 entity.ZombieInfection.ZIZombiePig.name=Zombie Pig
 entity.ZombieInfection.ZIZombieSheep.name=Zombie Sheep
+entity.ZombieInfection.ZIEnderZombie.name=Ender Zombie
+entity.ZombieInfection.ZIZombieDragon.name=Zender Dragon
 
 # Items #
 
@@ -26,6 +28,10 @@ item.zombieinfection:cure.name=Infection Cure
 item.zombieinfection:infectedEgg.name=Infected Egg
 item.zombieinfection:infectedMilk.name=Infected Milk
 item.zombieinfection:knowledgeBook.name=Knowledge Book
+
+# Blocks #
+
+tile.zombieinfection:zendStone.name=Zend Stone
 
 # Item Groups #
 

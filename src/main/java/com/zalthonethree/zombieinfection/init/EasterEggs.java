@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.init;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 
-public class EasterEggs /*extends EntityDragon*/ {
+public class EasterEggs {
 	public static void init() {
 		if (ConfigurationHandler.getEasterEggsEnabled()) {
 			ZombieInfectionAPI.registerEncryptionSwitch("item.mushroomStew", "easteregg.stew", "easteregg.description.stew");

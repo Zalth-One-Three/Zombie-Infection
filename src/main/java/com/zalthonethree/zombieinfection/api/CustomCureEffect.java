@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.api;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class CustomCureEffect /*extends EntityDragon*/ {
+public class CustomCureEffect {
 	/**
 	 * Used to run custom code upon player eating the cure.
 	 * @param player - The player who ate the cure.

@@ -369,7 +369,7 @@ public class ChunkProviderZend implements IChunkProvider {
 		return "RandomLevelSource";
 	}
 	
-	@SuppressWarnings("rawtypes") @Override public List getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+	@SuppressWarnings({"rawtypes", "unchecked"}) @Override public List getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
 		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(pos);
 		return biomegenbase == null ? null : biomegenbase.getSpawnableList(creatureType);
 	}

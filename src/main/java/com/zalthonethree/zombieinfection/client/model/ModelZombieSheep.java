@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT) public class ModelZombieSheep extends ModelQuadruped/*, EntityDragon*/ {
+@SideOnly(Side.CLIENT) public class ModelZombieSheep extends ModelQuadruped {
 	private float headRotation;
 	
 	public ModelZombieSheep() {
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 		this.body.setRotationPoint(0.0F, 5.0F, 2.0F);
 	}
 	
-	public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity entity) {
+	@Override public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity entity) {
 		super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, entity);
 		this.head.rotateAngleX = this.headRotation;
 	}

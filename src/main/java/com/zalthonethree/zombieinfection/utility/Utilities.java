@@ -4,7 +4,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class Utilities /*extends EntityDragon*/ {
+public class Utilities {
 	public static String Translate(String string) {
 		return StatCollector.translateToLocal(string);
 	}

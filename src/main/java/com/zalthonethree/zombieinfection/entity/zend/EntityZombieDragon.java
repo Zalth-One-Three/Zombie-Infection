@@ -25,9 +25,9 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Lists;
+import com.zalthonethree.zombieinfection.utility.LogHelper;
 
 public class EntityZombieDragon extends EntityLiving implements IBossDisplayData, IEntityMultiPart, IMob { // Welp, it was bound to happen eventually.
-	protected boolean isEgg;
 	public double targetX;
 	public double targetY;
 	public double targetZ;
@@ -57,8 +57,9 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 	 */
 	
 	private void turnToDragon() {
-		if (!this.isEgg) return;
-		this.isEgg = false;
+		LogHelper.warn("TURN TO DRAGON CALLED");
+		if (!isEgg()) return;
+		setEgg(false);
 		this.dragonPartHead = new EntityDragonPart(this, "head", 6F, 6F);
 		this.dragonPartBody = new EntityDragonPart(this, "body", 8F, 8F);
 		this.dragonPartTail1 = new EntityDragonPart(this, "tail", 4F, 4F);
@@ -82,7 +83,15 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 		super(worldIn);
 		this.setSize(2F, 2F);
 		this.setHealth(10F);
-		this.isEgg = true;
+		this.dataWatcher.addObject(22, 1);
+	}
+	
+	public void setEgg(boolean isEgg) {
+		this.dataWatcher.updateObject(22, isEgg ? 1 : 0);
+	}
+	
+	public boolean isEgg() {
+		return this.dataWatcher.getWatchableObjectInt(22) == 1 ? true : false;
 	}
 	
 	public void setEndStoneLocations(BlockPos[] locs) {
@@ -95,8 +104,7 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0);
 	}
 	
-	@Override public void onLivingUpdate() {
-		if (this.isEgg) return;
+	private void thingsThatProbablyDontWork() {
 		float f;
 		float f1;
 		
@@ -311,6 +319,15 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 		}
 	}
 	
+	@Override public void onLivingUpdate() {
+		if (isEgg()) return;
+		try {
+			thingsThatProbablyDontWork();
+		} catch (NullPointerException e) {
+			return;
+		}
+	}
+	
 	private void updateHealingBlock() {
 		if (this.healingEndStone != null) {
 			if (this.worldObj.getBlockState(healingEndStone).getBlock() != Blocks.end_stone) {
@@ -338,7 +355,7 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 		}
 	}
 	
-	@SuppressWarnings({"rawtypes", "unchecked"}) private void setNewTarget() {
+	@SuppressWarnings({"rawtypes"}) private void setNewTarget() {
 		this.forceNewTarget = false;
 		ArrayList arraylist = Lists.newArrayList(this.worldObj.playerEntities);
 		Iterator iterator = arraylist.iterator();
@@ -437,7 +454,7 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 					Block block = this.worldObj.getBlockState(new BlockPos(k1, l1, i2)).getBlock();
 					
 					if (!block.isAir(worldObj, new BlockPos(k1, l1, i2))) {
-						if (block.canEntityDestroy(worldObj, new BlockPos(k1, l1, i2), this) && this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing")) {
+						if (block.canEntityDestroy(worldObj, new BlockPos(k1, l1, i2), this) && this.worldObj.getGameRules().getBoolean("mobGriefing")) {
 							flag1 = this.worldObj.setBlockToAir(new BlockPos(k1, l1, i2)) || flag1;
 						} else {
 							flag = true;
@@ -488,7 +505,7 @@ public class EntityZombieDragon extends EntityLiving implements IBossDisplayData
 	}
 	
 	@Override public boolean attackEntityFrom(DamageSource source, float damage) {
-		if (this.isEgg) {
+		if (isEgg()) {
 			Entity entity = source.getEntity();
 			if (entity != null) {
 				if (entity instanceof EntityEnderZombie) {

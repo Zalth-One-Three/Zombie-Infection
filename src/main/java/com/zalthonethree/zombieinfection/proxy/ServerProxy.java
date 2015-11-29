@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.proxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class ServerProxy extends CommonProxy/*, EntityDragon*/ {
+public class ServerProxy extends CommonProxy {
 	@Override public void init() {
 		super.init();
 	}

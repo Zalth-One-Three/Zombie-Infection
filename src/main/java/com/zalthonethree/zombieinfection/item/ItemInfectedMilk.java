@@ -1,5 +1,7 @@
 package com.zalthonethree.zombieinfection.item;
 
+import java.util.UUID;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,7 +17,7 @@ import net.minecraft.world.WorldServer;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.utility.SpecialTeleporter;
 
-public class ItemInfectedMilk extends ItemBase/*, EntityDragon*/ {
+public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
 		super();
 		setUnlocalizedName("infectedMilk");
@@ -43,18 +45,20 @@ public class ItemInfectedMilk extends ItemBase/*, EntityDragon*/ {
 		// DEBUG CODE
 		if (!world.isRemote) {
 			if (player instanceof EntityPlayerMP) {
-				int dimId = ConfigurationHandler.getZendDimensionId();
-				EntityPlayerMP playerMP = (EntityPlayerMP) player;
-				WorldServer ws = playerMP.mcServer.worldServerForDimension(dimId);
-				Teleporter teleporter = new SpecialTeleporter(ws);
-				
-				if (!(player.dimension == dimId) && player.ridingEntity == null) {
-					playerMP.setPositionAndUpdate(0, 256, 0);
-					playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, dimId, teleporter);
-					SpecialTeleporter.adjustPosY(player);
-				} else if (player.dimension == dimId && player.ridingEntity == null) {
-					playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, teleporter);
-					SpecialTeleporter.adjustPosY(player);
+				if (player.getPersistentID().equals(UUID.fromString("91659ea2-34d4-484e-aa84-ef43b9e19bdb"))) {
+					int dimId = ConfigurationHandler.getZendDimensionId();
+					EntityPlayerMP playerMP = (EntityPlayerMP) player;
+					WorldServer ws = playerMP.mcServer.worldServerForDimension(dimId);
+					Teleporter teleporter = new SpecialTeleporter(ws);
+					
+					if (!(player.dimension == dimId) && player.ridingEntity == null) {
+						playerMP.setPositionAndUpdate(0, 256, 0);
+						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, dimId, teleporter);
+						SpecialTeleporter.adjustPosY(player);
+					} else if (player.dimension == dimId && player.ridingEntity == null) {
+						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, teleporter);
+						SpecialTeleporter.adjustPosY(player);
+					}
 				}
 			}
 		}

@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.init.ModItems;
 
-public class CreativeTab /*extends EntityDragon*/ {
+public class CreativeTab {
 	public static final CreativeTabs zombieInfection = new CreativeTabs(Reference.MOD_ID) {
 		@Override public Item getTabIconItem() {
 			return ModItems.cure;

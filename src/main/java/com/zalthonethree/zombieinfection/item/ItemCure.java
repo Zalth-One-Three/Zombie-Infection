@@ -17,7 +17,7 @@ import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
-public class ItemCure extends ItemBase/*, EntityDragon*/ {
+public class ItemCure extends ItemBase {
 	public ItemCure() {
 		super();
 		setUnlocalizedName("cure");

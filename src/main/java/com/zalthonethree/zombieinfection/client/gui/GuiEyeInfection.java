@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
-public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
+public class GuiEyeInfection extends Gui {
 	private Minecraft minecraftInstance;
 	private ResourceLocation uncracked = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/gui/eyeinfection.png");
 	private ResourceLocation cracked = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/gui/eyeinfectioncracked.png");
@@ -26,7 +26,7 @@ public class GuiEyeInfection extends Gui/*, EntityDragon*/ {
 	@SubscribeEvent(priority = EventPriority.NORMAL) public void onRender(RenderGameOverlayEvent.Pre event) {
 		int timeInfected = TimeInfectedTrackingClient.getSecondsInfected();
 		if (event.isCanceled() || event.type != ElementType.HOTBAR || timeInfected < 60) return;
-		ScaledResolution sr = new ScaledResolution(minecraftInstance, minecraftInstance.displayWidth, minecraftInstance.displayHeight);
+		ScaledResolution sr = new ScaledResolution(minecraftInstance);
 		
 		GlStateManager.pushAttrib();
 		GlStateManager.enableBlend();

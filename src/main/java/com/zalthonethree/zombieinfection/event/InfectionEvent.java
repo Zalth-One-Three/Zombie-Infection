@@ -32,7 +32,7 @@ import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
-public class InfectionEvent /*extends EntityDragon*/ {
+public class InfectionEvent {
 	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;

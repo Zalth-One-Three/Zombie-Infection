@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -29,10 +28,10 @@ import net.minecraft.world.World;
 
 import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
 
-public class EntityEnderZombie extends EntityMob/*, EntityDragon*/ implements IZombieInfectionMob {
+public class EntityEnderZombie extends EntityMob implements IZombieInfectionMob {
 	private boolean isAggressive;
 	
-	@SuppressWarnings("rawtypes") public EntityEnderZombie(World worldIn) {
+	public EntityEnderZombie(World worldIn) {
 		super(worldIn);
 		this.setSize(0.6F, 2.9F);
 		this.stepHeight = 1.0F;
@@ -44,16 +43,13 @@ public class EntityEnderZombie extends EntityMob/*, EntityDragon*/ implements IZ
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
 		this.targetTasks.addTask(2, new EntityEnderZombie.AIFindPlayer());
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityZombieDragon.class, 100, false, false, new com.google.common.base.Predicate() {
-			public boolean isApplicable(EntityLivingBase entity) {
-				if (entity instanceof EntityZombieDragon) {
-					return ((EntityZombieDragon) entity).isEgg;
-				}
-				return false;
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityZombieDragon>(this, EntityZombieDragon.class, 100, false, false, new com.google.common.base.Predicate<EntityZombieDragon>() {
+			public boolean isApplicable(EntityZombieDragon entity) {
+				return entity.isEgg();
 			}
 			
-			@Override public boolean apply(Object o) {
-				return this.isApplicable((EntityLivingBase) o);
+			@Override public boolean apply(EntityZombieDragon entity) {
+				return this.isApplicable(entity);
 			}
 		}));
 	}
@@ -232,7 +228,7 @@ public class EntityEnderZombie extends EntityMob/*, EntityDragon*/ implements IZ
 		}
 	}
 	
-	private class AIFindPlayer extends EntityAINearestAttackableTarget {
+	private class AIFindPlayer extends EntityAINearestAttackableTarget<EntityPlayer> {
 		private EntityPlayer player;
 		private int cooldown;
 		private int field_179451_i;

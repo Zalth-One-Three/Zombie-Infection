@@ -1,7 +1,6 @@
 package com.zalthonethree.zombieinfection.client.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.item.ItemStack;
 
@@ -20,7 +19,7 @@ public class BookButton extends GuiButton {
 	
 	@Override public void drawButton(Minecraft mc, int mouseX, int mouseY) {
 		if (this.visible) {
-			FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
+			// FontRenderer fontrenderer = Minecraft.getMinecraft().fontRendererObj;
 			this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 			
 			Minecraft.getMinecraft().getRenderItem().renderItemIntoGUI(this.buttonImage, this.xPosition, this.yPosition);

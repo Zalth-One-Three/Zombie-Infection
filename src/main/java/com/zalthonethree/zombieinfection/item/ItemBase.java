@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.client.CreativeTab;
 
-public class ItemBase extends Item/*, EntityDragon*/ {
+public class ItemBase extends Item {
 	public ItemBase() {
 		super();
 		setMaxStackSize(64);

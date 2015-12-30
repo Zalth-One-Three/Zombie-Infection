@@ -4,10 +4,6 @@ zombieinfection.chat.infected=You have been infected, find the cure.
 zombieinfection.chat.playerinfected=You have been infected by another player, find the cure.
 zombieinfection.chat.rotteninfection=You have been infected by rotten food.
 
-zombieinfection.update.major=A new major update for Zombie Infection is available.
-zombieinfection.update.minor=A new minor update for Zombie Infection is available.
-zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Download page","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
-
 # Other Messages #
 
 zombieinfection.welcomemessage.zend=Remembering the Dead...
@@ -19,8 +15,6 @@ entity.ZombieInfection.ZIZombieChicken.name=Zombie Chicken
 entity.ZombieInfection.ZIZombieCow.name=Zombie Cow
 entity.ZombieInfection.ZIZombiePig.name=Zombie Pig
 entity.ZombieInfection.ZIZombieSheep.name=Zombie Sheep
-entity.ZombieInfection.ZIEnderZombie.name=Ender Zombie
-entity.ZombieInfection.ZIZombieDragon.name=Zender Dragon
 
 # Items #
 
@@ -28,10 +22,6 @@ item.zombieinfection:cure.name=Infection Cure
 item.zombieinfection:infectedEgg.name=Infected Egg
 item.zombieinfection:infectedMilk.name=Infected Milk
 item.zombieinfection:knowledgeBook.name=Knowledge Book
-
-# Blocks #
-
-tile.zombieinfection:zendStone.name=Zend Stone
 
 # Item Groups #
 

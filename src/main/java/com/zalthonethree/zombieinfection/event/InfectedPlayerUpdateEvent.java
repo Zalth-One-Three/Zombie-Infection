@@ -11,11 +11,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
+import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.FoodTracking;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
@@ -27,7 +27,7 @@ public class InfectedPlayerUpdateEvent {
 	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
 		if (Utilities.isServerSide()) {
 			EntityPlayer player = event.player;
-			if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
+			if (player.isPotionActive(ModPotion.potionInfection) && !player.isPotionActive(ModPotion.potionCure)) {
 				int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
 				for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 					customEffect.run(player, timeInfected);
@@ -72,7 +72,7 @@ public class InfectedPlayerUpdateEvent {
 							EntityPlayer anotherPlayer = (EntityPlayer) thing;
 							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
-									if (!anotherPlayer.isPotionActive(ZombieInfection.potionInfection)) {
+									if (!anotherPlayer.isPotionActive(ModPotion.potionInfection)) {
 										anotherPlayer.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.playerinfected"));
 										anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
 									}

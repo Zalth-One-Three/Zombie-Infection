@@ -8,14 +8,14 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
 public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
-		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection)
-		&& !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)) {
+		if (event.entityPlayer.isPotionActive(ModPotion.potionInfection)
+		&& !event.entityPlayer.isPotionActive(ModPotion.potionCure)) {
 			if (TimeInfectedTrackingClient.getSecondsInfected() > 60) {
 				boolean doShuffle = true;
 				if (ZombieInfectionAPI.getEncryptionExclusions().contains(event.itemStack.getUnlocalizedName())) doShuffle = false;

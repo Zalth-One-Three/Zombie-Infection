@@ -21,7 +21,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
@@ -29,6 +28,7 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
@@ -59,7 +59,7 @@ public class InfectionEvent {
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
-						if (!attacked.isPotionActive(ZombieInfection.potionInfection)) {
+						if (!attacked.isPotionActive(ModPotion.potionInfection)) {
 							attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.infected"));
 							attacked.addPotionEffect(PotionHelper.createInfection(0));
 						}
@@ -70,15 +70,15 @@ public class InfectionEvent {
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)
-					&& !attacked.isPotionActive(ZombieInfection.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModPotion.potionInfection)
+					&& !attacked.isPotionActive(ModPotion.potionInfection)) {
 						attacked.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.playerinfected"));
 						attacked.addPotionEffect(PotionHelper.createInfection(0));
 					}
 				} else if (target instanceof EntityVillager) {
 					EntityVillager attacked = (EntityVillager) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
 						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
 							if (!attacked.isPotionActive(Potion.wither)) {
 								attacked.addPotionEffect(PotionHelper.createWither(0));
@@ -91,7 +91,7 @@ public class InfectionEvent {
 				|| target instanceof EntitySheep) {
 					EntityCreature attacked = (EntityCreature) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
 						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
 							if (!attacked.isPotionActive(Potion.wither)) {
 								attacked.addPotionEffect(PotionHelper.createWither(0));
@@ -112,7 +112,7 @@ public class InfectionEvent {
 				if (target instanceof EntityVillager) {
 					EntityVillager attacked = (EntityVillager) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
 						if (attacked.isPotionActive(Potion.wither)) {
 							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
 								EntityZombie entityzombie = new EntityZombie(attacked.worldObj);
@@ -136,10 +136,10 @@ public class InfectionEvent {
 				|| target instanceof EntitySheep) {
 					EntityCreature attacked = (EntityCreature) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ZombieInfection.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
 						if (attacked.isPotionActive(Potion.wither) && !attacked.isChild()) {
 							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
-								EntityCreature entityzombified = zombifyEntity(target);// new EntityZombieSheep(attacked.worldObj);
+								EntityCreature entityzombified = zombifyEntity(target);
 								entityzombified.copyLocationAndAnglesFrom(attacked);
 								attacked.worldObj.removeEntity(attacked);
 								entityzombified.onInitialSpawn(attacked.worldObj.getDifficultyForLocation(attacked.getPosition()), (IEntityLivingData) null);
@@ -171,7 +171,7 @@ public class InfectionEvent {
 				if (stack.getUnlocalizedName().equalsIgnoreCase(itemName)) {
 					infectionChance = ZombieInfectionAPI.getCustomFoodInfections().get(itemName);
 					if (player.getRNG().nextInt(100) + 1 <= infectionChance) {
-						if (!player.isPotionActive(ZombieInfection.potionInfection)) {
+						if (!player.isPotionActive(ModPotion.potionInfection)) {
 							player.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.rotteninfection"));
 							player.addPotionEffect(PotionHelper.createInfection(0));
 						}

@@ -1,21 +1,13 @@
 package com.zalthonethree.zombieinfection.item;
 
-import java.util.UUID;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-
-import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
-import com.zalthonethree.zombieinfection.utility.SpecialTeleporter;
 
 public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
@@ -41,28 +33,6 @@ public class ItemInfectedMilk extends ItemBase {
 	
 	@Override public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		//TODO, I dunno, what should happen if someone drinks infected milk.
-		
-		// DEBUG CODE
-		if (!world.isRemote) {
-			if (player instanceof EntityPlayerMP) {
-				if (player.getPersistentID().equals(UUID.fromString("91659ea2-34d4-484e-aa84-ef43b9e19bdb"))) {
-					int dimId = ConfigurationHandler.getZendDimensionId();
-					EntityPlayerMP playerMP = (EntityPlayerMP) player;
-					WorldServer ws = playerMP.mcServer.worldServerForDimension(dimId);
-					Teleporter teleporter = new SpecialTeleporter(ws);
-					
-					if (!(player.dimension == dimId) && player.ridingEntity == null) {
-						playerMP.setPositionAndUpdate(0, 256, 0);
-						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, dimId, teleporter);
-						SpecialTeleporter.adjustPosY(player);
-					} else if (player.dimension == dimId && player.ridingEntity == null) {
-						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, teleporter);
-						SpecialTeleporter.adjustPosY(player);
-					}
-				}
-			}
-		}
-		// END DEBUG CODE
 		
 		if (!player.capabilities.isCreativeMode) {
 			stack.stackSize --;

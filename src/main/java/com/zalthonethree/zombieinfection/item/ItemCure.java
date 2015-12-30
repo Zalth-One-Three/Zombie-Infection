@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.api.CustomCureEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
@@ -26,11 +26,11 @@ public class ItemCure extends ItemBase {
 	
 	@Override public boolean hasEffect(ItemStack stack) { return true; }
 	
-	@SuppressWarnings({"rawtypes", "unchecked"}) @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
+	@Override @SuppressWarnings({"rawtypes", "unchecked"}) @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
 		list.add(EnumChatFormatting.GOLD + Utilities.Translate("tooltip.cure"));
 	}
 	
-	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
+	@Override public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		player.addPotionEffect(PotionHelper.createCure(0));
 		for (CustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
 			customEffect.run(player, stack);
@@ -63,16 +63,16 @@ public class ItemCure extends ItemBase {
 		return stack;
 	}
 	
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) player.setItemInUse(stack, getMaxItemUseDuration(stack));
+	@Override public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (player.isPotionActive(ModPotion.potionInfection) && !player.isPotionActive(ModPotion.potionCure)) player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
 	
-	public int getMaxItemUseDuration(ItemStack stack) {
+	@Override public int getMaxItemUseDuration(ItemStack stack) {
 		return 32;
 	}
 	
-	public EnumAction getItemUseAction(ItemStack stack) {
+	@Override public EnumAction getItemUseAction(ItemStack stack) {
 		return EnumAction.DRINK;
 	}
 }

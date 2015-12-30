@@ -6,6 +6,7 @@ import java.util.EnumMap;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraftforge.fml.common.network.FMLEmbeddedChannel;
 import net.minecraftforge.fml.common.network.FMLOutboundHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -42,41 +43,41 @@ public enum PacketHandler {
 		// Add any messages that the server gets from the client. Shouldn't really be needed. Uncomment lines above if this is needed.
 	}
 	
-	public static Packet getTimeInfectedUpdatePacket(int Seconds) {
+	@SuppressWarnings("unchecked") public static Packet<INetHandlerPlayClient> getTimeInfectedUpdatePacket(int Seconds) {
 		ZITimeInfectedMessage msg = new ZITimeInfectedMessage();
 		msg.index = 0;
 		msg.secondsInfected = Seconds;
 		
-		return INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
+		return (Packet<INetHandlerPlayClient>) INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
 	}
 	
-	public static Packet getFoodChangePacket(int food, float saturation) {
+	@SuppressWarnings("unchecked") public static Packet<INetHandlerPlayClient> getFoodChangePacket(int food, float saturation) {
 		ZIFoodChangeMessage msg = new ZIFoodChangeMessage();
 		msg.index = 1;
 		msg.foodLevelChange = food;
 		msg.saturationChange = saturation;
 		
-		return INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
+		return (Packet<INetHandlerPlayClient>) INSTANCE.channels.get(Side.SERVER).generatePacketFrom(msg);
 	}
 	
-	public void sendTo(Packet message, EntityPlayerMP player) {
+	public void sendTo(Packet<?> message, EntityPlayerMP player) {
 		this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
 		this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
 		this.channels.get(Side.SERVER).writeAndFlush(message);
 	}
 	
-	public void sendToAll(Packet message) {
+	public void sendToAll(Packet<?> message) {
 		this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.ALL);
 		this.channels.get(Side.SERVER).writeAndFlush(message);
 	}
 	
-	public void sendToAllAround(Packet message, NetworkRegistry.TargetPoint point) {
+	public void sendToAllAround(Packet<?> message, NetworkRegistry.TargetPoint point) {
 		this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.ALLAROUNDPOINT);
 		this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(point);
 		this.channels.get(Side.SERVER).writeAndFlush(message);
 	}
 	
-	public void sendToServer(Packet message) {
+	public void sendToServer(Packet<?> message) {
 		this.channels.get(Side.CLIENT).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.TOSERVER);
 		this.channels.get(Side.CLIENT).writeAndFlush(message).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
 	}

@@ -19,7 +19,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public enum PacketHandler /*extends EntityDragon*/ {
+public enum PacketHandler {
 	INSTANCE;
 	
 	private EnumMap<Side, FMLEmbeddedChannel> channels;

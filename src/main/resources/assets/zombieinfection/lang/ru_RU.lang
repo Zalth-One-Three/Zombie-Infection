@@ -6,10 +6,6 @@ zombieinfection.chat.infected=Тебя инфицировали, использ�
 zombieinfection.chat.playerinfected=Тебя инфицировал другой игрок, используй лекарство!
 zombieinfection.chat.rotteninfection=Ты съел заражённую пищу...
 
-zombieinfection.update.major=Вышло крупное обновление для мода Zombie Infection
-zombieinfection.update.minor=Вышло маленькое обновление для мода Zombie Infection
-zombieinfection.update.download=["Нажмите, чтобы... [",{"text":"загрузить с CurseForge","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Страница загрузки","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
-
 # Entities #
 
 entity.ZombieInfection.ZIZombieChicken.name=Зомби-курица

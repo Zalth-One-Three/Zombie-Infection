@@ -6,10 +6,6 @@ zombieinfection.chat.infected=Du har blivit infekterad, hitta botemedlet.
 zombieinfection.chat.playerinfected=Du har blivit infekterad av en annan spelare, hitta botemedlet.
 zombieinfection.chat.rotteninfection=Du har blivit infekterad av rutten mat.
 
-zombieinfection.update.major=En stor uppdatering är tillgänglig.
-zombieinfection.update.minor=En liten uppdatering är tillgänglig.
-zombieinfection.update.download=["Click for... [",{"text":"CurseForge Download","color":"gold","hoverEvent":{"action":"show_text","value":{"text":"Download page","color":"aqua"}},"clickEvent":{"action":"open_url","value":"http://minecraft.curseforge.com/mc-mods/227518-zombie-infection/files"}},"]"]
-
 # Entities #
 
 entity.ZombieInfection.ZIZombieChicken.name=Zombie Höna

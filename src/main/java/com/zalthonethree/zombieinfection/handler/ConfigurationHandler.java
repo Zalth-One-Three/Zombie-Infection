@@ -9,7 +9,7 @@ import com.zalthonethree.zombieinfection.Reference;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ConfigurationHandler /*extends EntityDragon*/ {
+public class ConfigurationHandler {
 	public static Configuration configuration;
 	
 	private static final String CATEGORY_CHANCES = "Chances";

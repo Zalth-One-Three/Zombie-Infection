@@ -1,10 +1,10 @@
 package com.zalthonethree.zombieinfection.utility;
 
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.util.StatCollector;
 
-public class Utilities /*extends EntityDragon*/ {
+public class Utilities {
 	public static String Translate(String string) {
 		return StatCollector.translateToLocal(string);
 	}

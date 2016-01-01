@@ -14,7 +14,7 @@ import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.PotionCure;
 import com.zalthonethree.zombieinfection.potion.PotionInfection;
-import com.zalthonethree.zombieinfection.proxy.IProxy;
+import com.zalthonethree.zombieinfection.proxy.ServerProxy;
 import com.zalthonethree.zombieinfection.utility.LogHelper;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -26,12 +26,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection /*extends EntityDragon*/ {
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
 	public static Potion potionInfection;
 	public static Potion potionCure;
 	
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static IProxy proxy;
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static ServerProxy proxy;
 	
 	@Mod.EventHandler public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());

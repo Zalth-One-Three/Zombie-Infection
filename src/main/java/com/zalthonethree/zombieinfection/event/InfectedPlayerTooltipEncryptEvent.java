@@ -13,7 +13,7 @@ import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class InfectedPlayerTooltipEncryptEvent /*extends EntityDragon*/ {
+public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
 		if (event.entityPlayer.isPotionActive(ZombieInfection.potionInfection)
 		&& !event.entityPlayer.isPotionActive(ZombieInfection.potionCure)) {

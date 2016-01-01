@@ -21,19 +21,19 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
-import com.zalthonethree.zombieinfection.entity.IZombieInfectionMob;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class InfectionEvent /*extends EntityDragon*/ {
+public class InfectionEvent {
 	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
 		if (event.source instanceof EntityDamageSource) {
 			EntityDamageSource source = (EntityDamageSource) event.source;

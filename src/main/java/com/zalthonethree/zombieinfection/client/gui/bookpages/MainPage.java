@@ -4,13 +4,24 @@ import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import com.zalthonethree.zombieinfection.client.gui.BookButton;
 import com.zalthonethree.zombieinfection.client.gui.KnowledgeBook;
 
 public class MainPage extends GuiScreen {
 	public static final MainPage instance = new MainPage();
+	
+	public MainPage() {
+		super();
+	}
+	
+	@SuppressWarnings("unchecked") @Override public void initGui() {
+		this.buttonList.add(new BookButton(100, new ItemStack(Items.rotten_flesh), 100, 200, 100, 50, "The Infection"));
+	}
 	
 	@Override public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		GL11.glScalef(0.5F, 0.5F, 0.5F);

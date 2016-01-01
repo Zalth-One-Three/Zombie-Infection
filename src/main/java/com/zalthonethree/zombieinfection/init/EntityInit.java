@@ -14,7 +14,7 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-public class EntityInit /*extends EntityDragon*/ {
+public class EntityInit {
 	
 	private static int nextEntityID = 1;
 	private static int eggID = 400;

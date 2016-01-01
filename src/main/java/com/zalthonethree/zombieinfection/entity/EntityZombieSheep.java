@@ -22,7 +22,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityZombieSheep extends EntityMob/*, EntityDragon*/ implements IZombieInfectionMob {
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
+
+public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob {
 	public EntityZombieSheep(World world) {
 		super(world);
 		this.setSize(0.9F, 1.3F);

@@ -18,24 +18,16 @@ buildscript {
 apply plugin: 'forge'
 
 ext.configFile = file('build.properties')
-
 ext.config = parseConfig(configFile)
 
-project.ext.set("buildnum", "local")
-version = "${config.mc_version}-${config.mod_version_major}.${config.mod_version_minor}"
-project.buildnum = "${config.mod_version_build}"
-version += "." + project.buildnum
+version = "${config.mc_version}-${config.mod_version_major}.${config.mod_version_minor}.${config.mod_version_build}"
 
 group= "${config.group}"
 archivesBaseName = "${config.archive_base}"
 
 minecraft {
     version = "${config.forge_version}"
-    if (config.mappings == "today") {
-	    mappings = "snapshot_" + getDate()
-	} else {
-		mappings = "${config.mappings}"
-	}
+    mappings = "${config.mappings}"
 }
 
 repositories {
@@ -49,13 +41,13 @@ dependencies {}
 
 processResources
 {
-    inputs.property "version", project.buildnum
+    inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
-        expand 'version':project.buildnum, 'mcversion':project.minecraft.version
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
         
     from(sourceSets.main.resources.srcDirs) {
@@ -69,10 +61,4 @@ def parseConfig(File config) {
         prop.load(it)
         return (new ConfigSlurper().parse(prop))
     }
-}
-
-def getDate() {
-	def date = new Date()
-	def formattedDate = date.format('yyyyMMdd')
-	return formattedDate
 }

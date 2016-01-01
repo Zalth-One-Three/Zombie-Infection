@@ -2,13 +2,13 @@ package com.zalthonethree.zombieinfection.potion;
 
 import java.util.ArrayList;
 
-import com.zalthonethree.zombieinfection.ZombieInfection;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-public class PotionHelper /*extends EntityDragon*/ {
+import com.zalthonethree.zombieinfection.ZombieInfection;
+
+public class PotionHelper {
 	private static PotionEffect createNewPotionEffect(int id, int level) {
 		PotionEffect effect = new PotionEffect(id, (10 * 20) + 10, level, true);
 		effect.setCurativeItems(new ArrayList<ItemStack>());

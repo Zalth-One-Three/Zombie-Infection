@@ -1,5 +1,5 @@
 package com.zalthonethree.zombieinfection.handler;
 
-public class ZIMessage /*extends EntityDragon*/ {
+public class ZIMessage {
 	public int index;
 }

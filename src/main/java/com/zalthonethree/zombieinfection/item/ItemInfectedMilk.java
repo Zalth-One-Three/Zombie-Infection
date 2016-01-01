@@ -9,11 +9,11 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemInfectedMilk extends ItemBase/*, EntityDragon*/ {
+public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
 		super();
-		setUnlocalizedName("infectedMilk");
-		setMaxStackSize(1);
+		this.setUnlocalizedName("infectedMilk");
+		this.setMaxStackSize(1);
 	}
 	
 	@Override public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {

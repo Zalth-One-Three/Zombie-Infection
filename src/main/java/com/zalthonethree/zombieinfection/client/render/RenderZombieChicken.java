@@ -1,8 +1,5 @@
 package com.zalthonethree.zombieinfection.client.render;
 
-import com.zalthonethree.zombieinfection.Reference;
-import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -10,10 +7,14 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
+import com.zalthonethree.zombieinfection.Reference;
+import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT) public class RenderZombieChicken extends RenderLiving/*, EntityDragon*/ {
+@SideOnly(Side.CLIENT) public class RenderZombieChicken extends RenderLiving {
 	private static final ResourceLocation zombiechickenTextures = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/entity/zombiechicken.png");
 	
 	public RenderZombieChicken(ModelBase model, float shadow) {
@@ -29,8 +30,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 	}
 	
 	protected float handleRotationFloat(EntityZombieChicken entity, float p_77044_2_) {
-		float f1 = entity.field_70888_h + (entity.field_70886_e - entity.field_70888_h) * p_77044_2_;
-		float f2 = entity.field_70884_g + (entity.destPos - entity.field_70884_g) * p_77044_2_;
+		float f1 = entity.lastWingRotation + (entity.wingRotation - entity.lastWingRotation) * p_77044_2_;
+		float f2 = entity.lastDestPos + (entity.destPos - entity.lastDestPos) * p_77044_2_;
 		return (MathHelper.sin(f1) + 1.0F) * f2;
 	}
 	

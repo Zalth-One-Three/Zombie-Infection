@@ -1,7 +1,5 @@
 package com.zalthonethree.zombieinfection.entity;
 
-import com.zalthonethree.zombieinfection.init.ModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,12 +22,15 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityZombieChicken extends EntityMob/*, EntityDragon*/ implements IZombieInfectionMob {
-	public float field_70886_e;
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
+import com.zalthonethree.zombieinfection.init.ModItems;
+
+public class EntityZombieChicken extends EntityMob implements IZombieInfectionMob {
+	public float wingRotation;
 	public float destPos;
-	public float field_70884_g;
-	public float field_70888_h;
-	public float field_70889_i = 1.0F;
+	public float lastDestPos;
+	public float lastWingRotation;
+	public float wingRotDelta = 1.0F;
 	
 	public int timeUntilNextEgg;
 	
@@ -95,8 +96,8 @@ public class EntityZombieChicken extends EntityMob/*, EntityDragon*/ implements 
 		
 		super.onLivingUpdate();
 		
-		this.field_70888_h = this.field_70886_e;
-		this.field_70884_g = this.destPos;
+		this.lastWingRotation = this.wingRotation;
+		this.lastDestPos = this.destPos;
 		this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
 		
 		if (this.destPos < 0.0F) {
@@ -107,17 +108,17 @@ public class EntityZombieChicken extends EntityMob/*, EntityDragon*/ implements 
 			this.destPos = 1.0F;
 		}
 		
-		if (!this.onGround && this.field_70889_i < 1.0F) {
-			this.field_70889_i = 1.0F;
+		if (!this.onGround && this.wingRotDelta < 1.0F) {
+			this.wingRotDelta = 1.0F;
 		}
 		
-		this.field_70889_i = (float) ((double) this.field_70889_i * 0.9D);
+		this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
 		
 		if (!this.onGround && this.motionY < 0.0D) {
 			this.motionY *= 0.6D;
 		}
 		
-		this.field_70886_e += this.field_70889_i * 2.0F;
+		this.wingRotation += this.wingRotDelta * 2.0F;
 		
 		if (!this.worldObj.isRemote && !this.isChild() && this.timeUntilNextEgg-- <= 0) {
 			this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);

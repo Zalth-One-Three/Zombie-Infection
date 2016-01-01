@@ -20,27 +20,15 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
-import com.zalthonethree.zombieinfection.event.InfectedPlayerRenderEvent;
 import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent;
-import com.zalthonethree.zombieinfection.updatechecker.UpdateChecker;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
 
-public class ClientProxy extends CommonProxy/*, EntityDragon*/ {
-	private boolean encrytionRegistered = false;
-	private boolean updateEventRegistered = false;
-	
+public class ClientProxy extends ServerProxy {
 	@Override public void init() {
 		super.init();
 		MinecraftForge.EVENT_BUS.register(new GuiEyeInfection(Minecraft.getMinecraft()));
-		if (!updateEventRegistered) {
-			MinecraftForge.EVENT_BUS.register(new InfectedPlayerRenderEvent());
-			FMLCommonHandler.instance().bus().register(new UpdateChecker());
-			updateEventRegistered = true;
-		}
-		if (!encrytionRegistered) MinecraftForge.EVENT_BUS.register(new InfectedPlayerTooltipEncryptEvent());
-		encrytionRegistered = true;
+		MinecraftForge.EVENT_BUS.register(new InfectedPlayerTooltipEncryptEvent());
 	}
 	
 	@Override public void registerRenderers() {

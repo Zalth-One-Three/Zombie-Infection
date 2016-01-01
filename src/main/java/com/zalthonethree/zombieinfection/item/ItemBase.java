@@ -10,25 +10,25 @@ import com.zalthonethree.zombieinfection.client.CreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBase extends Item/*, EntityDragon*/ {
+public class ItemBase extends Item {
 	public ItemBase() {
 		super();
-		setMaxStackSize(64);
-		setCreativeTab(CreativeTab.zombieInfection);
-		setNoRepair();
+		this.setMaxStackSize(64);
+		this.setCreativeTab(CreativeTab.zombieInfection);
+		this.setNoRepair();
 	}
 	
 	@Override public String getUnlocalizedName() {
-		return String.format("item.%s%s", Reference.RESOURCE_PREFIX, getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+		return String.format("item.%s%s", Reference.RESOURCE_PREFIX, this.getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
 	}
 	
 	@Override public String getUnlocalizedName(ItemStack itemStack) {
-		return String.format("item.%s%s", Reference.RESOURCE_PREFIX, getUnwrappedUnlocalizedName(super.getUnlocalizedName()));
+		return String.format("item.%s%s", Reference.RESOURCE_PREFIX, this.getUnwrappedUnlocalizedName(super.getUnlocalizedName(itemStack)));
 	}
 	
 	@Override @SideOnly(Side.CLIENT) public void registerIcons(IIconRegister iconRegister) {
-		String BaseName = getUnwrappedUnlocalizedName(getUnlocalizedName());
-		itemIcon = iconRegister.registerIcon(BaseName);
+		String baseName = this.getUnwrappedUnlocalizedName(getUnlocalizedName());
+		this.itemIcon = iconRegister.registerIcon(baseName);
 	}
 	
 	protected String getUnwrappedUnlocalizedName(String unlocalizedName) {

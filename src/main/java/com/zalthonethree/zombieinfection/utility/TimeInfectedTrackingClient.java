@@ -1,12 +1,12 @@
 package com.zalthonethree.zombieinfection.utility;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class TimeInfectedTrackingClient /*extends EntityDragon*/ {
+public class TimeInfectedTrackingClient {
 	@SideOnly(Side.CLIENT) public static void setSecondsInfected(int Seconds) {
 		EntityPlayer player = (EntityPlayer) Minecraft.getMinecraft().thePlayer;
 		player.getEntityData().setInteger("TimeInfectedTracking", Seconds);

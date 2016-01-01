@@ -13,12 +13,20 @@ entity.ZombieInfection.ZIZombieCow.name=Vaca Zombi
 entity.ZombieInfection.ZIZombiePig.name=Cerdo Zombi
 entity.ZombieInfection.ZIZombieSheep.name=Oveja Zombi
 
+zombieinfection.death.needle=%s intento sacar demasiada sangre.
+
 # Items #
 
 item.zombieinfection:cure.name=Cura de la Infección
 item.zombieinfection:infectedEgg=Huevo Infectado
 item.zombieinfection:infectedMilk=Leche Infectada
 item.zombieinfection:knowledgeBook.name=Libro de Conocimiento
+
+item.zombieinfection:needle.name=Jeringa (Vacia)
+item.zombieinfection:needleNormal.name=Jeringa (Sangre Normal)
+item.zombieinfection:needleInfected.name=Jeringa (Sangre Infectada)
+item.zombieinfection:needleCured.name=Jeringa (Sangre Curada)
+item.zombieinfection:needleUnknown.name=Jeringa (Desconocido)
 
 # Item Groups #
 

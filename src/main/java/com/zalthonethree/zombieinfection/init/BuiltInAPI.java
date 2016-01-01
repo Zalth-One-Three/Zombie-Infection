@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.init;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 
-public class BuiltInAPI /*extends EntityDragon, Laziness*/ {
+public class BuiltInAPI {
 	public static void init() {
 		int poisonChance = ConfigurationHandler.getPoisonFoodInfectionChance();
 		int rawChance = ConfigurationHandler.getRawFoodInfectionChance();

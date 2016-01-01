@@ -16,13 +16,13 @@ public class KnowledgeBook extends GuiScreen {
 	
 	@Override public final void initGui() {
 		super.initGui();
-		currentPage = MainPage.instance;
+		this.currentPage = MainPage.instance;
 		instance = this;
 	}
 	
 	@Override public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		GL11.glColor4f(1F, 1F, 1F, 1F);
-		mc.renderEngine.bindTexture(background);
+		this.mc.renderEngine.bindTexture(background);
 		int xSize = 96;
 		int ySize = 128;
 		int xPos = width / 2 - xSize / 2;

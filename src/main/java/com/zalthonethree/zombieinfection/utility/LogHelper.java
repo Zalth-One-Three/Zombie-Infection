@@ -6,7 +6,7 @@ import com.zalthonethree.zombieinfection.Reference;
 
 import cpw.mods.fml.common.FMLLog;
 
-public class LogHelper /*extends EntityDragon*/ {
+public class LogHelper {
 	public static void log(Level logLevel, Object... object) {
 		for (Object o : object) {
 			FMLLog.log(Reference.MOD_ID, logLevel, String.valueOf(o));

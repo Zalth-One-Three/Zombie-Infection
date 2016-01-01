@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
-import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
+import com.zalthonethree.zombieinfection.api.ICustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
@@ -21,7 +21,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 
-public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
+public class InfectedPlayerUpdateEvent {
 	private static int lastSecond = 0;
 	
 	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
@@ -29,7 +29,7 @@ public class InfectedPlayerUpdateEvent /*extends EntityDragon*/ {
 		if (Utilities.isServerSide()) {
 			if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) {
 				int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
-				for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
+				for (ICustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 					customEffect.run(player, timeInfected);
 				}
 				

@@ -1,11 +1,11 @@
 package com.zalthonethree.zombieinfection.utility;
 
-import com.zalthonethree.zombieinfection.handler.PacketHandler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class TimeInfectedTracking /*extends EntityDragon*/ {
+import com.zalthonethree.zombieinfection.handler.PacketHandler;
+
+public class TimeInfectedTracking {
 	public static void update(EntityPlayer player) {
 		if (!player.getEntityData().hasKey("TimeInfectedTracking")) {
 			player.getEntityData().setInteger("TimeInfectedTracking", 0);

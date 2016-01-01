@@ -10,7 +10,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 import com.zalthonethree.zombieinfection.ZombieInfection;
-import com.zalthonethree.zombieinfection.api.CustomCureEffect;
+import com.zalthonethree.zombieinfection.api.ICustomCureEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import com.zalthonethree.zombieinfection.utility.Utilities;
@@ -18,21 +18,21 @@ import com.zalthonethree.zombieinfection.utility.Utilities;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemCure extends ItemBase/*, EntityDragon*/ {
+public class ItemCure extends ItemBase {
 	public ItemCure() {
 		super();
-		setUnlocalizedName("cure");
+		this.setUnlocalizedName("cure");
 	}
 	
 	@Override public boolean hasEffect(ItemStack stack) { return true; }
 	
-	@SuppressWarnings({"rawtypes", "unchecked"}) @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
+	@Override @SuppressWarnings({"rawtypes", "unchecked"}) @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
 		list.add(EnumChatFormatting.GOLD + Utilities.Translate("tooltip.cure"));
 	}
 	
-	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
+	@Override public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		player.addPotionEffect(PotionHelper.createCure(0));
-		for (CustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
+		for (ICustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
 			customEffect.run(player, stack);
 		}
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
@@ -63,16 +63,16 @@ public class ItemCure extends ItemBase/*, EntityDragon*/ {
 		return stack;
 	}
 	
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	@Override public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (player.isPotionActive(ZombieInfection.potionInfection) && !player.isPotionActive(ZombieInfection.potionCure)) player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
 	
-	public int getMaxItemUseDuration(ItemStack stack) {
+	@Override public int getMaxItemUseDuration(ItemStack stack) {
 		return 32;
 	}
 	
-	public EnumAction getItemUseAction(ItemStack stack) {
+	@Override public EnumAction getItemUseAction(ItemStack stack) {
 		return EnumAction.drink;
 	}
 }

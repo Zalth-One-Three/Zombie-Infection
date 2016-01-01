@@ -17,12 +17,12 @@ import com.zalthonethree.zombieinfection.init.EntityInit;
 import com.zalthonethree.zombieinfection.init.ModItems;
 import com.zalthonethree.zombieinfection.init.Recipes;
 import com.zalthonethree.zombieinfection.potion.ModPotion;
-import com.zalthonethree.zombieinfection.proxy.IProxy;
+import com.zalthonethree.zombieinfection.proxy.ServerProxy;
 import com.zalthonethree.zombieinfection.utility.LogHelper;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION) public class ZombieInfection {
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, updateJSON = "https://raw.githubusercontent.com/Zalth-One-Three/Zombie-Infection/versions/versions.json") public class ZombieInfection {
 	@Mod.Instance(Reference.MOD_ID) public static ZombieInfection instance;
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static IProxy proxy;
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.SERVER_PROXY) public static ServerProxy proxy;
 	
 	@Mod.EventHandler public void preInit(FMLPreInitializationEvent event) {
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());

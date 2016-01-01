@@ -12,19 +12,19 @@ import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.entity.EntityZombieChicken;
 
 @SideOnly(Side.CLIENT) public class RenderZombieChicken extends RenderLiving<EntityZombieChicken> {
-	private static final ResourceLocation zombiechickenTextures = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/entity/zombiechicken.png");
+	private static final ResourceLocation zombiechickenTexture = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/entity/zombiechicken.png");
 	
 	public RenderZombieChicken(RenderManager manager, ModelBase model, float shadow) {
 		super(manager, model, shadow);
 	}
 	
 	@Override protected ResourceLocation getEntityTexture(EntityZombieChicken entity) {
-		return zombiechickenTextures;
+		return zombiechickenTexture;
 	}
 	
 	@Override protected float handleRotationFloat(EntityZombieChicken livingBase, float partialTicks) {
-		float f1 = livingBase.field_70888_h + (livingBase.field_70886_e - livingBase.field_70888_h) * partialTicks;
-		float f2 = livingBase.field_70884_g + (livingBase.destPos - livingBase.field_70884_g) * partialTicks;
+		float f1 = livingBase.lastWingRotation + (livingBase.wingRotation - livingBase.lastWingRotation) * partialTicks;
+		float f2 = livingBase.lastDestPos + (livingBase.destPos - livingBase.lastDestPos) * partialTicks;
 		return (MathHelper.sin(f1) + 1.0F) * f2;
 	}
 }

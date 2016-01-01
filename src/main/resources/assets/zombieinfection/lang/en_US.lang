@@ -4,10 +4,7 @@ zombieinfection.chat.infected=You have been infected, find the cure.
 zombieinfection.chat.playerinfected=You have been infected by another player, find the cure.
 zombieinfection.chat.rotteninfection=You have been infected by rotten food.
 
-# Other Messages #
-
-zombieinfection.welcomemessage.zend=Remembering the Dead...
-zombieinfection.departmessage.zend=Being Resuscitated
+zombieinfection.death.needle=%s tried to take too much blood.
 
 # Entities #
 
@@ -22,6 +19,12 @@ item.zombieinfection:cure.name=Infection Cure
 item.zombieinfection:infectedEgg.name=Infected Egg
 item.zombieinfection:infectedMilk.name=Infected Milk
 item.zombieinfection:knowledgeBook.name=Knowledge Book
+
+item.zombieinfection:needle.name=Needle (Empty)
+item.zombieinfection:needleNormal.name=Needle (Normal Blood)
+item.zombieinfection:needleInfected.name=Needle (Infected Blood)
+item.zombieinfection:needleCured.name=Needle (Cured Blood)
+item.zombieinfection:needleUnknown.name=Needle (Unknown)
 
 # Item Groups #
 

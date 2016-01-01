@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ZombieInfectionAPI {
-	private static ArrayList<CustomInfectionEffect> customInfectionEffects = new ArrayList<CustomInfectionEffect>();
-	private static ArrayList<CustomCureEffect> customCureEffects = new ArrayList<CustomCureEffect>();
+	private static ArrayList<ICustomInfectionEffect> customInfectionEffects = new ArrayList<ICustomInfectionEffect>();
+	private static ArrayList<ICustomCureEffect> customCureEffects = new ArrayList<ICustomCureEffect>();
 	private static ArrayList<Integer> customInfectiousMobs = new ArrayList<Integer>();
 	private static ArrayList<String> encryptionExclusions = new ArrayList<String>();
 	private static HashMap<Integer, Integer> customInfectionChances = new HashMap<Integer, Integer>();
@@ -13,8 +13,8 @@ public class ZombieInfectionAPI {
 	private static HashMap<String, String[]> encryptionSwitchesTooltips = new HashMap<String, String[]>();
 	private static HashMap<String, Integer> customFoodInfections = new HashMap<String, Integer>();
 	
-	public static ArrayList<CustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
-	public static ArrayList<CustomCureEffect> getCustomCureEffects() { return customCureEffects; }
+	public static ArrayList<ICustomInfectionEffect> getCustomInfectionEffects() { return customInfectionEffects; }
+	public static ArrayList<ICustomCureEffect> getCustomCureEffects() { return customCureEffects; }
 	public static ArrayList<Integer> getCustomInfectiousMobs() { return customInfectiousMobs; }
 	public static HashMap<Integer, Integer> getCustomInfectionChances() { return customInfectionChances; }
 	public static ArrayList<String> getEncryptionExclusions() { return encryptionExclusions; }
@@ -27,13 +27,13 @@ public class ZombieInfectionAPI {
 	 * Create a new instance of Custom Cure Effect and override the run(EntityPlayer player, ItemStack stack) methods
 	 * @param customEffect
 	 */
-	public static void registerCustomInfectionEffect(CustomInfectionEffect customEffect) { customInfectionEffects.add(customEffect); }
+	public static void registerCustomInfectionEffect(ICustomInfectionEffect customEffect) { customInfectionEffects.add(customEffect); }
 	
 	/**
 	 * Create a new instance of Custom Cure Effect and override the run(EntityPlayer player, ItemStack stack) method
 	 * @param customCureEffect
 	 */
-	public static void registerCustomCureEffect(CustomCureEffect customCureEffect) { customCureEffects.add(customCureEffect); }
+	public static void registerCustomCureEffect(ICustomCureEffect customCureEffect) { customCureEffects.add(customCureEffect); }
 	
 	/**
 	 * Register a custom infectious mob.

@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.item;
 public class ItemInfectedEgg extends ItemBase {
 	public ItemInfectedEgg() {
 		super();
-		setUnlocalizedName("infectedEgg");
-		setMaxStackSize(16);
+		this.setUnlocalizedName("infectedEgg");
+		this.setMaxStackSize(16);
 	}
 }

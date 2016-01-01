@@ -1,8 +1,5 @@
 package com.zalthonethree.zombieinfection.entity;
 
-import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
-import com.zalthonethree.zombieinfection.init.ModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,8 +24,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
+import com.zalthonethree.zombieinfection.init.ModItems;
+
 public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
-	
 	public EntityZombieCow(World world) {
 		super(world);
 		this.setSize(0.9F, 1.3F);

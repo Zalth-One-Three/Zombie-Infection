@@ -22,8 +22,10 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import com.zalthonethree.zombieinfection.event.InfectedPlayerTooltipEncryptEvent;
+import com.zalthonethree.zombieinfection.handler.ModelHelper;
+import com.zalthonethree.zombieinfection.init.ModItems;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends ServerProxy {
 	@Override public void init() {
 		super.init();
 		MinecraftForge.EVENT_BUS.register(new GuiEyeInfection(Minecraft.getMinecraft()));
@@ -31,6 +33,16 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override public void registerRenderers() {
+		/* Items */
+		
+		ModelHelper.registerItem(ModItems.cure, new String[] {"cure"}, new int[] {0});
+		ModelHelper.registerItem(ModItems.infectedEgg);
+		ModelHelper.registerItem(ModItems.infectedMilk);
+		ModelHelper.registerItem(ModItems.knowledgeBook);
+		ModelHelper.registerItem(ModItems.needle, new String[] {"needle", "needleBlood", "needleInfected", "needleCured"}, new int[] {0, 1, 2, 3});
+		
+		/* Entities */
+		
 		float shadowSize = 0.5F;
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieCow.class, new RenderZombieCow(Minecraft.getMinecraft().getRenderManager(), new ModelCow(), shadowSize));
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieChicken.class, new RenderZombieChicken(Minecraft.getMinecraft().getRenderManager(), new ModelChicken(), shadowSize));

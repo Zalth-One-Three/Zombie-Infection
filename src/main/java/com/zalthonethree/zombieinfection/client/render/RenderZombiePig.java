@@ -11,13 +11,13 @@ import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 
 @SideOnly(Side.CLIENT) public class RenderZombiePig extends RenderLiving<EntityZombiePig> {
-	private static final ResourceLocation zombiepigTextures = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/entity/zombiepig.png");
+	private static final ResourceLocation zombiepigTexture = new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/entity/zombiepig.png");
 	
 	public RenderZombiePig(RenderManager manager, ModelBase model, float shadow) {
 		super(manager, model, shadow);
 	}
 	
 	@Override protected ResourceLocation getEntityTexture(EntityZombiePig entity) {
-		return zombiepigTextures;
+		return zombiepigTexture;
 	}
 }

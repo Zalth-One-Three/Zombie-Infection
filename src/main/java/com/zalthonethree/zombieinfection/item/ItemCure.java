@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.zalthonethree.zombieinfection.api.CustomCureEffect;
+import com.zalthonethree.zombieinfection.api.ICustomCureEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
@@ -26,13 +26,13 @@ public class ItemCure extends ItemBase {
 	
 	@Override public boolean hasEffect(ItemStack stack) { return true; }
 	
-	@Override @SuppressWarnings({"rawtypes", "unchecked"}) @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool) {
+	@Override @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
 		list.add(EnumChatFormatting.GOLD + Utilities.Translate("tooltip.cure"));
 	}
 	
 	@Override public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
 		player.addPotionEffect(PotionHelper.createCure(0));
-		for (CustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
+		for (ICustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
 			customEffect.run(player, stack);
 		}
 		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;

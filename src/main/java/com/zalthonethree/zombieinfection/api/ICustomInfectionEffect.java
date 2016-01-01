@@ -2,7 +2,7 @@ package com.zalthonethree.zombieinfection.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-public class CustomInfectionEffect {
+public class ICustomInfectionEffect {
 	/**
 	 * Used to run custom code on infected players.
 	 * @param player - The player with the infection effect.

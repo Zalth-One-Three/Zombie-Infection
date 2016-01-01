@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import com.zalthonethree.zombieinfection.api.CustomInfectionEffect;
+import com.zalthonethree.zombieinfection.api.ICustomInfectionEffect;
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.handler.PacketHandler;
@@ -24,12 +24,12 @@ import com.zalthonethree.zombieinfection.utility.Utilities;
 public class InfectedPlayerUpdateEvent {
 	private static int lastSecond = 0;
 	
-	@SuppressWarnings("rawtypes") @SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
+	@SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
 		if (Utilities.isServerSide()) {
 			EntityPlayer player = event.player;
 			if (player.isPotionActive(ModPotion.potionInfection) && !player.isPotionActive(ModPotion.potionCure)) {
 				int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
-				for (CustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
+				for (ICustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 					customEffect.run(player, timeInfected);
 				}
 				
@@ -64,7 +64,7 @@ public class InfectedPlayerUpdateEvent {
 				}
 				
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
-					Iterator players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
+					Iterator<EntityPlayerMP> players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
 					
 					while (players.hasNext()) {
 						Object thing = players.next();

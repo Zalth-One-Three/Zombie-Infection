@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
 		super();
-		setUnlocalizedName("infectedMilk");
-		setMaxStackSize(1);
+		this.setUnlocalizedName("infectedMilk");
+		this.setMaxStackSize(1);
 	}
 	
 	@Override public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {

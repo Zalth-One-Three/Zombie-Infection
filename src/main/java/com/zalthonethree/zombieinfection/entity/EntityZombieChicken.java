@@ -1,8 +1,5 @@
 package com.zalthonethree.zombieinfection.entity;
 
-import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
-import com.zalthonethree.zombieinfection.init.ModItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,23 +18,28 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
+import com.zalthonethree.zombieinfection.init.ModItems;
+
 public class EntityZombieChicken extends EntityMob implements IZombieInfectionMob {
-	public float field_70886_e;
+	public float wingRotation;
 	public float destPos;
-	public float field_70884_g;
-	public float field_70888_h;
-	public float field_70889_i = 1.0F;
+	public float lastDestPos;
+	public float lastWingRotation;
+	public float wingRotDelta = 1.0F;
 	
 	public int timeUntilNextEgg;
+	// TODO Possible zombieChickenZombie, ZombieChicken with baby zombie on back
 	
 	public EntityZombieChicken(World world) {
 		super(world);
-		this.setSize(0.3F, 0.7F);
+		this.setSize(0.3F, 0.7F); // If we were copying the chicken size this is wrong, it should be 0.4, 0.7.
 		this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
@@ -48,6 +50,10 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityChicken>(this, EntityChicken.class, false));
+	}
+	
+	@Override public float getEyeHeight() {
+		return this.height;
 	}
 	
 	@Override protected void applyEntityAttributes() {
@@ -94,8 +100,8 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		
 		super.onLivingUpdate();
 		
-		this.field_70888_h = this.field_70886_e;
-		this.field_70884_g = this.destPos;
+		this.lastWingRotation = this.wingRotation;
+		this.lastDestPos = this.destPos;
 		this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
 		
 		if (this.destPos < 0.0F) {
@@ -106,17 +112,17 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 			this.destPos = 1.0F;
 		}
 		
-		if (!this.onGround && this.field_70889_i < 1.0F) {
-			this.field_70889_i = 1.0F;
+		if (!this.onGround && this.wingRotDelta < 1.0F) {
+			this.wingRotDelta = 1.0F;
 		}
 		
-		this.field_70889_i = (float) ((double) this.field_70889_i * 0.9D);
+		this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
 		
 		if (!this.onGround && this.motionY < 0.0D) {
 			this.motionY *= 0.6D;
 		}
 		
-		this.field_70886_e += this.field_70889_i * 2.0F;
+		this.wingRotation += this.wingRotDelta * 2.0F;
 		
 		if (!this.worldObj.isRemote && !this.isChild() && this.timeUntilNextEgg-- <= 0) {
 			this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
@@ -141,5 +147,17 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		}
 	}
 
+	@Override public void writeEntityToNBT(NBTTagCompound tagCompound) {
+		super.writeEntityToNBT(tagCompound);
+		tagCompound.setInteger("EggLayTime", this.timeUntilNextEgg);
+	}
+	
+	@Override public void readEntityFromNBT(NBTTagCompound tagCompound) {
+		super.readEntityFromNBT(tagCompound);
+		if (tagCompound.hasKey("EggLayTime")) {
+			this.timeUntilNextEgg = tagCompound.getInteger("EggLayTime");
+		}
+	}
+	
 	@Override public int getPlayerInfectionChance() { return 10; }
 }

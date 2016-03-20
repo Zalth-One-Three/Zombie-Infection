@@ -2,7 +2,7 @@ package com.zalthonethree.zombieinfection.client;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -16,7 +16,7 @@ public class CreativeTab {
 		}
 		
 		@Override @SideOnly(Side.CLIENT) public String getTranslatedTabLabel() {
-			return StatCollector.translateToLocal("itemGroup.zombieInfection");
+			return I18n.translateToLocal("itemGroup.zombieInfection");
 		}
 	};
 }

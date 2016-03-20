@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -17,10 +17,13 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -33,8 +36,8 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 		this.setSize(0.9F, 1.3F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityCow.class, 1.0D, true));
+		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, true));
 		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -44,8 +47,8 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 	
 	@Override protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
 	}
 	
 	@Override public boolean attackEntityAsMob(Entity entity) {
@@ -54,7 +57,7 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 		if (flag) {
 			int i = this.worldObj.getDifficulty().getDifficultyId();
 			
-			if (this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
+			if (this.getHeldItemMainhand() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
 				entity.setFire(2 * i);
 			}
 		}
@@ -62,12 +65,12 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 		return flag;
 	}
 	
-	@Override protected String getLivingSound() { return "mob.cow.say"; }
-	@Override protected String getHurtSound() { return "mob.cow.hurt"; }
-	@Override protected String getDeathSound() { return "mob.cow.hurt"; }
+	@Override protected SoundEvent getAmbientSound() { return SoundEvents.entity_cow_ambient; }
+	@Override protected SoundEvent getHurtSound() { return SoundEvents.entity_cow_hurt; }
+	@Override protected SoundEvent getDeathSound() { return SoundEvents.entity_cow_death; }
 	
 	@Override protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound("mob.cow.step", 0.15F, 1.0F);
+		this.playSound(SoundEvents.entity_cow_step, 0.15F, 1.0F);
 	}
 	
 	@Override protected float getSoundVolume() { return 0.4F; }
@@ -103,11 +106,9 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 		}
 	}
 	
-	@Override public boolean interact(EntityPlayer player) {
-		ItemStack itemstack = player.inventory.getCurrentItem();
-		
-		if (itemstack != null && itemstack.getItem() == Items.bucket) {
-			if (itemstack.stackSize-- == 1) {
+	@Override public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
+		if (stack != null && stack.getItem() == Items.bucket) {
+			if (stack.stackSize -- == 1) {
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ModItems.infectedMilk));
 			} else if (!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket))) {
 				player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
@@ -115,7 +116,7 @@ public class EntityZombieCow extends EntityMob implements IZombieInfectionMob {
 			
 			return true;
 		} else {
-			return super.interact(player);
+			return super.processInteract(player, hand, stack);
 		}
 	}
 	

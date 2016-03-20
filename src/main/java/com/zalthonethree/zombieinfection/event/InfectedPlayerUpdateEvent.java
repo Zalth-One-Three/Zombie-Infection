@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -42,7 +42,7 @@ public class InfectedPlayerUpdateEvent {
 				
 				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);
-					EntityPlayerMP playerMP = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().getPlayerByUsername(player.getName());
+					EntityPlayerMP playerMP = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUsername(player.getName());
 					PacketHandler.INSTANCE.sendTo(PacketHandler.getFoodChangePacket(player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()), playerMP);
 				}
 				
@@ -64,7 +64,7 @@ public class InfectedPlayerUpdateEvent {
 				}
 				
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
-					Iterator<EntityPlayerMP> players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList.iterator();
+					Iterator<EntityPlayerMP> players = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList().iterator();
 					
 					while (players.hasNext()) {
 						Object thing = players.next();
@@ -73,7 +73,7 @@ public class InfectedPlayerUpdateEvent {
 							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
 									if (!anotherPlayer.isPotionActive(ModPotion.potionInfection)) {
-										anotherPlayer.addChatMessage(new ChatComponentTranslation("zombieinfection.chat.playerinfected"));
+										anotherPlayer.addChatMessage(new TextComponentTranslation("zombieinfection.chat.playerinfected"));
 										anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
 									}
 								}

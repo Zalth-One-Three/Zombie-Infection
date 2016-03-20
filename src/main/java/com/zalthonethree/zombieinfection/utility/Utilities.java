@@ -1,16 +1,16 @@
 package com.zalthonethree.zombieinfection.utility;
 
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class Utilities {
 	public static String Translate(String string) {
-		return StatCollector.translateToLocal(string);
+		return I18n.translateToLocal(string);
 	}
 	
 	public static String TranslateFormatted(String string, Object... formatargs) {
-		return StatCollector.translateToLocalFormatted(string, formatargs);
+		return I18n.translateToLocalFormatted(string, formatargs);
 	}
 	
 	public static boolean isServerSide() { return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER; }

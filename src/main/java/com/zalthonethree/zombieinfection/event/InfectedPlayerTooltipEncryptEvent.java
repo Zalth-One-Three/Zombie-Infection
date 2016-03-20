@@ -3,7 +3,7 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,13 +34,13 @@ public class InfectedPlayerTooltipEncryptEvent {
 						}
 						event.toolTip.set(i, ns);
 					}
-					event.toolTip.add(StatCollector.translateToLocal("tooltip.infectedeyes"));
+					event.toolTip.add(I18n.translateToLocal("tooltip.infectedeyes"));
 				}
 				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.itemStack.getUnlocalizedName())) {
-					event.toolTip.set(0, StatCollector.translateToLocal(ZombieInfectionAPI.getEncryptionSwitches().get(event.itemStack.getUnlocalizedName())));
+					event.toolTip.set(0, I18n.translateToLocal(ZombieInfectionAPI.getEncryptionSwitches().get(event.itemStack.getUnlocalizedName())));
 					if (ZombieInfectionAPI.getEncryptionSwitchesTooltips().containsKey(event.itemStack.getUnlocalizedName())) {
 						for (String tT : ZombieInfectionAPI.getEncryptionSwitchesTooltips().get(event.itemStack.getUnlocalizedName())) {
-							event.toolTip.add(StatCollector.translateToLocal(tT));
+							event.toolTip.add(I18n.translateToLocal(tT));
 						}
 					}
 				}

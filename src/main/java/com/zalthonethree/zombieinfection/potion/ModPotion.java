@@ -2,7 +2,7 @@ package com.zalthonethree.zombieinfection.potion;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -25,7 +25,7 @@ public class ModPotion {
 	protected static class PotionZI extends Potion {
 		private ResourceLocation icon;
 		protected PotionZI(ResourceLocation location, ResourceLocation icon, boolean badEffect, int potionColor) {
-			super(location, badEffect, potionColor);
+			super(badEffect, potionColor);
 			this.setPotionName("potion." + location.getResourcePath());
 			this.icon = icon;
 		}
@@ -40,12 +40,12 @@ public class ModPotion {
 			int height = width;
 			
 			Tessellator tessellator = Tessellator.getInstance();
-			WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-			worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
-			worldrenderer.pos(x, y + height, 0.0D).tex(0, 16);
-			worldrenderer.pos(x + width, y + height, 0.0D).tex(16, 16);
-			worldrenderer.pos(x + width, y, 0.0D).tex(16, 0);
-			worldrenderer.pos(x, y, 0.0D).tex(0, 0);
+			VertexBuffer vertexBuffer = tessellator.getBuffer();
+			vertexBuffer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+			vertexBuffer.pos(x, y + height, 0.0D).tex(0, 16);
+			vertexBuffer.pos(x + width, y + height, 0.0D).tex(16, 16);
+			vertexBuffer.pos(x + width, y, 0.0D).tex(16, 0);
+			vertexBuffer.pos(x, y, 0.0D).tex(0, 0);
 			tessellator.draw();
 		}
 	}

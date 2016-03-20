@@ -4,7 +4,10 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import com.zalthonethree.zombieinfection.Reference.IdTracking;
@@ -16,12 +19,12 @@ public class ItemKnowledgeBook extends ItemBase {
 		setUnlocalizedName("knowledgeBook");
 	}
 	
-	@Override public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
-		player.openGui(ZombieInfection.instance, IdTracking.BOOK, worldIn, 0, 0, 0);
-		return itemStackIn;
+	@Override public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		playerIn.openGui(ZombieInfection.instance, IdTracking.BOOK, worldIn, 0, 0, 0);
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
 	}
 	
 	@Override public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-		tooltip.add(StatCollector.translateToLocal("tooltip.knowledgeBook"));
+		tooltip.add(I18n.translateToLocal("tooltip.knowledgeBook"));
 	}
 }

@@ -1,9 +1,9 @@
 package com.zalthonethree.zombieinfection.utility;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
 public class CustomDamageSource extends DamageSource {
 	String message;
@@ -14,7 +14,7 @@ public class CustomDamageSource extends DamageSource {
 		this.message = deathmessage;
 	}
 	
-	@Override public IChatComponent getDeathMessage(EntityLivingBase entity) {
-		return new ChatComponentTranslation(this.message, entity.getDisplayName());
+	@Override public ITextComponent getDeathMessage(EntityLivingBase entity) {
+		return new TextComponentTranslation(this.message, entity.getDisplayName());
 	}
 }

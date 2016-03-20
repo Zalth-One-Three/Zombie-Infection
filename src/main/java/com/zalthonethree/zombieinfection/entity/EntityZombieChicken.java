@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -17,10 +17,12 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -43,8 +45,8 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityChicken.class, 1.0D, true));
+		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, true));
 		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -58,8 +60,8 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 	
 	@Override protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
 	}
 	
 	@Override public boolean attackEntityAsMob(Entity entity) {
@@ -68,7 +70,7 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		if (flag) {
 			int i = this.worldObj.getDifficulty().getDifficultyId();
 			
-			if (this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
+			if (this.getHeldItemMainhand() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
 				entity.setFire(2 * i);
 			}
 		}
@@ -76,13 +78,13 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		return flag;
 	}
 	
-	@Override protected String getLivingSound() { return "mob.chicken.say"; }
-	@Override protected String getHurtSound() { return "mob.chicken.hurt"; }
-	@Override protected String getDeathSound() { return "mob.chicken.hurt"; }
+	@Override protected SoundEvent getAmbientSound() { return SoundEvents.entity_chicken_ambient; }
+	@Override protected SoundEvent getHurtSound() { return SoundEvents.entity_chicken_hurt; }
+	@Override protected SoundEvent getDeathSound() { return SoundEvents.entity_chicken_death; }
 	
 
 	@Override protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound("mob.chicken.step", 0.15F, 1.0F);
+		this.playSound(SoundEvents.entity_chicken_step, 0.15F, 1.0F);
 	}
 	
 	@Override protected float getSoundVolume() { return 0.4F; }
@@ -125,7 +127,7 @@ public class EntityZombieChicken extends EntityMob implements IZombieInfectionMo
 		this.wingRotation += this.wingRotDelta * 2.0F;
 		
 		if (!this.worldObj.isRemote && !this.isChild() && this.timeUntilNextEgg-- <= 0) {
-			this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			this.playSound(SoundEvents.entity_chicken_egg, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			this.dropItem(ModItems.infectedEgg, 1);
 			this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
 		}

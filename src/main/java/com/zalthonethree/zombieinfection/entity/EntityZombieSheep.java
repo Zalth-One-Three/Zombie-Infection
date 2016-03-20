@@ -1,14 +1,12 @@
 package com.zalthonethree.zombieinfection.entity;
 
-import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -19,11 +17,15 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+
+import com.zalthonethree.zombieinfection.api.IZombieInfectionMob;
 
 public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob {
 	public EntityZombieSheep(World world) {
@@ -31,8 +33,8 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 		this.setSize(0.9F, 1.3F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntitySheep.class, 1.0D, true));
+		this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
+		this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, true));
 		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
@@ -42,8 +44,8 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 	
 	@Override protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
 	}
 	
 	@Override public boolean attackEntityAsMob(Entity entity) {
@@ -52,7 +54,7 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 		if (flag) {
 			int i = this.worldObj.getDifficulty().getDifficultyId();
 			
-			if (this.getHeldItem() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
+			if (this.getHeldItemMainhand() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
 				entity.setFire(2 * i);
 			}
 		}
@@ -60,12 +62,12 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 		return flag;
 	}
 	
-	@Override protected String getLivingSound() { return "mob.sheep.say"; }
-	@Override protected String getHurtSound() { return "mob.sheep.say"; }
-	@Override protected String getDeathSound() { return "mob.sheep.say"; }
+	@Override protected SoundEvent getAmbientSound() { return SoundEvents.entity_sheep_ambient; }
+	@Override protected SoundEvent getHurtSound() { return SoundEvents.entity_sheep_hurt; }
+	@Override protected SoundEvent getDeathSound() { return SoundEvents.entity_sheep_death; }
 	
 	@Override protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound("mob.sheep.step", 0.15F, 1.0F);
+		this.playSound(SoundEvents.entity_sheep_step, 0.15F, 1.0F);
 	}
 	
 	@Override protected float getSoundVolume() { return 0.4F; }

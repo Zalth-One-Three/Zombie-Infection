@@ -2,11 +2,15 @@ package com.zalthonethree.zombieinfection.item;
 
 import java.util.List;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,10 +31,12 @@ public class ItemCure extends ItemBase {
 	@Override public boolean hasEffect(ItemStack stack) { return true; }
 	
 	@Override @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
-		list.add(EnumChatFormatting.GOLD + Utilities.Translate("tooltip.cure"));
+		list.add(TextFormatting.GOLD + Utilities.Translate("tooltip.cure"));
 	}
 	
-	@Override public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer player) {
+	@Override public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+		if (!(entityLiving instanceof EntityPlayer)) return stack;
+		EntityPlayer player = (EntityPlayer) entityLiving;
 		player.addPotionEffect(PotionHelper.createCure(0));
 		for (ICustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
 			customEffect.run(player, stack);
@@ -63,9 +69,9 @@ public class ItemCure extends ItemBase {
 		return stack;
 	}
 	
-	@Override public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (player.isPotionActive(ModPotion.potionInfection) && !player.isPotionActive(ModPotion.potionCure)) player.setItemInUse(stack, getMaxItemUseDuration(stack));
-		return stack;
+	@Override public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		if (playerIn.isPotionActive(ModPotion.potionInfection) && !playerIn.isPotionActive(ModPotion.potionCure)) playerIn.setActiveHand(hand);
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
 	}
 	
 	@Override public int getMaxItemUseDuration(ItemStack stack) {

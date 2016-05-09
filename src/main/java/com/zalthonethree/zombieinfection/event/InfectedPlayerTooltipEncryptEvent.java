@@ -14,15 +14,15 @@ import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
 public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
-		if (event.entityPlayer.isPotionActive(ModPotion.potionInfection)
-		&& !event.entityPlayer.isPotionActive(ModPotion.potionCure)) {
+		if (event.getEntityPlayer().isPotionActive(ModPotion.potionInfection)
+		&& !event.getEntityPlayer().isPotionActive(ModPotion.potionCure)) {
 			if (TimeInfectedTrackingClient.getSecondsInfected() > 60) {
 				boolean doShuffle = true;
-				if (ZombieInfectionAPI.getEncryptionExclusions().contains(event.itemStack.getUnlocalizedName())) doShuffle = false;
-				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.itemStack.getUnlocalizedName())) doShuffle = false;
+				if (ZombieInfectionAPI.getEncryptionExclusions().contains(event.getItemStack().getUnlocalizedName())) doShuffle = false;
+				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.getItemStack().getUnlocalizedName())) doShuffle = false;
 				if (doShuffle) {
-					for (int i = 0; i < event.toolTip.size(); i ++) {
-						String s = event.toolTip.get(i);
+					for (int i = 0; i < event.getToolTip().size(); i ++) {
+						String s = event.getToolTip().get(i);
 						ArrayList<String> chars = new ArrayList<String>();
 						for (int i2 = 0; i2 < s.length(); i2 ++) {
 							chars.add(s.substring(i2, i2 + 1));
@@ -32,15 +32,15 @@ public class InfectedPlayerTooltipEncryptEvent {
 						for (String s2 : chars) {
 							ns = ns + s2;
 						}
-						event.toolTip.set(i, ns);
+						event.getToolTip().set(i, ns);
 					}
-					event.toolTip.add(I18n.translateToLocal("tooltip.infectedeyes"));
+					event.getToolTip().add(I18n.translateToLocal("tooltip.infectedeyes"));
 				}
-				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.itemStack.getUnlocalizedName())) {
-					event.toolTip.set(0, I18n.translateToLocal(ZombieInfectionAPI.getEncryptionSwitches().get(event.itemStack.getUnlocalizedName())));
-					if (ZombieInfectionAPI.getEncryptionSwitchesTooltips().containsKey(event.itemStack.getUnlocalizedName())) {
-						for (String tT : ZombieInfectionAPI.getEncryptionSwitchesTooltips().get(event.itemStack.getUnlocalizedName())) {
-							event.toolTip.add(I18n.translateToLocal(tT));
+				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.getItemStack().getUnlocalizedName())) {
+					event.getToolTip().set(0, I18n.translateToLocal(ZombieInfectionAPI.getEncryptionSwitches().get(event.getItemStack().getUnlocalizedName())));
+					if (ZombieInfectionAPI.getEncryptionSwitchesTooltips().containsKey(event.getItemStack().getUnlocalizedName())) {
+						for (String tT : ZombieInfectionAPI.getEncryptionSwitchesTooltips().get(event.getItemStack().getUnlocalizedName())) {
+							event.getToolTip().add(I18n.translateToLocal(tT));
 						}
 					}
 				}

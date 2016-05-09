@@ -25,7 +25,7 @@ public class GuiEyeInfection extends Gui {
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL) public void onRender(RenderGameOverlayEvent.Pre event) {
 		int timeInfected = TimeInfectedTrackingClient.getSecondsInfected();
-		if (event.isCanceled() || event.type != ElementType.HOTBAR || timeInfected < 60) return;
+		if (event.isCanceled() || event.getType() != ElementType.HOTBAR || timeInfected < 60) return;
 		ScaledResolution sr = new ScaledResolution(minecraftInstance);
 		
 		GlStateManager.pushAttrib();

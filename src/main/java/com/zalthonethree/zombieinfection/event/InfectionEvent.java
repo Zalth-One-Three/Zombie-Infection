@@ -31,8 +31,8 @@ import com.zalthonethree.zombieinfection.potion.PotionHelper;
 
 public class InfectionEvent {
 	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
-		if (event.source instanceof EntityDamageSource) {
-			EntityDamageSource source = (EntityDamageSource) event.source;
+		if (event.getSource() instanceof EntityDamageSource) {
+			EntityDamageSource source = (EntityDamageSource) event.getSource();
 			Entity attacker = source.getEntity();
 			if (attacker == null) return;
 			boolean infectiousMob = false;
@@ -52,7 +52,7 @@ public class InfectionEvent {
 				}
 			}
 			if (infectiousMob) {
-				Entity target = event.entity;
+				Entity target = event.getEntity();
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
@@ -63,7 +63,7 @@ public class InfectionEvent {
 					}
 				}
 			} else if (attacker instanceof EntityPlayer) {
-				Entity target = event.entity;
+				Entity target = event.getEntity();
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
@@ -101,11 +101,11 @@ public class InfectionEvent {
 	}
 	
 	@SubscribeEvent public void onDeath(LivingDeathEvent event) {
-		if (event.source instanceof EntityDamageSource) {
-			EntityDamageSource source = (EntityDamageSource) event.source;
+		if (event.getSource() instanceof EntityDamageSource) {
+			EntityDamageSource source = (EntityDamageSource) event.getSource();
 			Entity attacker = source.getEntity();
 			if (attacker instanceof EntityPlayer) {
-				Entity target = event.entity;
+				Entity target = event.getEntity();
 				if (target instanceof EntityVillager) {
 					EntityVillager attacked = (EntityVillager) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;

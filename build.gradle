@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -22,7 +22,7 @@ apply plugin: 'eclipse'
 ext.configFile = file('build.properties')
 ext.config = parseConfig(configFile)
 
-version = "${config.mc_version}-${config.mod_version_major}.${config.mod_version_minor}"
+version = "${config.mc_version}-build${config.build_num}"
 group= "${config.group}"
 archivesBaseName = "${config.archive_base}"
 
@@ -38,6 +38,9 @@ repositories {
         url 'http://files.minecraftforge.net/maven'
      }
 }
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {}
 

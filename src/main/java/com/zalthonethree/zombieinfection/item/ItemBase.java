@@ -4,13 +4,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import com.zalthonethree.zombieinfection.Reference;
-import com.zalthonethree.zombieinfection.client.CreativeTab;
+import com.zalthonethree.zombieinfection.init.CreativeTab;
 
 public class ItemBase extends Item {
 	public ItemBase() {
 		super();
-		this.setMaxStackSize(64);
-		this.setCreativeTab(CreativeTab.zombieInfection);
+		this.setCreativeTab(CreativeTab.ZOMBIE_INFECTION);
 		this.setNoRepair();
 	}
 	

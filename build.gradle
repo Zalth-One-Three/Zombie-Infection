@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
@@ -23,7 +23,7 @@ ext.configFile = file('build.properties')
 ext.config = parseConfig(configFile)
 
 version = "${config.mc_version}-${config.mod_version_major}.${config.mod_version_minor}"
-group= "${config.group}"
+group = "${config.group}"
 archivesBaseName = "${config.archive_base}"
 
 minecraft {
@@ -38,6 +38,9 @@ repositories {
         url 'http://files.minecraftforge.net/maven'
      }
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {}
 

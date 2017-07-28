@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
 		super();
-		this.setUnlocalizedName("infectedMilk");
+		this.setNames("infectedMilk");
 		this.setMaxStackSize(1);
 	}
 	
@@ -41,14 +41,14 @@ public class ItemInfectedMilk extends ItemBase {
 		EntityPlayer player = (EntityPlayer) entityLiving;
 		
 		if (!player.capabilities.isCreativeMode) {
-			stack.stackSize --;
+			stack.shrink(1);
 		}
 		
-		return stack.stackSize <= 0 ? new ItemStack(Items.bucket) : stack;
+		return stack.getCount() <= 0 ? new ItemStack(Items.BUCKET) : stack;
 	}
 	
-	@Override public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		playerIn.setActiveHand(hand);
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(hand));
 	}
 }

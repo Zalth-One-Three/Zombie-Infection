@@ -1,10 +1,11 @@
 package com.zalthonethree.zombieinfection.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import com.zalthonethree.zombieinfection.Reference;
 import com.zalthonethree.zombieinfection.client.CreativeTab;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemBase extends Item {
 	public ItemBase() {
@@ -12,6 +13,12 @@ public class ItemBase extends Item {
 		this.setMaxStackSize(64);
 		this.setCreativeTab(CreativeTab.zombieInfection);
 		this.setNoRepair();
+	}
+	
+	public ItemBase setNames(String name) {
+		this.setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
+		this.setUnlocalizedName(this.getRegistryName().toString());
+		return this;
 	}
 	
 	@Override public String getUnlocalizedName() {

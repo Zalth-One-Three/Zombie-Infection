@@ -54,17 +54,17 @@ public class InfectedPlayerUpdateEvent {
 					TimeInfectedTracking.update(player);
 				}
 				
-				if (player.worldObj.canBlockSeeSky(new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ))
-						&& player.worldObj.isDaytime()
-						&& !player.worldObj.isRaining()
-						&& !player.worldObj.isThundering()
+				if (player.world.canBlockSeeSky(new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ))
+						&& player.world.isDaytime()
+						&& !player.world.isRaining()
+						&& !player.world.isThundering()
 						&& timeInfected >= 80
-						&& player.inventory.armorInventory[3] == null) {
+						&& player.inventory.armorInventory.get(3).isEmpty()) {
 					player.setFire(1);
 				}
 				
 				if (!FMLCommonHandler.instance().getMinecraftServerInstance().isPVPEnabled() && ConfigurationHandler.getSpreadEnabled()) {
-					Iterator<EntityPlayerMP> players = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList().iterator();
+					Iterator<EntityPlayerMP> players = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers().iterator();
 					
 					while (players.hasNext()) {
 						Object thing = players.next();
@@ -73,7 +73,7 @@ public class InfectedPlayerUpdateEvent {
 							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
 									if (!anotherPlayer.isPotionActive(ModPotion.potionInfection)) {
-										anotherPlayer.addChatMessage(new TextComponentTranslation("zombieinfection.chat.playerinfected"));
+										anotherPlayer.sendMessage(new TextComponentTranslation("zombieinfection.chat.playerinfected"));
 										anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
 									}
 								}

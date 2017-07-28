@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -52,7 +53,7 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 		boolean flag = super.attackEntityAsMob(entity);
 		
 		if (flag) {
-			int i = this.worldObj.getDifficulty().getDifficultyId();
+			int i = this.world.getDifficulty().getDifficultyId();
 			
 			if (this.getHeldItemMainhand() == null && this.isBurning() && this.rand.nextFloat() < (float) i * 0.3F) {
 				entity.setFire(2 * i);
@@ -62,23 +63,23 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 		return flag;
 	}
 	
-	@Override protected SoundEvent getAmbientSound() { return SoundEvents.entity_sheep_ambient; }
-	@Override protected SoundEvent getHurtSound() { return SoundEvents.entity_sheep_hurt; }
-	@Override protected SoundEvent getDeathSound() { return SoundEvents.entity_sheep_death; }
+	@Override protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_SHEEP_AMBIENT; }
+	@Override protected SoundEvent getHurtSound(DamageSource source) { return SoundEvents.ENTITY_SHEEP_HURT; }
+	@Override protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_SHEEP_DEATH; }
 	
 	@Override protected void playStepSound(BlockPos pos, Block blockIn) {
-		this.playSound(SoundEvents.entity_sheep_step, 0.15F, 1.0F);
+		this.playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);
 	}
 	
 	@Override protected float getSoundVolume() { return 0.4F; }
 	@Override public EnumCreatureAttribute getCreatureAttribute() { return EnumCreatureAttribute.UNDEAD; }
-	@Override protected Item getDropItem() { return Items.rotten_flesh; }
+	@Override protected Item getDropItem() { return Items.ROTTEN_FLESH; }
 	
 	@Override public void onLivingUpdate() {
-		if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isChild()) {
-			float f = this.getBrightness(1.0F);
+		if (this.world.isDaytime() && !this.world.isRemote && !this.isChild()) {
+			float f = this.getBrightness();
 			
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canBlockSeeSky(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)))) {
+			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)))) {
 				this.setFire(8);
 			}
 		}
@@ -89,16 +90,15 @@ public class EntityZombieSheep extends EntityMob implements IZombieInfectionMob 
 	@Override public void onKillEntity(EntityLivingBase entityLivingIn) {
 		super.onKillEntity(entityLivingIn);
 		
-		if ((this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD && !entityLivingIn.isChild()) && entityLivingIn instanceof EntitySheep) {
-			if (this.worldObj.getDifficulty() != EnumDifficulty.HARD && this.rand.nextBoolean()) { return; }
+		if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD && !entityLivingIn.isChild()) && entityLivingIn instanceof EntitySheep) {
+			if (this.world.getDifficulty() != EnumDifficulty.HARD && this.rand.nextBoolean()) { return; }
 			
-			EntityZombieSheep entityzombiesheep = new EntityZombieSheep(this.worldObj);
+			EntityZombieSheep entityzombiesheep = new EntityZombieSheep(this.world);
 			entityzombiesheep.copyLocationAndAnglesFrom(entityLivingIn);
-			this.worldObj.removeEntity(entityLivingIn);
-			entityzombiesheep.onInitialSpawn(this.worldObj.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
+			this.world.removeEntity(entityLivingIn);
+			entityzombiesheep.onInitialSpawn(this.world.getDifficultyForLocation(this.getPosition()), (IEntityLivingData) null);
 			
-			this.worldObj.spawnEntityInWorld(entityzombiesheep);
-			this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
+			this.world.spawnEntity(entityzombiesheep);
 		}
 	}
 	

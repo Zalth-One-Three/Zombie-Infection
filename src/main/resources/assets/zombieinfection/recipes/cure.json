@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "SBS",
+    "BGB"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    },
+	"S": {
+	  "item": "minecraft:sugar"
+	},
+	"B": {
+	  "item": "minecraft:glass_bottle"
+	},
+	"G": {
+	  "item": "minecraft:gold_ingot"
+	}
+  },
+  "result": {
+    "item": "zombieinfection:cure"
+  }
+}

@@ -2,6 +2,9 @@ package com.zalthonethree.zombieinfection.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -24,14 +27,14 @@ import com.zalthonethree.zombieinfection.utility.Utilities;
 public class ItemCure extends ItemBase {
 	public ItemCure() {
 		super();
-		setUnlocalizedName("cure");
-		setFull3D();
+		this.setFull3D();
+		this.setNames("cure");
 	}
 	
 	@Override public boolean hasEffect(ItemStack stack) { return true; }
 	
-	@Override @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced) {
-		list.add(TextFormatting.GOLD + Utilities.Translate("tooltip.cure"));
+	@Override @SideOnly(Side.CLIENT) public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.GOLD + Utilities.translate("tooltip.cure"));
 	}
 	
 	@Override public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
@@ -41,16 +44,16 @@ public class ItemCure extends ItemBase {
 		for (ICustomCureEffect customEffect : ZombieInfectionAPI.getCustomCureEffects()) {
 			customEffect.run(player, stack);
 		}
-		stack.stackSize = player.capabilities.isCreativeMode ? stack.stackSize : stack.stackSize - 1;
-		if (stack.stackSize == 0) {
-			stack = new ItemStack(Items.glass_bottle);
+		stack.setCount(player.capabilities.isCreativeMode ? stack.getCount() : stack.getCount() - 1);
+		if (stack.getCount() == 0) {
+			stack = new ItemStack(Items.GLASS_BOTTLE);
 		} else {
 			boolean increased = false;
 			for (int i = 0; i < player.inventory.getSizeInventory(); i ++) {
 				if (player.inventory.getStackInSlot(i) != null) {
 					if (player.inventory.getStackInSlot(i).getUnlocalizedName().equalsIgnoreCase("item.glassBottle")) {
-						if (player.inventory.getStackInSlot(i).stackSize < 64) {
-							player.inventory.getStackInSlot(i).stackSize ++;
+						if (player.inventory.getStackInSlot(i).getCount() < 64) {
+							player.inventory.getStackInSlot(i).grow(1);
 							increased = true;
 							break;
 						}
@@ -60,18 +63,19 @@ public class ItemCure extends ItemBase {
 			if (!increased) {
 			int emptySlotPos = player.inventory.getFirstEmptyStack();
 				if (emptySlotPos > -1) {
-					player.inventory.setInventorySlotContents(emptySlotPos, new ItemStack(Items.glass_bottle));
+					player.inventory.setInventorySlotContents(emptySlotPos, new ItemStack(Items.GLASS_BOTTLE));
 				} else {
-					player.dropPlayerItemWithRandomChoice(new ItemStack(Items.glass_bottle), false);
+					player.dropItem(new ItemStack(Items.GLASS_BOTTLE), false);
 				}
 			}
 		}
 		return stack;
 	}
 	
-	@Override public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (playerIn.isPotionActive(ModPotion.potionInfection) && !playerIn.isPotionActive(ModPotion.potionCure)) playerIn.setActiveHand(hand);
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
 	}
 	
 	@Override public int getMaxItemUseDuration(ItemStack stack) {

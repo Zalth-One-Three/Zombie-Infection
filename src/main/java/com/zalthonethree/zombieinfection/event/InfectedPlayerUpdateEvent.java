@@ -3,6 +3,16 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.Calendar;
 import java.util.Iterator;
 
+import com.zalthonethree.zombieinfection.api.ICustomInfectionEffect;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
+import com.zalthonethree.zombieinfection.handler.PacketHandler;
+import com.zalthonethree.zombieinfection.init.ModRegistry;
+import com.zalthonethree.zombieinfection.potion.PotionHelper;
+import com.zalthonethree.zombieinfection.utility.FoodTracking;
+import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
+import com.zalthonethree.zombieinfection.utility.Utilities;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
@@ -11,29 +21,19 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import com.zalthonethree.zombieinfection.api.ICustomInfectionEffect;
-import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
-import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
-import com.zalthonethree.zombieinfection.handler.PacketHandler;
-import com.zalthonethree.zombieinfection.potion.ModPotion;
-import com.zalthonethree.zombieinfection.potion.PotionHelper;
-import com.zalthonethree.zombieinfection.utility.FoodTracking;
-import com.zalthonethree.zombieinfection.utility.TimeInfectedTracking;
-import com.zalthonethree.zombieinfection.utility.Utilities;
-
 public class InfectedPlayerUpdateEvent {
 	private static int lastSecond = 0;
 	
 	@SubscribeEvent public void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
 		if (Utilities.isServerSide()) {
 			EntityPlayer player = event.player;
-			if (player.isPotionActive(ModPotion.potionInfection) && !player.isPotionActive(ModPotion.potionCure)) {
+			if (player.isPotionActive(ModRegistry.POTION_INFECTION) && !player.isPotionActive(ModRegistry.POTION_CURE)) {
 				int timeInfected = TimeInfectedTracking.getSecondsInfected(player);
 				for (ICustomInfectionEffect customEffect : ZombieInfectionAPI.getCustomInfectionEffects()) {
 					customEffect.run(player, timeInfected);
 				}
 				
-				player.addPotionEffect(PotionHelper.createInfection(timeInfected < 60 ? 0 : 1));
+				player.addPotionEffect(PotionHelper.createInfection(timeInfected < 60 ? 1 : 1));
 				if (ConfigurationHandler.enableSlowness()) player.addPotionEffect(PotionHelper.createSlowness(timeInfected < 60 ? 0 : 1));
 				if (ConfigurationHandler.enableHunger() && timeInfected >= 20) player.addPotionEffect(PotionHelper.createHunger(timeInfected < 80 ? 0 : 1));
 				if (ConfigurationHandler.enableMiningFatigue() && timeInfected >= 40) player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < 100 ? 0 : 1));
@@ -70,9 +70,9 @@ public class InfectedPlayerUpdateEvent {
 						Object thing = players.next();
 						if (thing instanceof EntityPlayer) {
 							EntityPlayer anotherPlayer = (EntityPlayer) thing;
-							if (anotherPlayer.getDistanceToEntity(player) < ConfigurationHandler.getSpreadDistance()) {
+							if (anotherPlayer.getDistance(player) < ConfigurationHandler.getSpreadDistance()) {
 								if (anotherPlayer.getUniqueID() != player.getUniqueID()) {
-									if (!anotherPlayer.isPotionActive(ModPotion.potionInfection)) {
+									if (!anotherPlayer.isPotionActive(ModRegistry.POTION_INFECTION)) {
 										anotherPlayer.sendMessage(new TextComponentTranslation("zombieinfection.chat.playerinfected"));
 										anotherPlayer.addPotionEffect(PotionHelper.createInfection(0));
 									}

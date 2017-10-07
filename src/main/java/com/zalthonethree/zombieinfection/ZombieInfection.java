@@ -5,7 +5,6 @@ import com.zalthonethree.zombieinfection.handler.PacketHandler;
 import com.zalthonethree.zombieinfection.init.BuiltInAPI;
 import com.zalthonethree.zombieinfection.init.EasterEggs;
 import com.zalthonethree.zombieinfection.init.EntityInit;
-import com.zalthonethree.zombieinfection.potion.ModPotion;
 import com.zalthonethree.zombieinfection.proxy.ServerProxy;
 import com.zalthonethree.zombieinfection.utility.LogHelper;
 
@@ -31,7 +30,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 	}
 	
 	@Mod.EventHandler public void init(FMLInitializationEvent event) {
-		ModPotion.init();
 		proxy.init();
 		proxy.registerRenderers();
 		

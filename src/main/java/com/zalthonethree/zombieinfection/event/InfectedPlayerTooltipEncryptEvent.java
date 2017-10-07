@@ -3,19 +3,28 @@ package com.zalthonethree.zombieinfection.event;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.init.ModRegistry;
+import com.zalthonethree.zombieinfection.utility.LogHelper;
+import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
-import com.zalthonethree.zombieinfection.potion.ModPotion;
-import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
-
 public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
-		if (event.getEntityPlayer().isPotionActive(ModPotion.potionInfection)
-		&& !event.getEntityPlayer().isPotionActive(ModPotion.potionCure)) {
+		if (event.getEntityPlayer() == null) {
+			LogHelper.warn("SERIOUS ERROR: PLAYER NULL");
+			return;
+		}
+		if (ModRegistry.POTION_INFECTION == null || ModRegistry.POTION_CURE == null) {
+			LogHelper.warn("SERIOUS ERROR: POTIONS ARE NULL");
+			return;
+		}
+		if (event.getEntityPlayer().isPotionActive(ModRegistry.POTION_INFECTION)
+		&& !event.getEntityPlayer().isPotionActive(ModRegistry.POTION_CURE)) {
 			if (TimeInfectedTrackingClient.getSecondsInfected() > 60) {
 				boolean doShuffle = true;
 				if (ZombieInfectionAPI.getEncryptionExclusions().contains(event.getItemStack().getUnlocalizedName())) doShuffle = false;

@@ -1,6 +1,6 @@
 package com.zalthonethree.zombieinfection.item;
 
-import com.zalthonethree.zombieinfection.potion.ModPotion;
+import com.zalthonethree.zombieinfection.init.ModRegistry;
 import com.zalthonethree.zombieinfection.utility.CustomDamageSource;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,9 +34,9 @@ public class ItemNeedle extends ItemBase {
 	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack itemStackIn = playerIn.getHeldItem(hand);
 		if (itemStackIn.getItemDamage() > 0) return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
-		if (playerIn.isPotionActive(ModPotion.potionCure)) {
+		if (playerIn.isPotionActive(ModRegistry.POTION_CURE)) {
 			itemStackIn.setItemDamage(3);
-		} else if (playerIn.isPotionActive(ModPotion.potionInfection)) {
+		} else if (playerIn.isPotionActive(ModRegistry.POTION_INFECTION)) {
 			itemStackIn.setItemDamage(2);
 		} else {
 			itemStackIn.setItemDamage(1);

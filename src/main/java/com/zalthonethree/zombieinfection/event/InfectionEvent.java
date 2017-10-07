@@ -7,7 +7,7 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieCow;
 import com.zalthonethree.zombieinfection.entity.EntityZombiePig;
 import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
-import com.zalthonethree.zombieinfection.potion.ModPotion;
+import com.zalthonethree.zombieinfection.init.ModRegistry;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
 
 import net.minecraft.entity.Entity;
@@ -56,7 +56,7 @@ public class InfectionEvent {
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					if ((attacked.getRNG().nextInt(100) + 1) <= infectionChance) {
-						if (!attacked.isPotionActive(ModPotion.potionInfection)) {
+						if (!attacked.isPotionActive(ModRegistry.POTION_INFECTION)) {
 							attacked.sendMessage(new TextComponentTranslation("zombieinfection.chat.infected"));
 							attacked.addPotionEffect(PotionHelper.createInfection(0));
 						}
@@ -67,15 +67,15 @@ public class InfectionEvent {
 				if (target instanceof EntityPlayer) {
 					EntityPlayer attacked = (EntityPlayer) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ModPotion.potionInfection)
-					&& !attacked.isPotionActive(ModPotion.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModRegistry.POTION_INFECTION)
+					&& !attacked.isPotionActive(ModRegistry.POTION_INFECTION)) {
 						attacked.sendMessage(new TextComponentTranslation("zombieinfection.chat.playerinfected"));
 						attacked.addPotionEffect(PotionHelper.createInfection(0));
 					}
 				} else if (target instanceof EntityVillager) {
 					EntityVillager attacked = (EntityVillager) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModRegistry.POTION_INFECTION)) {
 						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
 							if (!attacked.isPotionActive(Potion.getPotionFromResourceLocation("wither"))) {
 								attacked.addPotionEffect(PotionHelper.createWither(0));
@@ -88,7 +88,7 @@ public class InfectionEvent {
 				|| target instanceof EntitySheep) {
 					EntityCreature attacked = (EntityCreature) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModRegistry.POTION_INFECTION)) {
 						if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
 							if (!attacked.isPotionActive(Potion.getPotionFromResourceLocation("wither"))) {
 								attacked.addPotionEffect(PotionHelper.createWither(0));
@@ -110,7 +110,7 @@ public class InfectionEvent {
 				if (target instanceof EntityVillager) {
 					EntityVillager attacked = (EntityVillager) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModRegistry.POTION_INFECTION)) {
 						if (attacked.isPotionActive(Potion.getPotionFromResourceLocation("wither"))) {
 							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getVillagerInfectionChance()) {
 								EntityZombieVillager entityzombievillager = new EntityZombieVillager(attacked.world);
@@ -133,7 +133,7 @@ public class InfectionEvent {
 				|| target instanceof EntitySheep) {
 					EntityCreature attacked = (EntityCreature) target;
 					EntityPlayer possiblespreader = (EntityPlayer) attacker;
-					if (possiblespreader.isPotionActive(ModPotion.potionInfection)) {
+					if (possiblespreader.isPotionActive(ModRegistry.POTION_INFECTION)) {
 						if (attacked.isPotionActive(Potion.getPotionFromResourceLocation("wither")) && !attacked.isChild()) {
 							if (attacked.getRNG().nextInt(100) + 1 <= ConfigurationHandler.getAnimalInfectionChance()) {
 								EntityCreature entityzombified = zombifyEntity(target);

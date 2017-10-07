@@ -2,6 +2,8 @@ package com.zalthonethree.zombieinfection.potion;
 
 import java.util.ArrayList;
 
+import com.zalthonethree.zombieinfection.init.ModRegistry;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -13,11 +15,11 @@ public class PotionHelper {
 		return effect;
 	}
 	
-	public static PotionEffect createInfection(int level) { return createNewPotionEffect(ModPotion.potionInfection, level); }
-	public static PotionEffect createCure(int level) { return createNewPotionEffect(ModPotion.potionCure, level); }
+	public static PotionEffect createInfection(int level) { return createNewPotionEffect(ModRegistry.POTION_INFECTION, level); }
+	public static PotionEffect createCure(int level) { return createNewPotionEffect(ModRegistry.POTION_CURE, level); }
 	public static PotionEffect createHunger(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("hunger"), level); }
 	public static PotionEffect createWeakness(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("weakness"), level); }
-	public static PotionEffect createSlowness(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("moveSlowdown"), level); }
-	public static PotionEffect createMiningFatigue(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("digSlowdown"), level); }
+	public static PotionEffect createSlowness(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("slowness"), level); }
+	public static PotionEffect createMiningFatigue(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("mining_fatigue"), level); }
 	public static PotionEffect createWither(int level) { return createNewPotionEffect(Potion.getPotionFromResourceLocation("wither"), level); }
 }

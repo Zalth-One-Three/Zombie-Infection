@@ -1,7 +1,5 @@
 package com.zalthonethree.zombieinfection.potion;
 
-import com.zalthonethree.zombieinfection.Reference;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
@@ -11,22 +9,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
 public class ModPotion {
-	public static PotionZI potionCure;
-	public static PotionZI potionInfection;
-	
-	public static void init() {
-		potionCure = new PotionZI(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "cure"), new ResourceLocation(Reference.MOD_ID.toLowerCase(), "potion/cure.png"), false, 0xff00ff);
-		potionInfection = new PotionZI(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "infection"), new ResourceLocation(Reference.MOD_ID.toLowerCase(), "potion/infection.png"), false, 0xff00ff);
-		
-		potionCure.setPotionName("potion.zombieinfection.cure");
-		potionInfection.setPotionName("potion.zombieinfection.infection");
-	}
-	
-	protected static class PotionZI extends Potion {
+	public static class PotionZI extends Potion {
 		private ResourceLocation icon;
-		protected PotionZI(ResourceLocation location, ResourceLocation icon, boolean badEffect, int potionColor) {
+		
+		public PotionZI(ResourceLocation location, ResourceLocation icon, boolean badEffect, int potionColor) {
 			super(badEffect, potionColor);
-			this.setPotionName("potion." + location.getResourcePath());
+			this.setPotionName("potion.zombieinfection." + location.getResourcePath());
+			this.setRegistryName(location);
 			this.icon = icon;
 		}
 		

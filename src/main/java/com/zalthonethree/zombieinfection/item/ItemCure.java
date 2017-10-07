@@ -4,6 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.zalthonethree.zombieinfection.api.ICustomCureEffect;
+import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
+import com.zalthonethree.zombieinfection.init.ModRegistry;
+import com.zalthonethree.zombieinfection.potion.PotionHelper;
+import com.zalthonethree.zombieinfection.utility.Utilities;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,12 +23,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.zalthonethree.zombieinfection.api.ICustomCureEffect;
-import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
-import com.zalthonethree.zombieinfection.potion.ModPotion;
-import com.zalthonethree.zombieinfection.potion.PotionHelper;
-import com.zalthonethree.zombieinfection.utility.Utilities;
 
 public class ItemCure extends ItemBase {
 	public ItemCure() {
@@ -74,7 +74,7 @@ public class ItemCure extends ItemBase {
 	
 	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack stack = playerIn.getHeldItem(hand);
-		if (playerIn.isPotionActive(ModPotion.potionInfection) && !playerIn.isPotionActive(ModPotion.potionCure)) playerIn.setActiveHand(hand);
+		if (playerIn.isPotionActive(ModRegistry.POTION_INFECTION) && !playerIn.isPotionActive(ModRegistry.POTION_CURE)) playerIn.setActiveHand(hand);
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, stack);
 	}
 	

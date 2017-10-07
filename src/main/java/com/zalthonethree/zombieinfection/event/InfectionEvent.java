@@ -12,6 +12,7 @@ import com.zalthonethree.zombieinfection.potion.PotionHelper;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntityZombieVillager;
@@ -38,7 +39,7 @@ public class InfectionEvent {
 			boolean infectiousMob = false;
 			int infectionChance = 0;
 			for (int entityId : ZombieInfectionAPI.getCustomInfectiousMobs()) {
-				if (attacker.getEntityId() == entityId) {
+				if (EntityList.getID(attacker.getClass()) == entityId) {
 					infectiousMob = true;
 					infectionChance = ZombieInfectionAPI.getCustomInfectionChances().get(entityId);
 				}

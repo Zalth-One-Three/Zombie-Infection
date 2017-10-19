@@ -10,15 +10,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTab {
-	public static final ItemStack ICON = new ItemStack(ModRegistry.CURE);
-	
 	public static final CreativeTabs zombieInfection = new CreativeTabs(Reference.MOD_ID) {
 		@Override @SideOnly(Side.CLIENT) public ItemStack getTabIconItem() {
-			return ICON;
+			return new ItemStack(ModRegistry.CURE);
 		}
 		
 		@Override @SideOnly(Side.CLIENT) public String getTranslatedTabLabel() {
-			return I18n.format("itemGroup.zombieInfection");
+			return I18n.format("itemGroup.zombieinfection");
 		}
 	};
 }

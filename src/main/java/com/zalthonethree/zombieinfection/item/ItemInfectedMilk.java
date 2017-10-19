@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 public class ItemInfectedMilk extends ItemBase {
 	public ItemInfectedMilk() {
 		super();
-		this.setNames("infectedMilk");
+		this.setNames("infectedmilk");
 		this.setMaxStackSize(1);
 	}
 	

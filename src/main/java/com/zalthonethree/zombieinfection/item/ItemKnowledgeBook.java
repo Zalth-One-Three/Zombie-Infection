@@ -19,7 +19,7 @@ import com.zalthonethree.zombieinfection.ZombieInfection;
 public class ItemKnowledgeBook extends ItemBase {
 	public ItemKnowledgeBook() {
 		super();
-		this.setNames("knowledgeBook");
+		this.setNames("knowledgebook");
 	}
 	
 	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
@@ -28,6 +28,6 @@ public class ItemKnowledgeBook extends ItemBase {
 	}
 	
 	@Override public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip.knowledgeBook"));
+		tooltip.add(I18n.format("tooltip.knowledgebook"));
 	}
 }

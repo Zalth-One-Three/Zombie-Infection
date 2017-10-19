@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "zombieinfection:items/infectedEgg"
+        "layer0": "zombieinfection:items/infectedegg"
     },
     "display": {
         "thirdperson": {

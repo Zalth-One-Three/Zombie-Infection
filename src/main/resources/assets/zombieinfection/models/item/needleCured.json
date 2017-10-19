@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "zombieinfection:items/needleCured"
+        "layer0": "zombieinfection:items/needlecured"
     },
     "display": {
         "thirdperson": {

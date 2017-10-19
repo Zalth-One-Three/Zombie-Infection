@@ -16,25 +16,25 @@ entity.ZombieInfection.ZIZombieSheep.name=Zombie Sheep
 # Items #
 
 item.zombieinfection:cure.name=Infection Cure
-item.zombieinfection:infectedEgg.name=Infected Egg
-item.zombieinfection:infectedMilk.name=Infected Milk
-item.zombieinfection:knowledgeBook.name=Knowledge Book
+item.zombieinfection:infectedegg.name=Infected Egg
+item.zombieinfection:infectedmilk.name=Infected Milk
+item.zombieinfection:knowledgebook.name=Knowledge Book
 
 item.zombieinfection:needle.name=Needle (Empty)
-item.zombieinfection:needleNormal.name=Needle (Normal Blood)
-item.zombieinfection:needleInfected.name=Needle (Infected Blood)
-item.zombieinfection:needleCured.name=Needle (Cured Blood)
-item.zombieinfection:needleUnknown.name=Needle (Unknown)
+item.zombieinfection:needlenormal.name=Needle (Normal Blood)
+item.zombieinfection:needleinfected.name=Needle (Infected Blood)
+item.zombieinfection:needlecured.name=Needle (Cured Blood)
+item.zombieinfection:needleunknown.name=Needle (Unknown)
 
 # Item Groups #
 
-itemGroup.zombieInfection=Zombie Infection
+itemGroup.zombieinfection=Zombie Infection
 
 # Tooltips #
 
 tooltip.cure=Cures the Zombie Infection.
 tooltip.infectedeyes=The infection has spread to your eyes.
-tooltip.knowledgeBook=A zombie survival guide
+tooltip.knowledgebook=A zombie survival guide
 
 # Potions #
 
@@ -44,7 +44,7 @@ potion.zombieinfection.cure=Infection Cure
 # Easter Eggs #
 
 easteregg.stew=Noodle Soup
-easteregg.description.stew=Erhm.. Are you sure these are noodles?
+easteregg.description.stew=Ehrm.. Are you sure these are noodles?
 
 easteregg.egg=Turtle Egg
 easteregg.description.egg=Looks quite odd
@@ -53,4 +53,4 @@ easteregg.sponge=Cheese
 easteregg.description.sponge=Made by Dizkonnekted
 
 easteregg.cooked_porkchop=Bacon
-easteregg.description.cooked_porkchop=Looks tasty...
+easteregg.description.cooked_porkchop=Oink.

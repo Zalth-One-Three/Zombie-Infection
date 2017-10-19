@@ -1,6 +1,7 @@
 package com.zalthonethree.zombieinfection.init;
 
 import com.zalthonethree.zombieinfection.Reference;
+import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.item.ItemBase;
 import com.zalthonethree.zombieinfection.item.ItemCure;
 import com.zalthonethree.zombieinfection.item.ItemInfectedEgg;

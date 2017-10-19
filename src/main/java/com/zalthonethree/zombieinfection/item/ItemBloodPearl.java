@@ -11,7 +11,7 @@ public class ItemBloodPearl extends ItemBase {
 	 */
 	public ItemBloodPearl() {
 		super();
-		this.setUnlocalizedName("bloodPearl");
+		this.setUnlocalizedName("bloodpearl");
 		this.setMaxStackSize(16);
 	}
 	// TODO Work on blood pearl

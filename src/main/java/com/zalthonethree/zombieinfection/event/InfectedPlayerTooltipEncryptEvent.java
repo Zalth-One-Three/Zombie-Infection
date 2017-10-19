@@ -15,14 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class InfectedPlayerTooltipEncryptEvent {
 	@SubscribeEvent(priority = EventPriority.LOWEST) public void encryptTooltip(ItemTooltipEvent event) {
-		if (event.getEntityPlayer() == null) {
-			LogHelper.warn("SERIOUS ERROR: PLAYER NULL");
-			return;
-		}
-		if (ModRegistry.POTION_INFECTION == null || ModRegistry.POTION_CURE == null) {
-			LogHelper.warn("SERIOUS ERROR: POTIONS ARE NULL");
-			return;
-		}
+		if (event.getEntityPlayer() == null) return;
 		if (event.getEntityPlayer().isPotionActive(ModRegistry.POTION_INFECTION)
 		&& !event.getEntityPlayer().isPotionActive(ModRegistry.POTION_CURE)) {
 			if (TimeInfectedTrackingClient.getSecondsInfected() > 60) {

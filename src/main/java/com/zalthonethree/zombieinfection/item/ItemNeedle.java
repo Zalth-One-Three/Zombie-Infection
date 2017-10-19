@@ -22,7 +22,7 @@ public class ItemNeedle extends ItemBase {
 	 * 3 - Needle, Cured Blood
 	 */
 	
-	public static final String[] names = new String[] {"", "Normal", "Infected", "Cured", "Unknown"};
+	public static final String[] names = new String[] {"", "normal", "infected", "cured", "unknown"};
 	
 	public ItemNeedle() {
 		super();

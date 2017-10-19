@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "zombieinfection:items/infectedMilk"
+        "layer0": "zombieinfection:items/infectedmilk"
     },
     "display": {
         "thirdperson": {

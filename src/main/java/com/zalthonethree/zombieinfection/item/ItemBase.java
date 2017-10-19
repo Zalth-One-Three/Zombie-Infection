@@ -17,7 +17,7 @@ public class ItemBase extends Item {
 	
 	public ItemBase setNames(String name) {
 		this.setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
-		this.setUnlocalizedName(this.getRegistryName().toString());
+		this.setUnlocalizedName(name);
 		return this;
 	}
 	

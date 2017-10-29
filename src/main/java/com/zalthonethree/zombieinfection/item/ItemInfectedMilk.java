@@ -1,5 +1,6 @@
 package com.zalthonethree.zombieinfection.item;
 
+import com.zalthonethree.zombieinfection.potion.PotionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,7 @@ public class ItemInfectedMilk extends ItemBase {
 	@Override public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
-			if (!player.capabilities.isCreativeMode) player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("confusion"), 100));
+			if (!player.capabilities.isCreativeMode) player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("nausea"), 100));
 		}
 	}
 	
@@ -41,6 +42,7 @@ public class ItemInfectedMilk extends ItemBase {
 		EntityPlayer player = (EntityPlayer) entityLiving;
 		
 		if (!player.capabilities.isCreativeMode) {
+			player.addPotionEffect(PotionHelper.createInfection(0));
 			stack.shrink(1);
 		}
 		

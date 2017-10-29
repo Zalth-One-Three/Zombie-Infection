@@ -38,7 +38,7 @@ import com.zalthonethree.zombieinfection.init.ModRegistry;
 		MinecraftForge.EVENT_BUS.register(new GuiEyeInfection(Minecraft.getMinecraft()));
 		MinecraftForge.EVENT_BUS.register(new InfectedPlayerTooltipEncryptEvent());
 	}
-	
+
 	@SubscribeEvent public static void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(ModRegistry.NEEDLE, 0, new ModelResourceLocation(Reference.RESOURCE_PREFIX + "needle", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModRegistry.NEEDLE, 1, new ModelResourceLocation(Reference.RESOURCE_PREFIX + "needleblood", "inventory"));
@@ -53,7 +53,7 @@ import com.zalthonethree.zombieinfection.init.ModRegistry;
 		ModelHelper.registerItem(ModRegistry.INFECTED_EGG);
 		ModelHelper.registerItem(ModRegistry.INFECTED_MILK);
 		ModelHelper.registerItem(ModRegistry.KNOWLEDGE_BOOK);
-		
+
 		/* Entities */
 		
 		float shadowSize = 0.5F;

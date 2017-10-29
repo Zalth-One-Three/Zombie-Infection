@@ -2,9 +2,6 @@ package com.zalthonethree.zombieinfection.handler;
 
 import java.util.ArrayList;
 
-import com.zalthonethree.zombieinfection.Reference;
-import com.zalthonethree.zombieinfection.utility.LogHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
@@ -15,6 +12,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import com.zalthonethree.zombieinfection.Reference;
+import com.zalthonethree.zombieinfection.utility.LogHelper;
 
 @SideOnly(Side.CLIENT) public class ModelHelper {
 	public static void registerItemInternal(Item item, String[] registryNames, int[] registryMetas) {

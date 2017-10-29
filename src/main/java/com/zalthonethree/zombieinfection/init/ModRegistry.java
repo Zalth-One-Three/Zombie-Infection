@@ -1,7 +1,6 @@
 package com.zalthonethree.zombieinfection.init;
 
 import com.zalthonethree.zombieinfection.Reference;
-import com.zalthonethree.zombieinfection.ZombieInfection;
 import com.zalthonethree.zombieinfection.item.ItemBase;
 import com.zalthonethree.zombieinfection.item.ItemCure;
 import com.zalthonethree.zombieinfection.item.ItemInfectedEgg;
@@ -26,8 +25,8 @@ public class ModRegistry {
 	public static final ItemBase KNOWLEDGE_BOOK = new ItemKnowledgeBook();
 	public static final ItemBase NEEDLE = new ItemNeedle();
 	
-	public static final PotionZI POTION_INFECTION = new PotionZI(new ResourceLocation(Reference.MOD_ID, "infection"), new ResourceLocation(Reference.MOD_ID, "potion/infection.png"), false, 0xff00ff);
-	public static final PotionZI POTION_CURE = new PotionZI(new ResourceLocation(Reference.MOD_ID, "cure"), new ResourceLocation(Reference.MOD_ID, "potion/cure.png"), false, 0xff00ff);
+	public static final PotionZI POTION_INFECTION = new PotionZI(new ResourceLocation(Reference.MOD_ID, "infection"), new ResourceLocation(Reference.MOD_ID, "textures/potion/infection.png"), false, 0xff00ff);
+	public static final PotionZI POTION_CURE = new PotionZI(new ResourceLocation(Reference.MOD_ID, "cure"), new ResourceLocation(Reference.MOD_ID, "textures/potion/cure.png"), false, 0xff00ff);
 	
 	@SubscribeEvent public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();

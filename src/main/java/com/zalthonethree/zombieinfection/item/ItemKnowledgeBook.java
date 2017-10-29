@@ -20,6 +20,7 @@ public class ItemKnowledgeBook extends ItemBase {
 	public ItemKnowledgeBook() {
 		super();
 		this.setNames("knowledgebook");
+		this.setMaxStackSize(1);
 	}
 	
 	@Override public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {

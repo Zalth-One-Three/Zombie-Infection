@@ -2,9 +2,9 @@
 
 # Chat Messages #
 
-zombieinfection.chat.infected=Habeis sido infectado, encuentra la cura.
-zombieinfection.chat.playerinfected=Habeis sido infectado por otro jugador, encuentra la cura.
-zombieinfection.chat.rotteninfection=Habeis sido infectado por comida podrida.
+zombieinfection.chat.infected=Os sentís enfermo.
+zombieinfection.chat.playerinfected=Empezasteis a sentirte enfermo después de interactuar con otros.
+zombieinfection.chat.rotteninfection=Comer comida podrida os ha hecho sentir enfermo.
 
 zombieinfection.death.needle=%s intento sacar demasiada sangre.
 

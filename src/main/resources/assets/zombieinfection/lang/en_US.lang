@@ -1,8 +1,8 @@
 # Chat Messages #
 
-zombieinfection.chat.infected=You have been infected, find the cure.
-zombieinfection.chat.playerinfected=You have been infected by another player, find the cure.
-zombieinfection.chat.rotteninfection=You have been infected by rotten food.
+zombieinfection.chat.infected=You begin to feel sick..
+zombieinfection.chat.playerinfected=Suddenly you feel sick after interacting with other people..
+zombieinfection.chat.rotteninfection=Eating rotten food has made you start to feel sick.
 
 zombieinfection.death.needle=%s tried to take too much blood.
 
@@ -33,7 +33,7 @@ itemGroup.zombieinfection=Zombie Infection
 # Tooltips #
 
 tooltip.cure=Cures the Zombie Infection.
-tooltip.infectedeyes=The infection has spread to your eyes.
+tooltip.infectedeyes=Your vision has become blurry and you're no longer able to distinguish things.
 tooltip.knowledgebook=A zombie survival guide
 
 # Potions #
@@ -44,10 +44,10 @@ potion.zombieinfection.cure=Infection Cure
 # Easter Eggs #
 
 easteregg.stew=Noodle Soup
-easteregg.description.stew=Ehrm.. Are you sure these are noodles?
+easteregg.description.stew=Uhh.. Are you sure these are noodles?
 
 easteregg.egg=Turtle Egg
-easteregg.description.egg=Looks quite odd
+easteregg.description.egg=It doesn't seems like it's a turtle egg..
 
 easteregg.sponge=Cheese
 easteregg.description.sponge=Made by Dizkonnekted

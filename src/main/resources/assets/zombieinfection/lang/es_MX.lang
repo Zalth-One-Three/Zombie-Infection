@@ -2,9 +2,9 @@
 
 # Chat Messages #
 
-zombieinfection.chat.infected=Has sido infectado, encuentra la cura.
-zombieinfection.chat.playerinfected=Has sido infectado por otro jugador, encuentra la cura.
-zombieinfection.chat.rotteninfection=Has sido infectado por comida podrida.
+zombieinfection.chat.infected=Te estas sintiendo enfermo..
+zombieinfection.chat.playerinfected=Te empezaste a sentir enfermo despu茅s de interactuar con otros..
+zombieinfection.chat.rotteninfection=Comer comida podrida te ha hecho empezar a sentir enfermo.
 
 zombieinfection.death.needle=%s intento sacar demasiada sangre.
 
@@ -17,7 +17,7 @@ entity.ZombieInfection.ZIZombieSheep.name=Oveja Zombi
 
 # Items #
 
-item.zombieinfection:cure.name=Cura de la Infecci髇
+item.zombieinfection:cure.name=Cura de la Infecci贸n
 item.zombieinfection:infectedEgg=Huevo Infectado
 item.zombieinfection:infectedMilk=Leche Infectada
 item.zombieinfection:knowledgeBook.name=Libro de Conocimiento
@@ -30,18 +30,18 @@ item.zombieinfection:needleUnknown.name=Jeringa (Desconocido)
 
 # Item Groups #
 
-itemGroup.zombieInfection=Infecci髇 Zombi
+itemGroup.zombieInfection=Infecci贸n Zombi
 
 # Tooltips #
 
-tooltip.cure=Cura la Infecci髇 Zombi.
-tooltip.infectedeyes=La infecci髇 ha contaminado tus ojos
-tooltip.knowledgeBook=Una gu韆 de supervivencia zombie
+tooltip.cure=Cura la Infecci贸n Zombi.
+tooltip.infectedeyes=La infecci贸n ha contaminado tus ojos
+tooltip.knowledgeBook=Una gu铆a de supervivencia zombie
 
 # Potions #
 
-potion.zombieinfection.infection=Infecci髇
-potion.zombieinfection.cure=Cura de la Infecci髇
+potion.zombieinfection.infection=Infecci贸n
+potion.zombieinfection.cure=Cura de la Infecci贸n
 
 
 # Easter Eggs #
@@ -50,7 +50,7 @@ easteregg.stew=Sopa de fideos
 easteregg.description.stew=Erhm.. Estas seguro de que estos son fideos?
 
 easteregg.egg=Huevo de Tortuga
-easteregg.description.egg=Se ve bastante extra駉
+easteregg.description.egg=Se ve bastante extra帽o
 
 easteregg.sponge=Queso
 easteregg.description.sponge=Hecho por Dizkonnekted

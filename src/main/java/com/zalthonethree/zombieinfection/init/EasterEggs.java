@@ -2,7 +2,6 @@ package com.zalthonethree.zombieinfection.init;
 
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
-import net.minecraft.block.*;
 
 public class EasterEggs {
 	public static void init() {

@@ -5,7 +5,6 @@ import java.util.Collections;
 
 import com.zalthonethree.zombieinfection.api.ZombieInfectionAPI;
 import com.zalthonethree.zombieinfection.init.ModRegistry;
-import com.zalthonethree.zombieinfection.utility.LogHelper;
 import com.zalthonethree.zombieinfection.utility.TimeInfectedTrackingClient;
 
 import net.minecraft.client.resources.I18n;

@@ -6,7 +6,10 @@ zombieinfection.chat.infected=Os sentís enfermo.
 zombieinfection.chat.playerinfected=Empezasteis a sentirte enfermo después de interactuar con otros.
 zombieinfection.chat.rotteninfection=Os sentís enfermo por comer comida en mal estado.
 
-zombieinfection.death.needle=%s intento sacar demasiada sangre.
+death.attack.zombieinfection.infection=%1$s ha perecido ante la infección.
+death.attack.zombieinfection.infection.player=%1$s ha perecido ante la infección mientras luchaba con %2$s.
+
+zombieinfection.death.needle=%s ha intentado sacar demasiada sangre.
 
 # Entities #
 

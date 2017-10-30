@@ -25,7 +25,7 @@ public class GuiEyeInfection extends Gui {
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL) public void onRender(RenderGameOverlayEvent.Pre event) {
 		int timeInfected = TimeInfectedTrackingClient.getSecondsInfected();
-		if (event.isCanceled() || event.getType() != ElementType.HOTBAR || timeInfected < 60) return;
+		if (event.isCanceled() || event.getType() != ElementType.HOTBAR || timeInfected < 180) return;
 		ScaledResolution sr = new ScaledResolution(minecraftInstance);
 		
 		GlStateManager.pushAttrib();
@@ -33,7 +33,7 @@ public class GuiEyeInfection extends Gui {
 		GlStateManager.depthMask(false);
 		minecraftInstance.renderEngine.bindTexture(uncracked);
 		drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
-		if (timeInfected >= 120) {
+		if (timeInfected >= 300) {
 			minecraftInstance.renderEngine.bindTexture(cracked);
 			drawModalRectWithCustomSizedTexture(0, 0, 0, 0, sr.getScaledWidth(), sr.getScaledHeight(), sr.getScaledWidth(), sr.getScaledHeight());
 		}

@@ -27,15 +27,15 @@ public class ConfigurationHandler {
 	private static int rawFoodInfectionChance = 5;
 	private static int spiderEyeInfectionChance = 20;
 
-	private static int burningTime = 80;
-	private static int hungerTime = 20;
-	private static int upgradedHungerTime = 80;
-	private static int miningFatigueTime = 40;
-	private static int upgradedMiningFatigueTime = 100;
-	private static int slownessTime = 0;
-	private static int upgradedSlownessTime = 60;
+	private static int burningTime = 300;
+	private static int hungerTime = 300;
+	private static int upgradedHungerTime = 390;
+	private static int miningFatigueTime = 150;
+	private static int upgradedMiningFatigueTime = 280;
+	private static int slownessTime = 105;
+	private static int upgradedSlownessTime = 260;
 	private static int weaknessTime = 60;
-	private static int upgradedWeaknessTime = 120;
+	private static int upgradedWeaknessTime = 225;
 
 	private static boolean enableBurning = true;
 	private static boolean enableHunger = true;
@@ -75,15 +75,15 @@ public class ConfigurationHandler {
 		rawFoodInfectionChance = configuration.getInt("Raw Food Infection Chance", CATEGORY_CHANCES, 20, 0, 100, "Chance raw foods will give infection");
 		spiderEyeInfectionChance = configuration.getInt("Spider Eye Infection Chance", CATEGORY_CHANCES, 20, 0, 100, "Chance spider eyes will give infection");
 
-		burningTime = configuration.getInt("Timer: Burning Effect", CATEGORY_TIMERS, 80, 0, 480, "How many seconds it will take before the player catches on fire on the sunlight");
-		hungerTime = configuration.getInt("Timer: Hunger Level 1", CATEGORY_TIMERS, 20, 0, 480, "How many seconds it will take before the player gets the hunger effect (level 1)");
-		upgradedHungerTime = configuration.getInt("Timer: Hunger Level 2", CATEGORY_TIMERS, 80, 0, 480, "How many seconds it will take before the player gets the upgraded hunger effect (level 2), will only trigger once the level 1 version is active");
-		miningFatigueTime = configuration.getInt("Timer: Mining Fatigue Level 1", CATEGORY_TIMERS, 40, 0, 480, "How many seconds it will take before the player gets the mining fatigue effect (level 1)");
-		upgradedMiningFatigueTime = configuration.getInt("Timer: Mining Fatigue Level 2", CATEGORY_TIMERS, 100, 0, 480, "How many seconds it will take before the player gets the upgraded mining fatigue effect (level 2), will only trigger once the level 1 version is active");
-		slownessTime = configuration.getInt("Timer: Slowness Level 1", CATEGORY_TIMERS, 0, 0, 480, "How many seconds it will take before the player gets the slowness effect (level 1)");
-		upgradedSlownessTime = configuration.getInt("Timer: Slowness Level 2", CATEGORY_TIMERS, 60, 0, 480, "How many seconds it will take before the player gets the upgraded slowness effect (level 2), will only trigger once the level 1 version is active");
+		burningTime = configuration.getInt("Timer: Burning Effect", CATEGORY_TIMERS, 300, 0, 480, "How many seconds it will take before the player catches on fire on the sunlight");
+		hungerTime = configuration.getInt("Timer: Hunger Level 1", CATEGORY_TIMERS, 300, 0, 480, "How many seconds it will take before the player gets the hunger effect (level 1)");
+		upgradedHungerTime = configuration.getInt("Timer: Hunger Level 2", CATEGORY_TIMERS, 390, 0, 480, "How many seconds it will take before the player gets the upgraded hunger effect (level 2), will only trigger once the level 1 version is active");
+		miningFatigueTime = configuration.getInt("Timer: Mining Fatigue Level 1", CATEGORY_TIMERS, 150, 0, 480, "How many seconds it will take before the player gets the mining fatigue effect (level 1)");
+		upgradedMiningFatigueTime = configuration.getInt("Timer: Mining Fatigue Level 2", CATEGORY_TIMERS, 280, 0, 480, "How many seconds it will take before the player gets the upgraded mining fatigue effect (level 2), will only trigger once the level 1 version is active");
+		slownessTime = configuration.getInt("Timer: Slowness Level 1", CATEGORY_TIMERS, 0, 105, 480, "How many seconds it will take before the player gets the slowness effect (level 1)");
+		upgradedSlownessTime = configuration.getInt("Timer: Slowness Level 2", CATEGORY_TIMERS, 260, 0, 480, "How many seconds it will take before the player gets the upgraded slowness effect (level 2), will only trigger once the level 1 version is active");
 		weaknessTime = configuration.getInt("Timer: Weakness Level 1", CATEGORY_TIMERS, 60, 0, 480, "How many seconds it will take before the player gets the weakness effect (level 1)");
-		upgradedWeaknessTime = configuration.getInt("Timer: Weakness Level 2", CATEGORY_TIMERS, 120, 0, 480, "How many seconds it will take before the player gets the upgraded weakness effect (level 2), will only trigger once the level 1 version is active");
+		upgradedWeaknessTime = configuration.getInt("Timer: Weakness Level 2", CATEGORY_TIMERS, 225, 0, 480, "How many seconds it will take before the player gets the upgraded weakness effect (level 2), will only trigger once the level 1 version is active");
 
 		enableBurning = configuration.getBoolean("Enable Burning", CATEGORY_EFFECTS, true, "Infected players catch fire in sunlight based on the values set.");
 		enableHunger = configuration.getBoolean("Enable Hunger", CATEGORY_EFFECTS, true, "Infected players get Hunger based on the values set.");

@@ -35,12 +35,13 @@ public class InfectedPlayerUpdateEvent {
 					customEffect.run(player, timeInfected);
 				}
 				
-				player.addPotionEffect(PotionHelper.createInfection(timeInfected < 60 ? 1 : 1));
+				player.addPotionEffect(PotionHelper.createInfection(timeInfected < 180 ? 0 : 1));
 				if (ConfigurationHandler.enableHunger() && timeInfected >= ConfigurationHandler.getHungerTime()) player.addPotionEffect(PotionHelper.createHunger(timeInfected < ConfigurationHandler.getUpgradedHungerTime() ? 0 : ConfigurationHandler.enableUpgradedHunger()));
 				if (ConfigurationHandler.enableMiningFatigue() && timeInfected >= ConfigurationHandler.getMiningFatigueTime()) player.addPotionEffect(PotionHelper.createMiningFatigue(timeInfected < ConfigurationHandler.getUpgradedMiningFatigueTime() ? 0 : ConfigurationHandler.enableUpgradedMiningFatigue()));
 				if (ConfigurationHandler.enableSlowness() && timeInfected >= ConfigurationHandler.getSlownessTime()) player.addPotionEffect(PotionHelper.createSlowness(timeInfected < ConfigurationHandler.getUpgradedSlownessTime() ? 0 : ConfigurationHandler.enableUpgradedSlowness()));
 				if (ConfigurationHandler.enableWeakness() && timeInfected >= ConfigurationHandler.getWeaknessTime()) player.addPotionEffect(PotionHelper.createWeakness(timeInfected < ConfigurationHandler.getUpgradedWeaknessTime() ? 0 : ConfigurationHandler.enableUpgradedWeakness()));
-				if (ConfigurationHandler.enableWither() && timeInfected >= 480) player.addPotionEffect(PotionHelper.createWither(0));
+				if (ConfigurationHandler.enableWither() && timeInfected >= 450) player.addPotionEffect(PotionHelper.createWither(0));
+				if (timeInfected == 480) player.attackEntityFrom(ModRegistry.INFECTION, Float.MAX_VALUE);
 				
 				if (player.getFoodStats().getFoodLevel() > FoodTracking.get(player)) {
 					player.getFoodStats().addStats(FoodTracking.get(player) - player.getFoodStats().getFoodLevel(), 0);

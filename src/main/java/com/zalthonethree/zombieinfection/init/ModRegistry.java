@@ -11,6 +11,7 @@ import com.zalthonethree.zombieinfection.potion.ModPotion.PotionZI;
 
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +25,9 @@ public class ModRegistry {
 	public static final ItemBase INFECTED_MILK = new ItemInfectedMilk();
 	public static final ItemBase KNOWLEDGE_BOOK = new ItemKnowledgeBook();
 	public static final ItemBase NEEDLE = new ItemNeedle();
-	
+
+	public static final DamageSource INFECTION = (new DamageSource(Reference.MOD_ID + "." + "infection")).setDamageBypassesArmor().setDamageAllowedInCreativeMode();
+
 	public static final PotionZI POTION_INFECTION = new PotionZI(new ResourceLocation(Reference.MOD_ID, "infection"), new ResourceLocation(Reference.MOD_ID, "textures/potion/infection.png"), false, 0xff00ff);
 	public static final PotionZI POTION_CURE = new PotionZI(new ResourceLocation(Reference.MOD_ID, "cure"), new ResourceLocation(Reference.MOD_ID, "textures/potion/cure.png"), false, 0xff00ff);
 	

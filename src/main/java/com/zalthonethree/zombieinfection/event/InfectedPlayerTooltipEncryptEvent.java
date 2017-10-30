@@ -17,7 +17,7 @@ public class InfectedPlayerTooltipEncryptEvent {
 		if (event.getEntityPlayer() == null) return;
 		if (event.getEntityPlayer().isPotionActive(ModRegistry.POTION_INFECTION)
 		&& !event.getEntityPlayer().isPotionActive(ModRegistry.POTION_CURE)) {
-			if (TimeInfectedTrackingClient.getSecondsInfected() > 60) {
+			if (TimeInfectedTrackingClient.getSecondsInfected() > 180) {
 				boolean doShuffle = true;
 				if (ZombieInfectionAPI.getEncryptionExclusions().contains(event.getItemStack().getUnlocalizedName())) doShuffle = false;
 				if (ZombieInfectionAPI.getEncryptionSwitches().containsKey(event.getItemStack().getUnlocalizedName())) doShuffle = false;

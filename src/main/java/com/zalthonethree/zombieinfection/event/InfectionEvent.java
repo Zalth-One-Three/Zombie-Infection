@@ -9,10 +9,13 @@ import com.zalthonethree.zombieinfection.entity.EntityZombieSheep;
 import com.zalthonethree.zombieinfection.handler.ConfigurationHandler;
 import com.zalthonethree.zombieinfection.init.ModRegistry;
 import com.zalthonethree.zombieinfection.potion.PotionHelper;
+import com.zalthonethree.zombieinfection.utility.LogHelper;
+import com.zalthonethree.zombieinfection.utility.Utilities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.EntityZombieVillager;
@@ -22,13 +25,17 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.Random;
 
 public class InfectionEvent {
 	@SubscribeEvent public void onAttack(LivingHurtEvent event) {
@@ -158,18 +165,19 @@ public class InfectionEvent {
 		if (original instanceof EntitySheep) return new EntityZombieSheep(original.world);
 		return new EntityZombie(original.world);
 	}
-	
-/*	@SubscribeEvent public void onEaten(PlayerUseItemEvent.Finish event) {
+
+	@SubscribeEvent public void onEaten(LivingEntityUseItemEvent.Finish event){
 		if (Utilities.isServerSide()) {
-			EntityPlayer player = event.entityPlayer;
-			ItemStack stack = event.item;
+			EntityLivingBase player = event.getEntityLiving();
+			ItemStack stack = event.getItem();
 			int infectionChance = 0;
 			for (String itemName : ZombieInfectionAPI.getCustomFoodInfections().keySet()) {
 				if (stack.getUnlocalizedName().equalsIgnoreCase(itemName)) {
 					infectionChance = ZombieInfectionAPI.getCustomFoodInfections().get(itemName);
-					if (player.getRNG().nextInt(100) + 1 <= infectionChance) {
-						if (!player.isPotionActive(ModPotion.potionInfection)) {
-							player.addChatMessage(new TextComponentTranslation("zombieinfection.chat.rotteninfection"));
+					Random rand = new Random();
+					if (rand.nextInt(100) + 1 <= infectionChance) {
+						if (!player.isPotionActive(ModRegistry.POTION_INFECTION)) {
+							player.sendMessage(new TextComponentTranslation("zombieinfection.chat.rotteninfection"));
 							player.addPotionEffect(PotionHelper.createInfection(0));
 						}
 					}
@@ -177,5 +185,5 @@ public class InfectionEvent {
 				}
 			}
 		}
-	}*/ // TODO Reimplement
+	}
 }

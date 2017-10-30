@@ -45,17 +45,17 @@ import com.zalthonethree.zombieinfection.init.ModRegistry;
 		ModelLoader.setCustomModelResourceLocation(ModRegistry.NEEDLE, 2, new ModelResourceLocation(Reference.RESOURCE_PREFIX + "needleinfected", "inventory"));
 		ModelLoader.setCustomModelResourceLocation(ModRegistry.NEEDLE, 3, new ModelResourceLocation(Reference.RESOURCE_PREFIX + "needlecured", "inventory"));
 	}
-	
+
 	@Override public void registerRenderers() {
 		/* Items */
-		
+
 		ModelHelper.registerItem(ModRegistry.CURE, new String[] {"cure"}, new int[] {0});
 		ModelHelper.registerItem(ModRegistry.INFECTED_EGG);
 		ModelHelper.registerItem(ModRegistry.INFECTED_MILK);
 		ModelHelper.registerItem(ModRegistry.KNOWLEDGE_BOOK);
 
 		/* Entities */
-		
+
 		float shadowSize = 0.5F;
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieCow.class, new RenderZombieCow(Minecraft.getMinecraft().getRenderManager(), new ModelCow(), shadowSize));
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombieChicken.class, new RenderZombieChicken(Minecraft.getMinecraft().getRenderManager(), new ModelChicken(), shadowSize));

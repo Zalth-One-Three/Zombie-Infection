@@ -2,7 +2,7 @@
 
 zombieinfection.chat.infected=You begin to feel sick..
 zombieinfection.chat.playerinfected=Suddenly you feel sick after interacting with other people..
-zombieinfection.chat.rotteninfection=Eating rotten food has made you start to feel sick.
+zombieinfection.chat.rotteninfection=Eating food in a bad state has made you start to feel sick.
 
 zombieinfection.death.needle=%s tried to take too much blood.
 

@@ -4,7 +4,7 @@
 
 zombieinfection.chat.infected=Te estas sintiendo enfermo..
 zombieinfection.chat.playerinfected=Te empezaste a sentir enfermo después de interactuar con otros..
-zombieinfection.chat.rotteninfection=Comer comida podrida te ha hecho empezar a sentir enfermo.
+zombieinfection.chat.rotteninfection=Comer comida en mal estado te ha hecho empezar a sentir enfermo.
 
 zombieinfection.death.needle=%s intento sacar demasiada sangre.
 
@@ -35,7 +35,7 @@ itemGroup.zombieInfection=Infección Zombi
 # Tooltips #
 
 tooltip.cure=Cura la Infección Zombi.
-tooltip.infectedeyes=La infección ha contaminado tus ojos
+tooltip.infectedeyes=Tu visión se ha vuelto borrosa y ya no eres capaz de distinguir cosas.
 tooltip.knowledgeBook=Una guía de supervivencia zombie
 
 # Potions #
